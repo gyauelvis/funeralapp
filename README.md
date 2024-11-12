@@ -1,4 +1,4 @@
-# Laravel Setup Guide for Linux
+# How To Setup Project on Locally
 
 This guide provides step-by-step instructions for setting up Funeral App.
 
@@ -11,8 +11,14 @@ Before starting, ensure your system has:
 -   Node.js and npm (for frontend assets)
 -   MySQL or PostgreSQL database
 -   Apache or Nginx web server
+-   Git
 
-## 1. Install PHP and Required Extensions
+#### If you are using Windows:
+
+Download Laragon from here:[Laragon Download](https://laragon.org/download/)
+It comes with everything you need to start local development on Windows, after installing Laragon, skip to step 3
+
+## 1. Install PHP and Required Extension
 
 ```bash
 # Update package manager
@@ -31,20 +37,7 @@ sudo apt install php8.1 \
     unzip
 ```
 
-## 2. Install Composer
-
-```bash
-# Download Composer installer
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-
-# Install Composer globally
-sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-
-# Remove installer
-php -r "unlink('composer-setup.php');"
-```
-
-## 3. Install Node.js and npm
+## 2. Install Node.js and npm
 
 ```bash
 # Install Node.js and npm using nvm (Node Version Manager)
@@ -55,6 +48,25 @@ source ~/.bashrc
 
 # Install latest LTS version of Node.js
 nvm install --lts
+```
+
+## 3. Install Composer
+
+#### If you are using Windows:
+
+Download and install the composer .exe from here: [Composer .exe Download](https://getcomposer.org/Composer-Setup.exe)
+
+#### For Linux Users:
+
+```bash
+# Download Composer installer
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+
+# Install Composer globally
+sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+
+# Remove installer
+php -r "unlink('composer-setup.php');"
 ```
 
 ## 4. Clone Project
