@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('contributors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('membership_id')->nullable();
+            $table->string('membership_id')->nullable()->unique();
             $table->string('phone_number');
             $table->boolean('is_member');
             $table->string('suburb')->nullable();
             $table->string('denomination')->nullable();
-            $table->string('picture_path');
+            $table->string('picture_path')->nullable();
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

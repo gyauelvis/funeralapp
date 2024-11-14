@@ -22,8 +22,9 @@ class ContributorFactory extends Factory
             'phone_number' => fake()->phoneNumber(),
             'is_member' => fake()->boolean(50),
             'suburb' => fake()->city(),
-            'denomination' => fake()->words(2),
+            'denomination' => fake()->word(),
             'picture_path' => null,
+            'user_id' => fake()->numberBetween(0, 5),
         ];
     }
 }

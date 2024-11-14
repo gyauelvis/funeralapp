@@ -16,8 +16,8 @@ class Payment extends Model
         'purpose',
         'month',
         'year',
-        'purpose',
         'contributor_id',
+        'user_id'
     ];
 
     /**
@@ -28,5 +28,17 @@ class Payment extends Model
     public function contributor(): BelongsTo
     {
         return $this->belongsTo(Contributor::class);
+    }
+
+
+
+    /**
+     * payment_made_to
+     *
+     * @return BelongsTo
+     */
+    public function payment_made_to(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

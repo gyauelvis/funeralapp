@@ -18,7 +18,8 @@ return new class extends Migration
             $table->longText('purpose')->nullable();
             $table->string('month');
             $table->string('year');;
-            $table->foreignId('contributor_id')->constrained();
+            $table->foreignId('contributor_id');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }
