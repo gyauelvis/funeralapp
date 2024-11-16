@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Institution;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class InstitutionController extends Controller
 {
@@ -20,7 +22,12 @@ class InstitutionController extends Controller
      */
     public function create()
     {
-        //
+
+        if (Institution::get()->count() !== 0) {
+
+            return redirect(route('dashboard'));
+        };
+        return view('institution.register-institution');
     }
 
     /**
@@ -28,7 +35,45 @@ class InstitutionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        if (Institution::get()->count() !== 0) {
+
+            return redirect(route('dashboard'));
+        };
+
+
+        $data = $request->validate([
+            'logo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'name' => 'required|min:5',
+            'email' => 'required|email',
+            'slogan' => 'nullable',
+            'phone_number' => 'required|numeric',
+            'address' => 'required'
+        ], [
+            'logo' => 'Logo must be jpeg,jpg or png',
+            'name' => 'Enter a valid name for institution. Min of 5 letters',
+            'email' => 'Enter a valid institution email',
+            'slogan' => 'Enter the slogan for your institution',
+            'phone_number' => 'Enter a valid phone number',
+            'address' => 'Enter a valid address for the institution'
+        ]);
+
+
+
+        $image_name = time() . '.' . $data['logo']->extension();
+
+        $data['logo']->move(public_path('logos'), $image_name);
+
+        $data['logo'] = $image_name;
+
+        if (Institution::get()->count() === 0) {
+            Institution::create($data);
+            return redirect(route('dashboard'))
+                ->with('success', 'Institution has been created successfully');
+        };
+
+        return back()
+            ->with('error', 'You cannot have more than one institution');
     }
 
     /**
@@ -44,7 +89,7 @@ class InstitutionController extends Controller
      */
     public function edit(Institution $institution)
     {
-        //
+        return view('institution.edit-institution', ['institution' => $institution]);
     }
 
     /**
@@ -52,7 +97,39 @@ class InstitutionController extends Controller
      */
     public function update(Request $request, Institution $institution)
     {
-        //
+        $data = $request->validate([
+            'logo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'name' => 'required|min:5',
+            'email' => 'required|email',
+            'slogan' => 'nullable',
+            'phone_number' => 'required|numeric',
+            'address' => 'required'
+        ], [
+            'logo' => 'Logo must be jpeg,jpg or png',
+            'name' => 'Enter a valid name for institution. Min of 5 letters',
+            'email' => 'Enter a valid institution email',
+            'slogan' => 'Enter the slogan for your institution',
+            'phone_number' => 'Enter a valid phone number',
+            'address' => 'Enter a valid address for the institution'
+        ]);
+
+        $image_name = time() . '.' . $data['logo']->extension();
+
+        $data['logo']->move(public_path('logos'), $image_name);
+
+        if (File::exists(public_path('logos' . $institution->logo))) {
+            File::delete(public_path('logos' . $institution->logo));
+        }
+
+        $data['logo'] = $image_name;
+
+        if ($institution->update($data)) {
+            return redirect(route('dashboard'))
+                ->with('success', 'Institution details has been updated successfully');
+        };
+
+        return back()
+            ->with('error', 'There was an error updating');
     }
 
     /**
