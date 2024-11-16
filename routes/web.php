@@ -14,6 +14,9 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    Route::get('/register-institution', function () {
+        return view('register-institution.register-institution');
+    })->name('register-institution');
 });
 
 
