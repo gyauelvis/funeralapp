@@ -12,7 +12,8 @@ class ContributorController extends Controller
      */
     public function index()
     {
-        //
+        $data = Contributor::all();
+        dd($data);
     }
 
     /**
@@ -20,7 +21,7 @@ class ContributorController extends Controller
      */
     public function create()
     {
-        //
+        dd('Contributor Create Page');
     }
 
     /**
@@ -36,7 +37,7 @@ class ContributorController extends Controller
      */
     public function show(Contributor $contributor)
     {
-        //
+        dd($contributor);
     }
 
     /**
@@ -44,7 +45,7 @@ class ContributorController extends Controller
      */
     public function edit(Contributor $contributor)
     {
-        //
+        dd($contributor);
     }
 
     /**
@@ -60,6 +61,6 @@ class ContributorController extends Controller
      */
     public function destroy(Contributor $contributor)
     {
-        //
+        dd($contributor);
     }
 }

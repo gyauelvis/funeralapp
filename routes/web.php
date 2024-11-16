@@ -15,3 +15,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+require_once __DIR__ . '/contributor.php';
+require_once __DIR__ . '/payment.php';
+require_once __DIR__ . '/institution.php';
