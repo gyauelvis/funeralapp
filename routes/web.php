@@ -14,4 +14,12 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    Route::get('/register-institution', function () {
+        return view('register-institution.register-institution');
+    })->name('register-institution');
 });
+
+
+require_once __DIR__ . '/contributor.php';
+require_once __DIR__ . '/payment.php';
+require_once __DIR__ . '/institution.php';
