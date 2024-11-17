@@ -6,6 +6,8 @@ use App\Models\Institution;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Flasher\Toastr\Prime\ToastrInterface;
+
 
 class InstitutionController extends Controller
 {
@@ -68,12 +70,13 @@ class InstitutionController extends Controller
 
         if (Institution::get()->count() === 0) {
             Institution::create($data);
-            return redirect(route('dashboard'))
-                ->with('success', 'Institution has been created successfully');
+
+            toastr()->success('Institution has been created successfully');
+            return redirect(route('dashboard'));
         };
 
-        return back()
-            ->with('error', 'You cannot have more than one institution');
+        toastr()->error('You cannot have more than one institution');
+        return back();
     }
 
     /**
@@ -124,12 +127,11 @@ class InstitutionController extends Controller
         $data['logo'] = $image_name;
 
         if ($institution->update($data)) {
-            return redirect(route('dashboard'))
-                ->with('success', 'Institution details has been updated successfully');
+            toastr()->success('Institution details has been updated successfully');
+            return redirect(route('dashboard'));
         };
-
-        return back()
-            ->with('error', 'There was an error updating');
+        toastr()->success('There was an error updating');
+        return back();
     }
 
     /**
