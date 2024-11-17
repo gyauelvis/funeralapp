@@ -27,3 +27,8 @@ Route::middleware([
         return view('register-donor');
     })->name('register-nor');
 });
+
+
+require_once __DIR__ . '/contributor.php';
+require_once __DIR__ . '/payment.php';
+require_once __DIR__ . '/institution.php';
