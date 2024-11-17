@@ -25,7 +25,7 @@ Route::middleware([
     })->name('register-member');
     Route::get('/register-donor', function () {
         return view('register-donor');
-    })->name('register-nor');
+    })->name('register-donor');
 });
 
 
