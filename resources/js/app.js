@@ -1,6 +1,7 @@
 import "./bootstrap";
 import "flowbite";
 
-document.addEventListener("DOMContentLoaded", function (event) {
-  document.getElementById("defaultModalButton").click();
-});
+const serachBar = document.getElementById("topbar-search");
+serachBar.addEventListener('change', (e)=>{
+  console.log("e.target.value");
+})

@@ -26,6 +26,9 @@ Route::middleware([
     Route::get('/register-donor', function () {
         return view('register-donor');
     })->name('register-donor');
+    ROute::get('/view-members', function () {
+        return view('view-members');
+    })->name('view-members');
 });
 
 
