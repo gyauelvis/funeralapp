@@ -211,7 +211,7 @@
                             </li>
                             <li>
                                 <a
-                                    href="#"
+                                href="{{ url('/view-members') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">View Members</a>
                             </li>
                             <li>
@@ -297,3 +297,11 @@
     </div>
 
 </x-guest-layout>
+
+<script>
+console.lo("     dkajfakfjakf")
+const serachBar = document.getElementById("topbar-search");
+serachBar.addEventListener('change', (e)=>{
+  console.log("e.target.value");
+})
+</script>
