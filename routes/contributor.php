@@ -21,7 +21,6 @@ Route::middleware([
         ->name('contributor.single');
     Route::post('/contributors', [ContributorController::class, 'store'])
         ->name('contributor.new');
-
     Route::delete('/contributors/{contributor}/delete', [ContributorController::class, 'destroy'])
         ->name('contributor.delete');
 });
