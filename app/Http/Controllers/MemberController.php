@@ -63,7 +63,7 @@ class MemberController extends Controller
         $member = Contributor::create($data);
 
         toastr()->success("{$member->name} has been registered successfully");
-        return redirect(route('member.single', $member->id));
+        return redirect(route('members'));
     }
 
     /**
@@ -125,7 +125,7 @@ class MemberController extends Controller
 
         if ($contributor->update($data)) {
             toastr()->success("{$contributor->name}'s details has been updated successfully");
-            return redirect(route('dashboard'));
+            return redirect(route('members'));
         }
 
         toastr()->error("Error updating {$contributor->name} details");
@@ -135,8 +135,11 @@ class MemberController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Contributor $contributor)
     {
-        //
+        $contributor->delete();
+        toastr()->success("{$contributor->name}'s details has been deleted successfully");
+
+        return back();
     }
 }
