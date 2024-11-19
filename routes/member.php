@@ -2,25 +2,25 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\ContributorController;
+use App\Http\Controllers\MemberController;
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/contributors', [ContributorController::class, 'index'])
-        ->name('contributors');
-    Route::get('/contributors/create', [ContributorController::class, 'create'])
-        ->name('contributor.create');
-    Route::get('/contributors/edit/{contributor}', [ContributorController::class, 'edit'])
-        ->name('contributor.edit');
-    Route::put('/contributors/{contributor}/update', [ContributorController::class, 'update'])
-        ->name('contributor.update');
-    Route::get('/contributors/{contributor}', [ContributorController::class, 'show'])
-        ->name('contributor.single');
-    Route::post('/contributors', [ContributorController::class, 'store'])
-        ->name('contributor.new');
-    Route::delete('/contributors/{contributor}/delete', [ContributorController::class, 'destroy'])
-        ->name('contributor.delete');
+    Route::get('/members', [MemberController::class, 'index'])
+        ->name('members');
+    Route::get('/members/create', [MemberController::class, 'create'])
+        ->name('member.create');
+    Route::get('/members/edit/{contributor}', [MemberController::class, 'edit'])
+        ->name('member.edit');
+    Route::put('/members/{contributor}/update', [MemberController::class, 'update'])
+        ->name('member.update');
+    Route::get('/members/{contributor}', [MemberController::class, 'show'])
+        ->name('member.single');
+    Route::post('/members', [MemberController::class, 'store'])
+        ->name('member.new');
+    Route::delete('/members/{contributor}/delete', [MemberController::class, 'destroy'])
+        ->name('member.delete');
 });

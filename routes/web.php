@@ -20,15 +20,15 @@ Route::middleware([
     Route::get('/app/dashboard', function () {
         return view('app.app-dashbord');
     })->name('app-dashboard');
-    Route::get('/register-member', function () {
-        return view('register-member');
-    })->name('register-member');
-    Route::get('/register-donor', function () {
-        return view('register-donor');
-    })->name('register-donor');
-    ROute::get('/view-members', function () {
-        return view('view-members');
-    })->name('view-members');
+    // Route::get('/register-member', function () {
+    //     return view('register-member');
+    // })->name('register-member');
+    // Route::get('/register-donor', function () {
+    //     return view('register-donor');
+    // })->name('register-donor');
+    // Route::get('/view-members', function () {
+    //     return view('view-members');
+    // })->name('view-members');
 });
 
 require_once __DIR__ . '/member.php';

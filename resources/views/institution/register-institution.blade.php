@@ -9,13 +9,6 @@
                     <!-- Modal content -->
                     <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
 
-
-                        @session('error')
-                            <div class="rounded bg-red-500 p-3 text-sm text-white">
-                                {{ $value }}
-                            </div>
-                        @endsession
-
                         <!-- Modal header -->
                         <div
                             class="flex items-center justify-between rounded-t border-b p-4 dark:border-gray-600 md:p-5">
@@ -66,7 +59,7 @@
                                         class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Institution
                                         Name</label>
                                     <input type="text" name="name" id="name"
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Type institution name" value="{{ old('name') }}">
                                     @error('name')
                                         <small class="text-xs font-bold text-red-500">
@@ -79,7 +72,7 @@
                                         class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Institution
                                         Slogan</label>
                                     <input type="text" name="slogan" id="slogan"
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Type institution slogan" value="{{ old('slogan') }}">
                                     @error('slogan')
                                         <small class="text-xs font-bold text-red-500">
@@ -92,7 +85,7 @@
                                         class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Phone
                                         Number</label>
                                     <input type="number" name="phone_number" id="phone_number"
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="024XXXXXXXXX" value="{{ old('phone_number') }}">
                                     @error('phone_number')
                                         <small class="text-xs font-bold text-red-500">
@@ -104,7 +97,7 @@
                                     <label for="email"
                                         class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Email</label>
                                     <input type="email" name="email" id="email"
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="example@email.com" value="{{ old('email') }}">
                                     @error('email')
                                         <small class="text-xs font-bold text-red-500">
@@ -117,7 +110,7 @@
                                         class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Instition
                                         Address</label>
                                     <input type="text" name="address" id="address"
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Type institution address" value="{{ old('address') }}">
                                     @error('address')
                                         <small class="text-xs font-bold text-red-500">
