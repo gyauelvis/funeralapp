@@ -31,7 +31,8 @@ Route::middleware([
     })->name('view-members');
 });
 
-
+require_once __DIR__ . '/member.php';
+require_once __DIR__ . '/donation.php';
 require_once __DIR__ . '/contributor.php';
 require_once __DIR__ . '/payment.php';
 require_once __DIR__ . '/institution.php';
