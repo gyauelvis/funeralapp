@@ -69,11 +69,11 @@ class MemberController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id, Contributor $contributor, Request $request)
+    public function show(Contributor $contributor)
     {
-        $member = Contributor::find($request->id);
 
-        return view('members.view-members', ['member' => $member]);
+
+        return view('members.single-member', ['member' => $contributor]);
     }
 
     /**
