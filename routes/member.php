@@ -23,4 +23,5 @@ Route::middleware([
         ->name('member.new');
     Route::delete('/members/{contributor}/delete', [MemberController::class, 'destroy'])
         ->name('member.delete');
+        
 });
