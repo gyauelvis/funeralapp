@@ -89,12 +89,13 @@
                             <div class="rounded-xl bg-blue-50 p-4 dark:bg-blue-900/20">
                                 <div class="text-sm font-medium text-blue-600 dark:text-blue-400">Total Contribution
                                 </div>
-                                <div class="mt-2 text-2xl font-bold text-blue-700 dark:text-blue-300">GH₵ 100.00</div>
+                                <div class="mt-2 text-2xl font-bold text-blue-700 dark:text-blue-300">
+                                    {{ $total_contribution }}</div>
                             </div>
-
                             <div class="rounded-xl bg-green-50 p-4 dark:bg-green-900/20">
                                 <div class="text-sm font-medium text-green-600 dark:text-green-400">Total Donation</div>
-                                <div class="mt-2 text-2xl font-bold text-green-700 dark:text-green-300">GH₵ 0.00</div>
+                                <div class="mt-2 text-2xl font-bold text-green-700 dark:text-green-300">
+                                    {{ $total_donation }}</div>
                             </div>
                         </div>
                     </div>

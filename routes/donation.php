@@ -9,6 +9,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+
     Route::get('/donations', [DonationController::class, 'index'])
         ->name('donations');
     Route::get('/donations/create', [DonationController::class, 'create'])
@@ -23,4 +24,7 @@ Route::middleware([
         ->name('donation.new');
     Route::delete('/donations/{donation}/delete', [DonationController::class, 'destroy'])
         ->name('donation.delete');
+
+    Route::get('/donors', [DonationController::class, 'donors'])
+        ->name('donors');
 });
