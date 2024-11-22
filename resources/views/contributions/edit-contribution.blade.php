@@ -5,27 +5,28 @@
             <div>
                 <div class="flex items-center justify-between rounded-t p-4 dark:border-gray-600 md:p-5">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Update Contribution
+                        Edit a Contribution
                     </h3>
                 </div>
-                <form class="p-4 md:p-5" action="{{ route('member.update', $contribution->id) }}" method="POST"
-                    enctype="multipart/form-data">
+                <form class="p-4 md:p-5" action="{{ route('payment.new') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    @method('PUT')
+
                     <div class="mb-4 grid grid-cols-2 gap-4">
 
                         <div class="col-span-2">
                             <label for="name"
-                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Name<span
-                                    class="text-red-500">*</span></label>
-                            <select name="name" id="name"
+                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Enter name or
+                                Member ID number<span class="text-red-500">*</span></label>
+                            <select name="contributor_id" id="contributor_id"
                                 class="js-example-basic-single block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                placeholder="Type Denomination">
+                                placeholder="Type member name or ID number">
+                                <option>Type member name or ID number</option>
                                 @foreach ($members as $member)
-                                    <option value="">{{ "{$member->name} - {$member->membership_id}" }}</option>
+                                    <option value="{{ $member->id }}">
+                                        {{ "{$member->name} - {$member->membership_id}" }}</option>
                                 @endforeach
                             </select>
-                            @error('name')
+                            @error('contributor_id')
                                 <small class="text-xs font-bold text-red-500">
                                     {{ $message }}
                                 </small>
@@ -33,37 +34,20 @@
                         </div>
 
                         <div class="col-span-2 sm:col-span-1">
-                            <label for="phone_number"
-                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Phone Number<span
+                            <label for="amount"
+                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Amount<span
                                     class="text-red-500">*</span></label>
-                            <input type="numeric" name="phone_number" id="phone_number"
+                            <input type="numeric" name="amount" id="amount"
                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                placeholder="02455900993"
-                                value="{{ old('phone_number', $contribution->phone_number) }}">
-                            @error('phone_number')
+                                placeholder="100" value="{{ old('amount') }}">
+                            @error('amount')
                                 <small class="text-xs font-bold text-red-500">
                                     {{ $message }}
                                 </small>
                             @enderror
                         </div>
-                        <div class="col-span-2 sm:col-span-1">
-                            <label for="suburb"
-                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Surburb</label>
-                            <input type="text" name="suburb" id="suburb"
-                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                placeholder="Location in Community" value="{{ old('suburb', $contribution->suburb) }}">
-                            @error('suburb')
-                                <small class="text-xs font-bold text-red-500">
-                                    {{ $message }}
-                                </small>
-                            @enderror
-                        </div>
-                        <div class="col-span-2">
-                            <label for="denomination"
-                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Church
-                                Denomination</label>
 
-                        </div>
+
                     </div>
 
                     <button id="submit" type="submit"
@@ -74,7 +58,7 @@
                                 d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                                 clip-rule="evenodd"></path>
                         </svg>
-                        Update Member
+                        Update a contribution
                     </button>
                 </form>
             </div>
