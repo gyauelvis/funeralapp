@@ -12,7 +12,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        dd('All Contribution');
+        return view('contributions.view-contributions', ['contributions' => Payment::where('payment_type', 'CONTRIBUTION')->with(['contributor', 'payment_made_to'])->paginate(20)->withQueryString()]);
     }
 
     /**

@@ -62,12 +62,4 @@ class DonationController extends Controller
     {
         //
     }
-
-    /**
-     * View all donors.
-     */
-    public function donors(Contributor $contributor)
-    {
-        return view('donations.view-donors', ['members' => Contributor::where('is_member', '=', 0)->get()]);
-    }
 }

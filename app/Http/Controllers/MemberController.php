@@ -72,6 +72,9 @@ class MemberController extends Controller
      */
     public function show(Contributor $contributor)
     {
+        if ($contributor->is_member !== 1) {
+            return redirect(route('donor.single', $contributor->id));
+        }
 
         $total_contribution = $contributor->payments()->where('payment_type', 'CONTRIBUTION')->sum('amount');
         $total_donation = $contributor->payments()->where('payment_type', 'DONATION')->sum('amount');
@@ -89,6 +92,10 @@ class MemberController extends Controller
      */
     public function edit(Contributor $contributor)
     {
+        if ($contributor->is_member !== 1) {
+            return redirect(route('donor.edit', $contributor->id));
+        }
+
         return view('members.edit-member', ['member' => $contributor]);
     }
 
@@ -133,7 +140,7 @@ class MemberController extends Controller
 
         if ($contributor->update($data)) {
             toastr()->success("{$contributor->name}'s details has been updated successfully");
-            return redirect(route('members'));
+            return redirect(route('member.single', $contributor->id));
         }
 
         toastr()->error("Error updating {$contributor->name} details");

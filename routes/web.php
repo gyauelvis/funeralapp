@@ -34,6 +34,7 @@ Route::middleware([
 require_once __DIR__ . '/member.php';
 require_once __DIR__ . '/donation.php';
 require_once __DIR__ . '/contributor.php';
+require_once __DIR__ . '/donor.php';
 require_once __DIR__ . '/payment.php';
 require_once __DIR__ . '/institution.php';
 require_once __DIR__ . '/user.php';
