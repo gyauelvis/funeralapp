@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Payment;
+use App\Models\Contributor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
@@ -12,7 +15,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        return view('contributions.view-contributions', ['contributions' => Payment::where('payment_type', 'CONTRIBUTION')->with(['contributor', 'payment_made_to'])->paginate(20)->withQueryString()]);
+        return view('contributions.view-contributions', ['contributions' => Payment::where('payment_type', 'CONTRIBUTION')->with(['contributor', 'payment_made_to'])->orderBy('created_at', 'desc')->paginate(20)->withQueryString()]);
     }
 
     /**
@@ -20,7 +23,7 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        dd('Create a Contribution');
+        return view('contributions.create-contribution', ['members' => Contributor::where('is_member', 1)->get()]);
     }
 
     /**
@@ -28,7 +31,32 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'contributor_id' => 'required|exists:App\Models\Contributor,id',
+            'amount' => 'required|numeric',
+        ], [
+            'contributor_id' => 'Enter a valid member name or ID number. Minimum of 5 letters',
+            'amount' => 'Enter a valid amount',
+        ]);
+
+
+        // if (Payment::where('phone_number', "=", $data['phone_number']) === $data['phone_number']) {
+        //     toastr()->error('A member exists with the same phone number');
+        //     return back();
+        // }
+
+        $data['payment_type'] = 'CONTRIBUTION';
+
+        $data['month'] = Carbon::now()->month;
+        $data['year'] = Carbon::now()->year;
+        $data['user_id'] = Auth::user()->id;
+
+        Payment::create($data);
+
+        toastr()->success("Contribution has been made successfully");
+
+        //print receipt
+        return redirect(route('payments'));
     }
 
     /**
@@ -44,7 +72,13 @@ class PaymentController extends Controller
      */
     public function edit(Payment $payment)
     {
-        //
+        return view(
+            'contributions.edit-contribution',
+            [
+                'contribution' => $payment,
+                'members' => Contributor::where('is_member', 1)->get()
+            ]
+        );
     }
 
     /**

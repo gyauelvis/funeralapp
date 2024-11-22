@@ -1,48 +1,30 @@
 <x-app-layout>
+
     <main class="flex h-auto items-center justify-center rounded-lg bg-white p-4 pt-20 dark:bg-gray-700 md:ml-64">
         <div class="w-full max-w-lg">
             <div>
                 <div class="flex items-center justify-between rounded-t p-4 dark:border-gray-600 md:p-5">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Update Member Details
+                        Update Contribution
                     </h3>
                 </div>
-                <form class="p-4 md:p-5" action="{{ route('member.update', $member->id) }}" method="POST"
+                <form class="p-4 md:p-5" action="{{ route('member.update', $contribution->id) }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="mb-4 grid grid-cols-2 gap-4">
-                        <div class="col-span-2">
-                            <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-                                for="picture_path">Upload Member Image</label>
-                            <div class="flex justify-center">
-                                <div class="relative">
-                                    <input class="hidden" type="file" id="picture_path"
-                                        value="{{ old('picture_path', $member->picture_path) }}" name="picture_path"
-                                        accept="image/*" onchange="previewImage(this)">
-                                    <label for="picture_path"
-                                        class="flex h-32 w-32 cursor-pointer items-center justify-center overflow-hidden rounded-full border border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600">
-                                        <img id="preview" src="/members_images/{{ $member->picture_path }}"
-                                            class="h-full w-full object-cover">
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="mt-1 text-center text-sm text-gray-500 dark:text-gray-300"
-                                id="picture_path_help">SVG, PNG, JPG or GIF (MAX. 800x400px)</div>
-                            @error('picture_path')
-                                <small class="text-xs font-bold text-red-500">
-                                    {{ $message }}
-                                </small>
-                            @enderror
-                        </div>
 
                         <div class="col-span-2">
                             <label for="name"
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Name<span
                                     class="text-red-500">*</span></label>
-                            <input type="text" name="name" id="name"
-                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                placeholder="Type name" value="{{ old('name', $member->name) }}">
+                            <select name="name" id="name"
+                                class="js-example-basic-single block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                placeholder="Type Denomination">
+                                @foreach ($members as $member)
+                                    <option value="">{{ "{$member->name} - {$member->membership_id}" }}</option>
+                                @endforeach
+                            </select>
                             @error('name')
                                 <small class="text-xs font-bold text-red-500">
                                     {{ $message }}
@@ -56,7 +38,8 @@
                                     class="text-red-500">*</span></label>
                             <input type="numeric" name="phone_number" id="phone_number"
                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                placeholder="02455900993" value="{{ old('phone_number', $member->phone_number) }}">
+                                placeholder="02455900993"
+                                value="{{ old('phone_number', $contribution->phone_number) }}">
                             @error('phone_number')
                                 <small class="text-xs font-bold text-red-500">
                                     {{ $message }}
@@ -68,7 +51,7 @@
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Surburb</label>
                             <input type="text" name="suburb" id="suburb"
                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                placeholder="Location in Community" value="{{ old('suburb', $member->suburb) }}">
+                                placeholder="Location in Community" value="{{ old('suburb', $contribution->suburb) }}">
                             @error('suburb')
                                 <small class="text-xs font-bold text-red-500">
                                     {{ $message }}
@@ -79,19 +62,10 @@
                             <label for="denomination"
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Church
                                 Denomination</label>
-                            <input list="denomination-list" type="text" name="denomination" id="denomination"
-                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                placeholder="Type Denomination"
-                                value="{{ old('denomination', $member->denomination) }}">
-                            <datalist id="denomination-list">
-                            </datalist>
-                            @error('denomination')
-                                <small class="text-xs font-bold text-red-500">
-                                    {{ $message }}
-                                </small>
-                            @enderror
+
                         </div>
                     </div>
+
                     <button id="submit" type="submit"
                         class="inline-flex w-full items-center justify-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <svg class="-ms-1 me-1 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
@@ -107,75 +81,12 @@
         </div>
     </main>
 </x-app-layout>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
-    const denominations = [
-        "Roman Catholic Church",
-        "Presbyterian Church of Ghana",
-        "Methodist Church Ghana",
-        "Anglican Church",
-        "Pentecost Church",
-        "Charismatic Churches",
-        "Seventh-day Adventist Church",
-        "Church of Jesus Christ of Latter-day Saints",
-        "Apostolic Church Ghana",
-        "Assemblies of God",
-        "Evangelical Presbyterian Church",
-        "International Central Gospel Church",
-        "Lighthouse Chapel International",
-        "Perez Chapel International",
-        "Royalhouse Chapel International",
-        "Church of Christ",
-        "Global Evangelical Church",
-        "Christ Embassy",
-        "Deeper Christian Life Ministry",
-        "Action Chapel International",
-        "Christ Apostolic Church International",
-        "African Methodist Episcopal (AME)",
-        "Jehovah's Witnesses",
-        "Redeemed Christian Church of God",
-        "Calvary Charismatic Centre (CCC)",
-        "Resurrection Power New Generation Church"
-    ];
-
-    function populateDenominations() {
-        denominations.map(denomination => {
-            return (
-                document.getElementById('denomination-list').innerHTML +=
-                `<option value="${denomination}">${denomination}</option>`
-            )
-        });
-    }
-    populateDenominations();
-
-    function previewImage(input) {
-        const preview = document.getElementById('preview');
-        const placeholder = document.getElementById('placeholder');
-
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                preview.src = e.target.result;
-                preview.classList.remove('hidden');
-                placeholder.classList.add('hidden');
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        } else {
-            preview.classList.add('hidden');
-            placeholder.classList.remove('hidden');
-        }
-    }
-
-
-
-    function validateMail(email) {
-        let reg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-        console.log(email)
-        if (email.toLowerCase().match(reg)) {
-            return true;
-        }
-        return false
-    }
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });
 </script>
