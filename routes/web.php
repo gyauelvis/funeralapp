@@ -26,9 +26,9 @@ Route::middleware([
     // Route::get('/register-donor', function () {
     //     return view('register-donor');
     // })->name('register-donor');
-    Route::get('/single-member', function () {
-        return view('members.single-member');
-    })->name('single-member');
+    Route::get('/donations/view-donations', function () {
+        return view('donations.view-donations');
+    })->name('donations');
 });
 
 require_once __DIR__ . '/member.php';
