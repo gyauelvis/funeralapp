@@ -35,8 +35,7 @@
                             <th scope="col" class="px-6 py-3">Phone Number</th>
                             <th scope="col" class="px-6 py-3">Surburb</th>
                             <th scope="col" class="px-6 py-3">Denomination</th>
-                            <th scope="col" class="px-6 py-3">Member ID</th>
-                            <th scope="col" class="px-6 py-3">Role</th>
+                            <th scope="col" class="px-6 py-3">Donor ID</th>
                             <th scope="col" class="px-6 py-3">Actions</th>
                     </thead>
                     <tbody id="mem-table" class="divide-y divide-gray-200 dark:divide-gray-700">
@@ -134,7 +133,6 @@
             suburb: "East Legon",
             denomination: "Methodist",
             memberId: "MET-2024-001",
-            role: "donor"
         },
         {
             name: "Abena Osei",
@@ -143,7 +141,6 @@
             suburb: "Cantonments",
             denomination: "Presbyterian",
             memberId: "PRES-2024-002",
-            role: "member"
         },
         {
             name: "Kojo Addo",
@@ -152,7 +149,6 @@
             suburb: "Tema",
             denomination: "Pentecost",
             memberId: "PENT-2024-003",
-            role: "donor"
         },
         {
             name: "Efua Nyarko",
@@ -161,7 +157,6 @@
             suburb: "Labone",
             denomination: "Catholic",
             memberId: "CATH-2024-004",
-            role: "member"
         },
         {
             name: "Yaw Darkwa",
@@ -170,7 +165,6 @@
             suburb: "Accra New Town",
             denomination: "Baptist",
             memberId: "BAP-2024-005",
-            role: "member"
         },
         {
             name: "Akua Sarpong",
@@ -179,7 +173,6 @@
             suburb: "Adenta",
             denomination: "Methodist",
             memberId: "MET-2024-006",
-            role: "donor"
         },
         {
             name: "Kofi Ansah",
@@ -188,7 +181,6 @@
             suburb: "Dansoman",
             denomination: "Presbyterian",
             memberId: "PRES-2024-007",
-            role: "member"
         },
         {
             name: "Ama Boateng",
@@ -206,7 +198,6 @@
             suburb: "Osu",
             denomination: "Catholic",
             memberId: "CATH-2024-009",
-            role: "member"
         },
         {
             name: "Adwoa Nkrumah",
@@ -215,7 +206,6 @@
             suburb: "McCarthy Hill",
             denomination: "Baptist",
             memberId: "BAP-2024-010",
-            role: "donor"
         }
     ];
 
@@ -233,14 +223,13 @@
                 <img class="w-10 h-10 rounded-full" src="/logos/1731798570.jpg" alt="Profile image">
                 <div class="ps-3">
                     <div class="text-base font-semibold">${member.name.length <= 15 ? member.name : member.name.slice(0,10)+'...'}</div>
-                    <div class="font-normal text-gray-500">${member.email.length <= 20 ? member.email : member.email.slice(0,10)+'...'}</div>
+                    <div class="font-normal text-gray-500">${member.email.length <= 17 ? member.email : member.email.slice(0,10)+'...'}</div>
                 </div>
             </th>
             <td class="px-6 py-4">${member.phoneNumber}</td>
             <td class="px-6 py-4">${member.suburb}</td>
             <td class="px-6 py-4">${member.denomination}</td>
             <td class="px-6 py-4">${member.memberId}</td>
-            <td class="px-6 py-4 uppercase">${member.role}</td>
             <td class="px-6 py-4 relative">
                 <button class="action-button font-medium text-blue-600 dark:text-blue-500 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -254,6 +243,9 @@
                         </li>
                         <li>
                             <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Delete</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">View</a>
                         </li>
                     </ul>
                 </div>
@@ -290,19 +282,19 @@
     }
 
     // Your existing filter function
-    function filter() {
-        let data;
-        if (document.getElementById('member').checked && document.getElementById('donor').checked) {
-            data = communityMembers;
-        } else if (document.getElementById('member').checked) {
-            data = communityMembers.filter((member) => member.role === 'member');
-        } else if (document.getElementById('donor').checked) {
-            data = communityMembers.filter((member) => member.role === 'donor');
-        } else {
-            data = [];
-        }
-        populateTable(data);
-    }
+    // function filter() {
+    //     let data;
+    //     if (document.getElementById('member').checked && document.getElementById('donor').checked) {
+    //         data = communityMembers;
+    //     } else if (document.getElementById('member').checked) {
+    //         data = communityMembers.filter((member) => member.role === 'member');
+    //     } else if (document.getElementById('donor').checked) {
+    //         data = communityMembers.filter((member) => member.role === 'donor');
+    //     } else {
+    //         data = [];
+    //     }
+    //     populateTable(data);
+    // }
 
     // Initial table population
     populateTable();
