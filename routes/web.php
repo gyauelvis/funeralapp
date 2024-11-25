@@ -36,3 +36,4 @@ require_once __DIR__ . '/donation.php';
 require_once __DIR__ . '/contributor.php';
 require_once __DIR__ . '/payment.php';
 require_once __DIR__ . '/institution.php';
+require_once __DIR__ . '/user.php';

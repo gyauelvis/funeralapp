@@ -12,7 +12,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        //
+        dd('All Contribution');
     }
 
     /**
@@ -20,7 +20,7 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        //
+        dd('Create a Contribution');
     }
 
     /**
@@ -36,7 +36,7 @@ class PaymentController extends Controller
      */
     public function show(Payment $payment)
     {
-        //
+        dd('Single Contribution');
     }
 
     /**

@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Contributor;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Number;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class MemberController extends Controller
 {
@@ -72,8 +73,15 @@ class MemberController extends Controller
     public function show(Contributor $contributor)
     {
 
+        $total_contribution = $contributor->payments()->where('payment_type', 'CONTRIBUTION')->sum('amount');
+        $total_donation = $contributor->payments()->where('payment_type', 'DONATION')->sum('amount');
 
-        return view('members.single-member', ['member' => $contributor]);
+
+        return view('members.single-member', [
+            'member' => $contributor,
+            'total_contribution' => Number::currency($total_contribution, 'GHS'),
+            'total_donation' => Number::currency($total_donation, 'GHS')
+        ]);
     }
 
     /**
@@ -118,7 +126,7 @@ class MemberController extends Controller
 
             $data['picture_path'] = $image_name;
 
-            $old_picture_path = Contributor::find(52)->only('picture_path');
+            $old_picture_path = Contributor::find($contributor->id)->only('picture_path');
 
             File::delete(public_path('/members_images/' . $old_picture_path['picture_path']));
         }
