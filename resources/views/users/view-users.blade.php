@@ -38,7 +38,7 @@
                                         value="member"
                                         class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600">
                                     <label for="member"
-                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Members</label>
+                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">users</label>
                                 </li>
                             </ul>
                         </div>
@@ -48,11 +48,10 @@
                     <thead
                         class="sticky top-0 bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                            <th scope="col" class="w-52 px-6 py-3">Name</th>
-                            <th scope="col" class="px-6 py-3">Phone Number</th>
-                            <th scope="col" class="px-6 py-3">Surburb</th>
-                            <th scope="col" class="px-6 py-3">Denomination</th>
-                            <th scope="col" class="px-6 py-3">Member ID</th>
+                            <th scope="col-" class="w-52 px-6 py-3">Name</th>
+                            <th scope="col" class="px-6 py-3">Role</th>
+                            <th scope="col" class="px-6 py-3">Email
+                            <th scope="col" class="px-6 py-3">Date Created</th>
                             <th scope="col" class="px-6 py-3">Actions</th>
                     </thead>
                     <tbody id="mem-table" class="divide-y divide-gray-200 dark:divide-gray-700">
@@ -62,7 +61,7 @@
         </div>
 
 
-        <!-- Main modal -->
+        {{-- <!-- Main modal -->
         <div id="crud-modal" tabindex="-1" aria-hidden="true"
             class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden md:inset-0">
             <div class="relative max-h-full w-full max-w-md p-4">
@@ -171,25 +170,22 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
     </main>
 </x-app-layout>
 
 <script>
-    const communityMembers = [
+    const Users = [
 
-        @foreach ($members as $member)
+        @foreach ($users as $user)
             {
-                memberId: "{{ $member->id }}",
-                member_image: "{{ $member->picture_path }}",
-                name: "{{ $member->name }}",
-                phoneNumber: "{{ $member->phone_number }}",
-                email: "{{ $member->name }}",
-                suburb: "{{ $member->suburb }}",
-                denomination: "{{ $member->denomination }}",
-                membershipId: "{{ $member->membership_id }}",
-                role: "{{ $member->name }}"
+                userId: "{{ $user->id }}",
+                name: "{{ $user->name }}",
+                role: "{{ $user->role }}",
+                email: "{{ $user->email }}",
+                date_created: "{{ $user->created_at }}",
+
             },
         @endforeach
 
@@ -197,11 +193,11 @@
     ];
 
 
-    function populateTable(data = communityMembers) {
+    function populateTable(data = Users) {
         const tableBody = document.getElementById('mem-table');
         tableBody.innerHTML = '';
 
-        data.forEach((member, index) => {
+        data.forEach((user, index) => {
             const row = document.createElement('tr');
             row.className =
                 'bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600';
@@ -209,20 +205,18 @@
             row.innerHTML = `
 
             <th scope="row" class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <a href="/members/${member.memberId}">
-                    <img class="w-10 h-10 rounded-full" src="/members_images/${member.member_image ?? '/logos/1731798570.jpg'}" alt="Profile image">
+                <a href="/users/${user.userId}">
+                    <img class="w-10 h-10 rounded-full" src="/users_images/${user.user_image ?? '/logos/1731798570.jpg'}" alt="Profile image">
                 </a>
-                    <a href="/members/${member.memberId}">
+                    <a href="/users/${user.userId}">
                     <div class="ps-3">
-                    <div class="text-base font-semibold">${member.name.length <= 15 ? member.name : member.name.slice(0,15)+'...'}</div>
+                    <div class="text-base font-semibold">${user.name.length <= 15 ? user.name : user.name.slice(0,15)+'...'}</div>
                 </div>
                 </a>
             </th>
-
-            <td class="px-6 py-4">${member.phoneNumber}</td>
-            <td class="px-6 py-4">${member.suburb}</td>
-            <td class="px-6 py-4">${member.denomination}</td>
-            <td class="px-6 py-4">${member.membershipId}</td>
+            <td class="px-6 py-4">${user.role}</td>
+            <td class="px-6 py-4">${user.email}</td>
+            <td class="px-6 py-4">${user.date_created}</td>
             <td class="px-6 py-4 relative">
                 <button class="action-button font-medium text-blue-600 dark:text-blue-500 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -232,10 +226,10 @@
                 <div class="popover hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 border border-gray-200 z-50">
                     <ul class="py-1">
                         <li>
-                            <a href="/members/edit/${member.memberId}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Edit</a>
+                            <a href="/users/edit/${user.userId}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Edit</a>
                         </li>
                         <li>
-                            <form method="POST" action="/members/${member.memberId}/delete">
+                            <form method="POST" action="/users/${user.userId}/delete">
                                @csrf
                                @method('DELETE')
                                 <button type="submit" onclick="return confirm('Are you sure?')"  class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Delete</button>
@@ -281,11 +275,11 @@
     function filter() {
         let data;
         if (document.getElementById('member').checked && document.getElementById('donor').checked) {
-            data = communityMembers;
+            data = Users;
         } else if (document.getElementById('member').checked) {
-            data = communityMembers.filter((member) => member.role === 'member');
+            data = Users.filter((member) => member.role === 'member');
         } else if (document.getElementById('donor').checked) {
-            data = communityMembers.filter((member) => member.role === 'donor');
+            data = Users.filter((member) => member.role === 'donor');
         } else {
             data = [];
         }
