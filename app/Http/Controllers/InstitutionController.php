@@ -26,7 +26,7 @@ class InstitutionController extends Controller
     {
 
         if (Institution::get()->count() !== 0) {
-
+            toastr()->error('Institution already created');
             return redirect(route('dashboard'));
         };
         return view('institution.register-institution');

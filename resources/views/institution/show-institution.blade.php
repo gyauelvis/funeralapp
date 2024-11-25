@@ -13,35 +13,30 @@
                         <div
                             class="flex items-center justify-between rounded-t border-b p-4 dark:border-gray-600 md:p-5">
                             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                                Register Your institution
+                                Edit your institution
                             </h3>
                         </div>
                         <!-- Modal body -->
-                        <form class="p-4 md:p-5" action="{{ route('institution.new') }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form class="p-4 md:p-5" action="{{ route('institution.update', $institution->id) }}"
+                            method="POST" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             <div class="mb-4 grid grid-cols-2 gap-4">
                                 <div class="col-span-2">
                                     <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
                                         for="logo">Upload Institution Logo</label>
                                     <div class="relative">
-                                        <input class="hidden" value="{{ old('logo') }}" type="file" id="logo"
-                                            name="logo" accept="image/*" onchange="previewImage(this)">
+                                        <input class="hidden" value="{{ old('logo', $institution->logo) }}"
+                                            type="file" id="logo" name="logo" accept="image/*"
+                                            onchange="previewImage(this)">
 
                                         <label for="logo"
                                             class="flex h-32 w-32 cursor-pointer items-center justify-center overflow-hidden rounded-full border border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600">
 
-                                            <img id="preview" class="hidden h-full w-full object-cover">
+                                            <img id="preview" src={{ asset('logos/' . $institution->logo) }}
+                                                class="h-full w-full object-cover">
 
-                                            <div id="placeholder" class="text-center">
-                                                <svg class="mx-auto mb-1 h-8 w-8 text-gray-500 dark:text-gray-400"
-                                                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                                </svg>
-                                                <span class="text-sm text-gray-500 dark:text-gray-400">Upload</span>
-                                            </div>
+
                                         </label>
                                     </div>
                                     <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="logo_help">
@@ -60,7 +55,8 @@
                                         Name</label>
                                     <input type="text" name="name" id="name"
                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                        placeholder="Type institution name" value="{{ old('name') }}">
+                                        placeholder="Type institution name"
+                                        value="{{ old('name', $institution->name) }}">
                                     @error('name')
                                         <small class="text-xs font-bold text-red-500">
                                             {{ $message }}
@@ -73,7 +69,8 @@
                                         Slogan</label>
                                     <input type="text" name="slogan" id="slogan"
                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                        placeholder="Type institution slogan" value="{{ old('slogan') }}">
+                                        placeholder="Type institution slogan"
+                                        value="{{ old('slogan', $institution->slogan) }}">
                                     @error('slogan')
                                         <small class="text-xs font-bold text-red-500">
                                             {{ $message }}
@@ -86,7 +83,8 @@
                                         Number</label>
                                     <input type="number" name="phone_number" id="phone_number"
                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                        placeholder="024XXXXXXXXX" value="{{ old('phone_number') }}">
+                                        placeholder="024XXXXXXXXX"
+                                        value="{{ old('phone_number', $institution->phone_number) }}">
                                     @error('phone_number')
                                         <small class="text-xs font-bold text-red-500">
                                             {{ $message }}
@@ -98,7 +96,8 @@
                                         class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Email</label>
                                     <input type="email" name="email" id="email"
                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                        placeholder="example@email.com" value="{{ old('email') }}">
+                                        placeholder="example@email.com"
+                                        value="{{ old('email', $institution->email) }}">
                                     @error('email')
                                         <small class="text-xs font-bold text-red-500">
                                             {{ $message }}
@@ -111,7 +110,8 @@
                                         Address</label>
                                     <input type="text" name="address" id="address"
                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                        placeholder="Type institution address" value="{{ old('address') }}">
+                                        placeholder="Type institution address"
+                                        value="{{ old('address', $institution->address) }}">
                                     @error('address')
                                         <small class="text-xs font-bold text-red-500">
                                             {{ $message }}
@@ -127,7 +127,7 @@
                                         d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                Register Institution
+                                Update Institution
                             </button>
                         </form>
                     </div>
