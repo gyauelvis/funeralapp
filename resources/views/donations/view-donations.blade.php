@@ -27,6 +27,7 @@
 
                     <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
+<<<<<<< HEAD
                             <th scope="col" class="px-6 py-3">
                                 Amount
                             </th>
@@ -44,6 +45,14 @@
                             </th>
 
                         </tr>
+=======
+                            <th scope="col" class="w-52 px-6 py-3">Name</th>
+                            <th scope="col" class="px-6 py-3">Phone Number</th>
+                            <th scope="col" class="px-6 py-3">Suburb</th>
+                            <th scope="col" class="px-6 py-3">Denomination</th>
+                            <th scope="col" class="px-6 py-3">Donor ID</th>
+                            <th scope="col" class="px-6 py-3">Actions</th>
+>>>>>>> acba898f346ccedde00a044545bfa5c4e95f584b
                     </thead>
                     <tbody>
                         @foreach ($donations as $donation)
@@ -89,6 +98,7 @@
     </main>
 </x-app-layout>
 
+<<<<<<< HEAD
 {{-- <script>
     const communityMembers = [
 
@@ -108,6 +118,90 @@
 
 
     ];
+=======
+<script>
+    const communityMembers = [{
+            name: "Kwame Mensah",
+            phoneNumber: "024 456 7890",
+            email: "kwame.mensah@gmail.com",
+            suburb: "East Legon",
+            denomination: "Methodist",
+            memberId: "MET-2024-001",
+        },
+        {
+            name: "Abena Osei",
+            phoneNumber: "050 123 4567",
+            email: "abena.osei@yahoo.com",
+            suburb: "Cantonments",
+            denomination: "Presbyterian",
+            memberId: "PRES-2024-002",
+        },
+        {
+            name: "Kojo Addo",
+            phoneNumber: "027 891 2345",
+            email: "k.addo@hotmail.com",
+            suburb: "Tema",
+            denomination: "Pentecost",
+            memberId: "PENT-2024-003",
+        },
+        {
+            name: "Efua Nyarko",
+            phoneNumber: "055 678 9012",
+            email: "efuanyarko@gmail.com",
+            suburb: "Labone",
+            denomination: "Catholic",
+            memberId: "CATH-2024-004",
+        },
+        {
+            name: "Yaw Darkwa",
+            phoneNumber: "020 345 6789",
+            email: "yaw.darkwa@yahoo.com",
+            suburb: "Accra New Town",
+            denomination: "Baptist",
+            memberId: "BAP-2024-005",
+        },
+        {
+            name: "Akua Sarpong",
+            phoneNumber: "054 890 1234",
+            email: "akua.sarpong@gmail.com",
+            suburb: "Adenta",
+            denomination: "Methodist",
+            memberId: "MET-2024-006",
+        },
+        {
+            name: "Kofi Ansah",
+            phoneNumber: "023 567 8901",
+            email: "kofi.ansah@outlook.com",
+            suburb: "Dansoman",
+            denomination: "Presbyterian",
+            memberId: "PRES-2024-007",
+        },
+        {
+            name: "Ama Boateng",
+            phoneNumber: "026 789 0123",
+            email: "amaboat@gmail.com",
+            suburb: "Teshie",
+            denomination: "Pentecost",
+            memberId: "PENT-2024-008",
+            role: "donor"
+        },
+        {
+            name: "Kwesi Owusu",
+            phoneNumber: "057 234 5678",
+            email: "kwesi.owusu@yahoo.com",
+            suburb: "Osu",
+            denomination: "Catholic",
+            memberId: "CATH-2024-009",
+        },
+        {
+            name: "Adwoa Nkrumah",
+            phoneNumber: "025 901 2345",
+            email: "adwoa.nkrumah@gmail.com",
+            suburb: "McCarthy Hill",
+            denomination: "Baptist",
+            memberId: "BAP-2024-010",
+        }
+>>>>>>> acba898f346ccedde00a044545bfa5c4e95f584b
 
 
     function populateTable(data = communityMembers) {
@@ -122,12 +216,10 @@
             row.innerHTML = `
 
             <th scope="row" class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <a href="/members/${member.memberId}">
-                    <img class="w-10 h-10 rounded-full" src="/members_images/${member.member_image ?? '/logos/1731798570.jpg'}" alt="Profile image">
-                </a>
-                    <a href="/members/${member.memberId}">
-                    <div class="ps-3">
-                    <div class="text-base font-semibold">${member.name.length <= 15 ? member.name : member.name.slice(0,15)+'...'}</div>
+                <img class="w-10 h-10 rounded-full" src="/logos/1731798570.jpg" alt="Profile image">
+                <div class="ps-3">
+                    <div class="text-base font-semibold">${member.name.length <= 15 ? member.name : member.name.slice(0,10)+'...'}</div>
+                    <div class="font-normal text-gray-500">${member.email.length <= 17 ? member.email : member.email.slice(0,10)+'...'}</div>
                 </div>
                 </a>
             </th>
@@ -135,7 +227,7 @@
             <td class="px-6 py-4">${member.phoneNumber}</td>
             <td class="px-6 py-4">${member.suburb}</td>
             <td class="px-6 py-4">${member.denomination}</td>
-            <td class="px-6 py-4">${member.membershipId}</td>
+            <td class="px-6 py-4">${member.memberId}</td>
             <td class="px-6 py-4 relative">
                 <button class="action-button font-medium text-blue-600 dark:text-blue-500 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -154,6 +246,9 @@
                                 <button type="submit" onclick="return confirm('Are you sure?')"  class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Delete</button>
                             </form>
 
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">View</a>
                         </li>
                     </ul>
                 </div>
@@ -191,19 +286,19 @@
     }
 
     // Your existing filter function
-    function filter() {
-        let data;
-        if (document.getElementById('member').checked && document.getElementById('donor').checked) {
-            data = communityMembers;
-        } else if (document.getElementById('member').checked) {
-            data = communityMembers.filter((member) => member.role === 'member');
-        } else if (document.getElementById('donor').checked) {
-            data = communityMembers.filter((member) => member.role === 'donor');
-        } else {
-            data = [];
-        }
-        populateTable(data);
-    }
+    // function filter() {
+    //     let data;
+    //     if (document.getElementById('member').checked && document.getElementById('donor').checked) {
+    //         data = communityMembers;
+    //     } else if (document.getElementById('member').checked) {
+    //         data = communityMembers.filter((member) => member.role === 'member');
+    //     } else if (document.getElementById('donor').checked) {
+    //         data = communityMembers.filter((member) => member.role === 'donor');
+    //     } else {
+    //         data = [];
+    //     }
+    //     populateTable(data);
+    // }
 
     // Initial table population
     populateTable();

@@ -131,6 +131,9 @@
                                 <button type="submit" onclick="return confirm('Are you sure?')"  class="block px-4 py-2 text-red-500 font-bold hover:text-red-700 dark:text-gray-300 dark:hover:bg-gray-700">Delete</button>
                             </form>
                         </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">View</a>
+                        </li>
                     </ul>
                 </div>
             </td>
