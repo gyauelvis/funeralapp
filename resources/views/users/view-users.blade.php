@@ -59,6 +59,10 @@
                 </table>
             </div>
         </div>
+        <div
+            class="w-full bg-white p-5 text-left text-lg font-semibold text-gray-900 rtl:text-right dark:bg-gray-800 dark:text-white">
+            {{ $users->links() }}
+        </div>
 
 
         {{-- <!-- Main modal -->

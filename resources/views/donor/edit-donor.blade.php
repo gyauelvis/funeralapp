@@ -4,25 +4,25 @@
             <div>
                 <div class="flex items-center justify-between rounded-t p-4 dark:border-gray-600 md:p-5">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Update Member Details
+                        Update Donor Details
                     </h3>
                 </div>
-                <form class="p-4 md:p-5" action="{{ route('member.update', $member->id) }}" method="POST"
+                <form class="p-4 md:p-5" action="{{ route('donor.update', $donor->id) }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="mb-4 grid grid-cols-2 gap-4">
                         <div class="col-span-2">
                             <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-                                for="picture_path">Upload Member Image</label>
+                                for="picture_path">Upload Donor Image</label>
                             <div class="flex justify-center">
                                 <div class="relative">
                                     <input class="hidden" type="file" id="picture_path"
-                                        value="{{ old('picture_path', $member->picture_path) }}" name="picture_path"
+                                        value="{{ old('picture_path', $donor->picture_path) }}" name="picture_path"
                                         accept="image/*" onchange="previewImage(this)">
                                     <label for="picture_path"
                                         class="flex h-32 w-32 cursor-pointer items-center justify-center overflow-hidden rounded-full border border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600">
-                                        <img id="preview" src="/members_images/{{ $member->picture_path }}"
+                                        <img id="preview" src="/donors_images/{{ $donor->picture_path }}"
                                             class="h-full w-full object-cover">
                                     </label>
                                 </div>
@@ -42,21 +42,20 @@
                                     class="text-red-500">*</span></label>
                             <input type="text" name="name" id="name"
                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                placeholder="Type name" value="{{ old('name', $member->name) }}">
+                                placeholder="Type name" value="{{ old('name', $donor->name) }}">
                             @error('name')
                                 <small class="text-xs font-bold text-red-500">
                                     {{ $message }}
                                 </small>
                             @enderror
                         </div>
-
                         <div class="col-span-2 sm:col-span-1">
                             <label for="phone_number"
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Phone Number<span
                                     class="text-red-500">*</span></label>
-                            <input type="numeric" name="phone_number" id="phone_number"
+                            <input type="number" name="phone_number" id="phone_number"
                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                placeholder="02455900993" value="{{ old('phone_number', $member->phone_number) }}">
+                                placeholder="02455900993" value="{{ old('phone_number', $donor->phone_number) }}">
                             @error('phone_number')
                                 <small class="text-xs font-bold text-red-500">
                                     {{ $message }}
@@ -68,21 +67,21 @@
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Surburb</label>
                             <input type="text" name="suburb" id="suburb"
                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                placeholder="Location in Community" value="{{ old('suburb', $member->suburb) }}">
+                                placeholder="Location in Community" value="{{ old('suburb', $donor->suburb) }}">
                             @error('suburb')
                                 <small class="text-xs font-bold text-red-500">
                                     {{ $message }}
                                 </small>
                             @enderror
                         </div>
-                        <div class="col-span-2">
+                        {{-- <div class="col-span-2">
                             <label for="denomination"
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Church
                                 Denomination</label>
                             <input list="denomination-list" type="text" name="denomination" id="denomination"
                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                 placeholder="Type Denomination"
-                                value="{{ old('denomination', $member->denomination) }}">
+                                value="{{ old('denomination', $donor->denomination) }}">
                             <datalist id="denomination-list">
                             </datalist>
                             @error('denomination')
@@ -90,7 +89,7 @@
                                     {{ $message }}
                                 </small>
                             @enderror
-                        </div>
+                        </div> --}}
                     </div>
                     <button id="submit" type="submit"
                         class="inline-flex w-full items-center justify-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -100,7 +99,7 @@
                                 d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                                 clip-rule="evenodd"></path>
                         </svg>
-                        Update Member
+                        Update Donor
                     </button>
                 </form>
             </div>
