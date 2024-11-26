@@ -15,7 +15,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        return view('members.view-members', ['members' => Contributor::where('is_member', '=', 1)->get()]);
+        return view('members.view-members', ['members' => Contributor::where('is_member', '=', 1)->orderBy('created_at', 'desc')->paginate(20)->withQueryString()]);
     }
 
     /**
@@ -33,7 +33,7 @@ class MemberController extends Controller
     {
 
         $data = $request->validate([
-            'picture_path' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'picture_path' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'name' => 'required|min:5',
             'suburb' => 'required',
             'phone_number' => 'required|numeric',
@@ -52,11 +52,15 @@ class MemberController extends Controller
             return back();
         };
 
-        $image_name = time() . '.' . $data['picture_path']->extension();
+        if (isset($data['picture_path'])) {
+            $image_name = time() . '.' . $data['picture_path']->extension();
 
-        $data['picture_path']->move(public_path('members_images'), $image_name);
+            $data['picture_path']->move(public_path('members_images'), $image_name);
 
-        $data['picture_path'] = $image_name;
+            $data['picture_path'] = $image_name;
+        }
+
+
         $data['membership_id'] = "AS/24/" . time();
         $data['is_member'] = 1;
         $data['user_id'] = Auth::user()->id;

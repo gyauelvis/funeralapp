@@ -8,7 +8,8 @@
                         Edit a Contribution
                     </h3>
                 </div>
-                <form class="p-4 md:p-5" action="{{ route('payment.new') }}" method="POST" enctype="multipart/form-data">
+                <form class="p-4 md:p-5" action="{{ route('payment.update', $contribution->id) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
 
                     <div class="mb-4 grid grid-cols-2 gap-4">

@@ -20,6 +20,8 @@ class Payment extends Model
         'user_id'
     ];
 
+    protected $with = ['contributor', 'payment_made_to'];
+
     /**
      * contributor
      *

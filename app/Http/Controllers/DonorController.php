@@ -14,7 +14,7 @@ class DonorController extends Controller
      */
     public function index()
     {
-        return view('donor.view-donors', ['donors' => Contributor::where('is_member', '=', 0)->get()]);
+        return view('donor.view-donors', ['donors' => Contributor::where('is_member', '=', 0)->orderBy('created_at', 'desc')->paginate(20)->withQueryString()]);
     }
 
 
@@ -106,6 +106,6 @@ class DonorController extends Controller
         $contributor->delete();
         toastr()->success("{$contributor->name}'s details has been deleted successfully");
 
-        return view('donor.view-donors', ['donors' => Contributor::where('is_member', '=', 0)->get()]);
+        return redirect(route('donors'));
     }
 }

@@ -86,7 +86,23 @@ class PaymentController extends Controller
      */
     public function update(Request $request, Payment $payment)
     {
-        //
+        $data = $request->validate([
+            'contributor_id' => 'required|exists:App\Models\Contributor,id',
+            'amount' => 'required|numeric',
+        ], [
+            'contributor_id' => 'Enter a valid member name or ID number. Minimum of 5 letters',
+            'amount' => 'Enter a valid amount',
+        ]);
+
+        dd($data);
+
+        if ($payment->update($data)) {
+            toastr()->success("Payment has been updated successfully");
+            return redirect(route('member.single', $contributor->id));
+        }
+
+        toastr()->error("Error updating {$contributor->name} details");
+        return back();
     }
 
     /**
