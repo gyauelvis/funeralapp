@@ -32,7 +32,7 @@ class DonationController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'contributor_id' => 'required|exists:App\Models\Contributor.id',
+            'contributor_id' => 'required|exists:App\Models\Contributor,id',
             'amount' => 'required|numeric',
             'phone_number' => 'required|numeric',
             'purpose' => 'nullable|min:6'
@@ -42,8 +42,6 @@ class DonationController extends Controller
             'phone_number' => 'Enter a valid phone number',
             'purpose' => 'Your purpose has to be more than 6 characters long',
         ]);
-
-        dd($data['contributor_id']);
 
         $contributor = Contributor::find($data['contributor_id']);
         if ($contributor->phone_number === $data['phone_number'] and $contributor->id === $data['contributor_id']) {
@@ -59,10 +57,8 @@ class DonationController extends Controller
             toastr()->success("Donation has been recorded successfully");
 
             //print receipt
-            return redirect(route('contributions'));
+            return redirect(route('donor.single', $data['contributor_id']));
         }
-
-
 
         toastr()->error('A member exists with the same phone number');
         return back();

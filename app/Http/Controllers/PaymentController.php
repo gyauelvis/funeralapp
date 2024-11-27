@@ -40,11 +40,6 @@ class PaymentController extends Controller
         ]);
 
 
-        // if (Payment::where('phone_number', "=", $data['phone_number']) === $data['phone_number']) {
-        //     toastr()->error('A member exists with the same phone number');
-        //     return back();
-        // }
-
         $data['payment_type'] = 'CONTRIBUTION';
 
         $data['month'] = Carbon::now()->month;
@@ -55,8 +50,8 @@ class PaymentController extends Controller
 
         toastr()->success("Contribution has been made successfully");
 
-        //print receipt
-        return redirect(route('payments'));
+
+        return redirect(route('member.single', $data['contributor_id']));
     }
 
     /**

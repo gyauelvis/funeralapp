@@ -36,21 +36,16 @@ class MemberController extends Controller
             'picture_path' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'name' => 'required|min:5',
             'suburb' => 'required',
-            'phone_number' => 'required|numeric',
+            'phone_number' => 'required|min:10|numeric|unique:contributors,phone_number',
             'denomination' => 'nullable|min:5'
         ], [
             'picture_path' => 'The image must be jpeg,jpg or png',
             'name' => 'Enter a valid member name. Minimum of 5 letters',
             'suburb' => 'Enter a valid suburb for this member ',
-            'phone_number' => 'Enter a valid phone number',
+            'phone_number' => 'Phone number is either invalid or is registered with another member',
             'denomination' => 'Enter a valid denomination. Must be at least 5 characters'
         ]);
 
-
-        if (Contributor::where('phone_number', "=", $data['phone_number']) === $data['phone_number']) {
-            toastr()->error('A member exists with the same phone number');
-            return back();
-        };
 
         if (isset($data['picture_path'])) {
             $image_name = time() . '.' . $data['picture_path']->extension();

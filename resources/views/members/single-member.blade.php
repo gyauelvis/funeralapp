@@ -13,8 +13,8 @@
                                 <div class="relative">
                                     <div
                                         class="h-32 w-32 overflow-hidden rounded-full border-4 border-white bg-white shadow-lg dark:border-gray-700">
-                                        <img src="/members_images/{{ $member->picture_path }}" alt="Profile"
-                                            class="h-full w-full object-cover">
+                                        <img src="{{ $member->picture_path == null ? '/profile.webp' : "/members_images/$member->picture_path" }}"
+                                            alt="Profile" class="h-full w-full object-cover">
                                     </div>
                                 </div>
                             </div>
