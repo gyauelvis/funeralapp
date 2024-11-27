@@ -34,11 +34,11 @@
                                         class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Donors</label>
                                 </li>
                                 <li>
-                                    <input id="member" onchange="filter('member')" checked type="checkbox"
-                                        value="member"
+                                    <input id="donor" onchange="filter('donor')" checked type="checkbox"
+                                        value="donor"
                                         class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600">
-                                    <label for="member"
-                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Members</label>
+                                    <label for="donor"
+                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">donors</label>
                                 </li>
                             </ul>
                         </div>
@@ -50,9 +50,6 @@
                         <tr>
                             <th scope="col" class="w-52 px-6 py-3">Name</th>
                             <th scope="col" class="px-6 py-3">Phone Number</th>
-                            <th scope="col" class="px-6 py-3">Surburb</th>
-                            <th scope="col" class="px-6 py-3">Denomination</th>
-                            <th scope="col" class="px-6 py-3">Member ID</th>
                             <th scope="col" class="px-6 py-3">Actions</th>
                     </thead>
                     <tbody id="mem-table" class="divide-y divide-gray-200 dark:divide-gray-700">
@@ -64,19 +61,16 @@
 </x-app-layout>
 
 <script>
-    const communityMembers = [
+    const communityDonors = [
 
-        @foreach ($members as $member)
+        @foreach ($donors as $donor)
             {
-                memberId: "{{ $member->id }}",
-                member_image: "{{ $member->picture_path }}",
-                name: "{{ $member->name }}",
-                phoneNumber: "{{ $member->phone_number }}",
-                email: "{{ $member->name }}",
-                suburb: "{{ $member->suburb }}",
-                denomination: "{{ $member->denomination }}",
-                membershipId: "{{ $member->membership_id }}",
-                role: "{{ $member->name }}"
+                donorId: "{{ $donor->id }}",
+                donor_image: "{{ $donor->picture_path }}",
+                name: "{{ $donor->name }}",
+                phoneNumber: "{{ $donor->phone_number }}",
+                purpose: "{{ $donor->purpose }}",
+                denomination: "{{ $donor->denomination }}",
             },
         @endforeach
 
@@ -84,11 +78,11 @@
     ];
 
 
-    function populateTable(data = communityMembers) {
+    function populateTable(data = communityDonors) {
         const tableBody = document.getElementById('mem-table');
         tableBody.innerHTML = '';
 
-        data.forEach((member, index) => {
+        data.forEach((donor, index) => {
             const row = document.createElement('tr');
             row.className =
                 'bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600';
@@ -96,20 +90,17 @@
             row.innerHTML = `
 
             <th scope="row" class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <a href="/members/${member.memberId}">
-                    <img class="w-10 h-10 rounded-full" src="/members_images/${member.member_image ?? '/logos/1731798570.jpg'}" alt="Profile image">
+                <a href="/donors/${donor.donorId}">
+                    <img class="w-10 h-10 rounded-full" src="/members_images/${donor.donor_image ?? '/logos/1731798570.jpg'}" alt="Profile image">
                 </a>
-                    <a href="/members/${member.memberId}">
+                    <a href="/donors/${donor.donorId}">
                     <div class="ps-3">
-                    <div class="text-base font-semibold">${member.name.length <= 15 ? member.name : member.name.slice(0,15)+'...'}</div>
+                    <div class="text-base font-semibold">${donor.name.length <= 15 ? donor.name : donor.name.slice(0,15)+'...'}</div>
                 </div>
                 </a>
             </th>
 
-            <td class="px-6 py-4">${member.phoneNumber}</td>
-            <td class="px-6 py-4">${member.suburb}</td>
-            <td class="px-6 py-4">${member.denomination}</td>
-            <td class="px-6 py-4">${member.membershipId}</td>
+            <td class="px-6 py-4">${donor.phoneNumber}</td>
             <td class="px-6 py-4 relative">
                 <button class="action-button font-medium text-blue-600 dark:text-blue-500 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -119,10 +110,10 @@
                 <div class="popover hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 border border-gray-200 z-50">
                     <ul class="py-1">
                         <li>
-                            <a href="/donors/edit/${member.memberId}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Edit</a>
+                            <a href="/donors/edit/${donor.donorId}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Edit</a>
                         </li>
                         <li>
-                            <form method="POST" action="/donors/${member.memberId}/delete">
+                            <form method="POST" action="/donors/${donor.donorId}/delete">
                                @csrf
                                @method('DELETE')
                                 <button type="submit" onclick="return confirm('Are you sure?')"  class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Delete</button>
@@ -167,12 +158,12 @@
     // Your existing filter function
     function filter() {
         let data;
-        if (document.getElementById('member').checked && document.getElementById('donor').checked) {
-            data = communityMembers;
-        } else if (document.getElementById('member').checked) {
-            data = communityMembers.filter((member) => member.role === 'member');
+        if (document.getElementById('donor').checked && document.getElementById('donor').checked) {
+            data = communityDonors;
         } else if (document.getElementById('donor').checked) {
-            data = communityMembers.filter((member) => member.role === 'donor');
+            data = communityDonors.filter((donor) => donor.role === 'donor');
+        } else if (document.getElementById('donor').checked) {
+            data = communityDonors.filter((donor) => donor.role === 'donor');
         } else {
             data = [];
         }

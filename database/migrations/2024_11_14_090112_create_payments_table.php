@@ -17,7 +17,7 @@ return new class extends Migration
             $table->enum('payment_type', ['CONTRIBUTION', 'DONATION']);
             $table->longText('purpose')->nullable();
             $table->string('month');
-            $table->string('year');;
+            $table->integer('year');
             $table->foreignId('contributor_id');
             $table->foreignId('user_id');
             $table->timestamps();

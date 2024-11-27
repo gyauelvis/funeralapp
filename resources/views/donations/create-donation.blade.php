@@ -1,102 +1,145 @@
 <x-app-layout>
-    <main class="p-4 min-h-screen md:ml-64 h-auto pt-20 bg-white rounded-lg dark:bg-gray-700 items-center justify-center flex">
+
+    <main
+        class="flex h-auto items-center justify-center rounded-lg bg-red-500 bg-white p-4 pt-20 dark:bg-gray-700 md:ml-64">
         <div class="w-full max-w-lg">
             <div>
-                <div class="flex items-center justify-between p-4 md:p-5 rounded-t dark:border-gray-600">
+                <div class="flex items-center justify-between rounded-t p-4 dark:border-gray-600 md:p-5">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Register Donor
+                        Make a Donation
                     </h3>
                 </div>
-                <form class="p-4 md:p-5 relative">
-                    <div class="grid gap-4 mb-4 grid-cols-2">
-                        <div class="col-span-2 sm:col-span-1">
-                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name<span class="text-red-500">*</span></label>
-                            <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type name" required="">
-                        </div>
-                        <div class="col-span-2 sm:col-span-1">
-                            <label for="phoneNumber" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number<span class="text-red-500">*</span></label>
-                            <input type="number" name="phoneNumber" id="phoneNumber" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="02455900993" required="">
-                            <div id="phoneNumberError" class="mt-1 text-xs text-red-500 dark:text-gray-300"></div>
-                        </div>
+                <form class="p-4 md:p-5" action="{{ route('donation.new') }}" method="POST">
+                    @csrf
+                    <div class="mb-4 grid grid-cols-2 gap-4">
                         <div class="col-span-2">
-                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="example@email.com" required>
-                            <div id="emailError" class="mt-1 text-sm text-red-500 dark:text-gray-300"></div>
+                            <label for="contributor_id"
+                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Name of
+                                Donor</label>
+                            <input list="denomination-list" type="text" name="contributor_id" id="contributor_id"
+                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                placeholder="Type name of donor or member ID number"
+                                value="{{ old('contributor_id') }}">
+                            <datalist id="denomination-list">
+                                @foreach ($all_contributors as $member)
+                                    <option value="{{ old('contributor_id', $member->id) }}">
+                                        {{ "{$member->name} - {$member->membership_id}" }}</option>
+                                @endforeach
+
+                            </datalist>
+                            @error('contributor_id')
+                                <small class="text-xs font-bold text-red-500">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+                        </div>
+
+                        <div class="col-span-2 sm:col-span-1">
+                            <label for="phone_number"
+                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Phone Number<span
+                                    class="text-red-500">*</span></label>
+                            <input type="numeric" name="phone_number" id="amount"
+                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                placeholder="024XXXXXXX" value="{{ old('phone_number') }}">
+                            @error('phone_number')
+                                <small class="text-xs font-bold text-red-500">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <label for="amount"
+                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Amount<span
+                                    class="text-red-500">*</span></label>
+                            <input type="numeric" name="amount" id="amount"
+                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                placeholder="100" value="{{ old('amount') }}">
+                            @error('amount')
+                                <small class="text-xs font-bold text-red-500">
+                                    {{ $message }}
+                                </small>
+                            @enderror
                         </div>
                         <div class="sm:col-span-2">
-                            <label for="purpose" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Purpose of Donation</label>
-                            <textarea id="purpose" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Purpose of Donation Here"></textarea>
+                            <label for="purpose"
+                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Purpose of
+                                Donation</label>
+                            <textarea id="purpose" rows="8"
+                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                placeholder="Purpose of Donation Here"></textarea>
                         </div>
+
                     </div>
-                    <button id="submit" type="submit" class="w-full text-white inline-flex items-center justify-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+
+                    <button id="submit" type="submit"
+                        class="inline-flex w-full items-center justify-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <svg class="-ms-1 me-1 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                clip-rule="evenodd"></path>
                         </svg>
-                        Register
+                        Make a donation
                     </button>
-
-                   
-
                 </form>
             </div>
         </div>
-
-        
     </main>
 </x-app-layout>
 
+<script>
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });
+</script>
 
 <script>
     const denominations = [
-        "Roman Catholic Church",
-        "Presbyterian Church of Ghana",
-        "Methodist Church Ghana",
-        "Anglican Church",
-        "Pentecost Church",
-        "Charismatic Churches",
-        "Seventh-day Adventist Church",
-        "Church of Jesus Christ of Latter-day Saints",
-        "Apostolic Church Ghana",
-        "Assemblies of God",
-        "Evangelical Presbyterian Church",
-        "International Central Gospel Church",
-        "Lighthouse Chapel International",
-        "Perez Chapel International",
-        "Royalhouse Chapel International",
-        "Church of Christ",
-        "Global Evangelical Church",
-        "Christ Embassy",
-        "Deeper Christian Life Ministry",
-        "Action Chapel International",
-        "Christ Apostolic Church International",
-        "African Methodist Episcopal (AME)",
-        "Jehovah's Witnesses",
-        "Redeemed Christian Church of God",
-        "Calvary Charismatic Centre (CCC)",
-        "Resurrection Power New Generation Church"
+        ""
     ];
 
     function populateDenominations() {
         denominations.map(denomination => {
             return (
-                document.getElementById('denomination-list').innerHTML += `<option value="${denomination}">${denomination}</option>`
+                document.getElementById('denomination-list').innerHTML +=
+                `<option value="${denomination}">${denomination}</option>`
             )
         });
     }
     populateDenominations();
 
+    function previewImage(input) {
+        const preview = document.getElementById('preview');
+        const placeholder = document.getElementById('placeholder');
 
-    document.getElementById('submit').addEventListener('click', (e) => {
-        e.preventDefault();
-        const formData = {
-            name: document.getElementById('name').value,
-            phoneNumber: document.getElementById('phoneNumber').value,
-            purposeOfDonation: document.getElementById('purpose').value,
-            isMember: false
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.classList.remove('hidden');
+                placeholder.classList.add('hidden');
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            preview.classList.add('hidden');
+            placeholder.classList.remove('hidden');
         }
-        if (formData.phoneNumber.length < 10)
-            document.getElementById('phoneNumberError').innerText = 'Phone number must be 10 digits or more';
-        console.log(formData);
-        document.getElementById('popup-modal').classList.remove('hidden');
+    }
+
+
+    function validateMail(email) {
+        let reg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        console.log(email)
+        if (email.toLowerCase().match(reg)) {
+            return true;
+        }
+        return false
+    }
+
+    document.getElementById('amount').addEventListener('input', function(e) {
+        // Replace any non-numeric character with an empty string
+        this.value = this.value.replace(/[^0-9]/g, '');
     });
 </script>
