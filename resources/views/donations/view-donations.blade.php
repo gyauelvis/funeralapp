@@ -27,12 +27,11 @@
 
                     <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-<<<<<<< HEAD
-                            <th scope="col" class="px-6 py-3">
-                                Amount
-                            </th>
                             <th scope="col" class="px-6 py-3">
                                 Paid by
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Amount
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Paid to
@@ -45,30 +44,45 @@
                             </th>
 
                         </tr>
-=======
-                            <th scope="col" class="w-52 px-6 py-3">Name</th>
-                            <th scope="col" class="px-6 py-3">Phone Number</th>
-                            <th scope="col" class="px-6 py-3">Suburb</th>
-                            <th scope="col" class="px-6 py-3">Denomination</th>
-                            <th scope="col" class="px-6 py-3">Donor ID</th>
-                            <th scope="col" class="px-6 py-3">Actions</th>
->>>>>>> acba898f346ccedde00a044545bfa5c4e95f584b
+
+
                     </thead>
                     <tbody>
                         @foreach ($donations as $donation)
                             <tr class="border-b bg-white hover:bg-slate-100 dark:border-gray-700 dark:bg-gray-800">
                                 <th scope="row"
                                     class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                                    {{ Number::currency($donation->amount, 'GHS') }}
+                                    <a href="{{ route('member.single', $donation->contributor_id) }}">
+                                        @if ($donation->contributor == null)
+                                            <span class="rounded-md bg-red-500 px-2 text-white">No Contributor
+                                                Found'</span>
+                                        @else
+                                            {{ $donation->contributor->name }}
+                                        @endif
+                                    </a>
                                 </th>
                                 <td class="px-6 py-4">
-                                    <a href="{{ route('member.single', $donation->contributor_id) }}">
-                                        {{ $donation->contributor->name }}
-                                    </a>
+                                    {{ Number::currency($donation->amount, 'GHS') }}
                                 </td>
                                 <td class="px-6 py-4">
                                     <a href="{{ route('user.single', $donation->user_id) }}">
-                                        {{ $donation->user_id }}
+                                        @if ($donation->contributor == null)
+                                            <span class="rounded-md bg-red-500 px-2 text-white">No Contributor
+                                                Found</span>
+                                        @else
+                                            <span class="rounded-md bg-blue-500 px-2 py-0.5 text-sm text-white">
+                                                <svg aria-hidden="true"
+                                                    class="inline h-4 w-4 flex-shrink-0 text-white transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                    fill="currentColor" class="size-5">
+                                                    <path fill-rule="evenodd"
+                                                        d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+
+                                                {{ $donation->payment_made_to->name }}
+                                            </span>
+                                        @endif
                                     </a>
                                 </td>
                                 <td class="px-6 py-4">
@@ -97,209 +111,3 @@
         </div>
     </main>
 </x-app-layout>
-
-<<<<<<< HEAD
-{{-- <script>
-    const communityMembers = [
-
-        @foreach ($members as $member)
-            {
-                memberId: "{{ $member->id }}",
-                member_image: "{{ $member->picture_path }}",
-                name: "{{ $member->name }}",
-                phoneNumber: "{{ $member->phone_number }}",
-                email: "{{ $member->name }}",
-                suburb: "{{ $member->suburb }}",
-                denomination: "{{ $member->denomination }}",
-                membershipId: "{{ $member->membership_id }}",
-                role: "{{ $member->name }}"
-            },
-        @endforeach
-
-
-    ];
-=======
-<script>
-    const communityMembers = [{
-            name: "Kwame Mensah",
-            phoneNumber: "024 456 7890",
-            email: "kwame.mensah@gmail.com",
-            suburb: "East Legon",
-            denomination: "Methodist",
-            memberId: "MET-2024-001",
-        },
-        {
-            name: "Abena Osei",
-            phoneNumber: "050 123 4567",
-            email: "abena.osei@yahoo.com",
-            suburb: "Cantonments",
-            denomination: "Presbyterian",
-            memberId: "PRES-2024-002",
-        },
-        {
-            name: "Kojo Addo",
-            phoneNumber: "027 891 2345",
-            email: "k.addo@hotmail.com",
-            suburb: "Tema",
-            denomination: "Pentecost",
-            memberId: "PENT-2024-003",
-        },
-        {
-            name: "Efua Nyarko",
-            phoneNumber: "055 678 9012",
-            email: "efuanyarko@gmail.com",
-            suburb: "Labone",
-            denomination: "Catholic",
-            memberId: "CATH-2024-004",
-        },
-        {
-            name: "Yaw Darkwa",
-            phoneNumber: "020 345 6789",
-            email: "yaw.darkwa@yahoo.com",
-            suburb: "Accra New Town",
-            denomination: "Baptist",
-            memberId: "BAP-2024-005",
-        },
-        {
-            name: "Akua Sarpong",
-            phoneNumber: "054 890 1234",
-            email: "akua.sarpong@gmail.com",
-            suburb: "Adenta",
-            denomination: "Methodist",
-            memberId: "MET-2024-006",
-        },
-        {
-            name: "Kofi Ansah",
-            phoneNumber: "023 567 8901",
-            email: "kofi.ansah@outlook.com",
-            suburb: "Dansoman",
-            denomination: "Presbyterian",
-            memberId: "PRES-2024-007",
-        },
-        {
-            name: "Ama Boateng",
-            phoneNumber: "026 789 0123",
-            email: "amaboat@gmail.com",
-            suburb: "Teshie",
-            denomination: "Pentecost",
-            memberId: "PENT-2024-008",
-            role: "donor"
-        },
-        {
-            name: "Kwesi Owusu",
-            phoneNumber: "057 234 5678",
-            email: "kwesi.owusu@yahoo.com",
-            suburb: "Osu",
-            denomination: "Catholic",
-            memberId: "CATH-2024-009",
-        },
-        {
-            name: "Adwoa Nkrumah",
-            phoneNumber: "025 901 2345",
-            email: "adwoa.nkrumah@gmail.com",
-            suburb: "McCarthy Hill",
-            denomination: "Baptist",
-            memberId: "BAP-2024-010",
-        }
->>>>>>> acba898f346ccedde00a044545bfa5c4e95f584b
-
-
-    function populateTable(data = communityMembers) {
-        const tableBody = document.getElementById('mem-table');
-        tableBody.innerHTML = '';
-
-        data.forEach((member, index) => {
-            const row = document.createElement('tr');
-            row.className =
-                'bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600';
-
-            row.innerHTML = `
-
-            <th scope="row" class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <img class="w-10 h-10 rounded-full" src="/logos/1731798570.jpg" alt="Profile image">
-                <div class="ps-3">
-                    <div class="text-base font-semibold">${member.name.length <= 15 ? member.name : member.name.slice(0,10)+'...'}</div>
-                    <div class="font-normal text-gray-500">${member.email.length <= 17 ? member.email : member.email.slice(0,10)+'...'}</div>
-                </div>
-                </a>
-            </th>
-
-            <td class="px-6 py-4">${member.phoneNumber}</td>
-            <td class="px-6 py-4">${member.suburb}</td>
-            <td class="px-6 py-4">${member.denomination}</td>
-            <td class="px-6 py-4">${member.memberId}</td>
-            <td class="px-6 py-4 relative">
-                <button class="action-button font-medium text-blue-600 dark:text-blue-500 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
-                    </svg>
-                </button>
-                <div class="popover hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 border border-gray-200 z-50">
-                    <ul class="py-1">
-                        <li>
-                            <a href="/members/edit/${member.memberId}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Edit</a>
-                        </li>
-                        <li>
-                            <form method="POST" action="/members/${member.memberId}/delete">
-                               @csrf
-                               @method('DELETE')
-                                <button type="submit" onclick="return confirm('Are you sure?')"  class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Delete</button>
-                            </form>
-
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">View</a>
-                        </li>
-                    </ul>
-                </div>
-            </td>
-        `;
-            tableBody.appendChild(row);
-        });
-
-        setupPopovers();
-    }
-
-    function setupPopovers() {
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.action-button')) {
-                document.querySelectorAll('.popover').forEach(popover => {
-                    popover.classList.add('hidden');
-                });
-            }
-        });
-
-        document.querySelectorAll('.action-button').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.stopPropagation();
-
-                document.querySelectorAll('.popover').forEach(popover => {
-                    if (popover !== e.target.nextElementSibling) {
-                        popover.classList.add('hidden');
-                    }
-                });
-
-                const popover = button.nextElementSibling;
-                popover.classList.toggle('hidden');
-            });
-        });
-    }
-
-    // Your existing filter function
-    // function filter() {
-    //     let data;
-    //     if (document.getElementById('member').checked && document.getElementById('donor').checked) {
-    //         data = communityMembers;
-    //     } else if (document.getElementById('member').checked) {
-    //         data = communityMembers.filter((member) => member.role === 'member');
-    //     } else if (document.getElementById('donor').checked) {
-    //         data = communityMembers.filter((member) => member.role === 'donor');
-    //     } else {
-    //         data = [];
-    //     }
-    //     populateTable(data);
-    // }
-
-    // Initial table population
-    populateTable();
-</script> --}}
