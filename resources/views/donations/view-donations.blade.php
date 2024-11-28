@@ -28,10 +28,10 @@
                     <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
-                                Amount
+                                Paid by
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Paid by
+                                Amount
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Paid to
@@ -50,16 +50,37 @@
                             <tr class="border-b bg-white hover:bg-slate-100 dark:border-gray-700 dark:bg-gray-800">
                                 <th scope="row"
                                     class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                                    {{ Number::currency($donation->amount, 'GHS') }}
+                                    <a href="{{ route('member.single', $donation->contributor_id) }}">
+                                        @if ($donation->contributor == null)
+                                            <span class="rounded-md bg-red-500 px-2 text-white">No Contributor
+                                                Found'</span>
+                                        @else
+                                            {{ $donation->contributor->name }}
+                                        @endif
+                                    </a>
                                 </th>
                                 <td class="px-6 py-4">
-                                    <a href="{{ route('member.single', $donation->contributor_id) }}">
-                                        {{ $donation->contributor->name }}
-                                    </a>
+                                    {{ Number::currency($donation->amount, 'GHS') }}
                                 </td>
                                 <td class="px-6 py-4">
                                     <a href="{{ route('user.single', $donation->user_id) }}">
-                                        {{ $donation->user_id }}
+                                        @if ($donation->contributor == null)
+                                            <span class="rounded-md bg-red-500 px-2 text-white">No Contributor
+                                                Found</span>
+                                        @else
+                                            <span class="rounded-md bg-blue-500 px-2 py-0.5 text-sm text-white">
+                                                <svg aria-hidden="true"
+                                                    class="inline h-4 w-4 flex-shrink-0 text-white transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                    fill="currentColor" class="size-5">
+                                                    <path fill-rule="evenodd"
+                                                        d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+
+                                                {{ $donation->payment_made_to->name }}
+                                            </span>
+                                        @endif
                                     </a>
                                 </td>
                                 <td class="px-6 py-4">
@@ -207,4 +228,4 @@
 
     // Initial table population
     populateTable();
-</script> --}}
+</script>

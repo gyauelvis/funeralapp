@@ -115,9 +115,17 @@
                             @foreach ($donations as $donation)
                                 <div class="mt-6">
                                     <div class="rounded-xl bg-green-50 p-4 dark:bg-red-900/20">
-                                        <div class="text-sm font-medium text-green-600 dark:text-green-400">
-                                            {{ $donation->created_at }} <span>Paid to:
-                                                {{ 'Paid to' }}</span></div>
+                                        <div
+                                            class="flex justify-between text-sm font-medium text-green-600 dark:text-green-400">
+                                            <a href="{{ route('user.single', $donation->payment_made_to->id) }}">
+                                                <span
+                                                    class="rounded-md bg-black px-2 py-0.5 text-xs text-white shadow-md">Paid
+                                                    to:
+                                                    {{ $donation->payment_made_to->name }}
+                                                </span></a>
+                                            <span
+                                                class="font-bold">{{ $donation->created_at->toFormattedDateString() }}</span>
+                                        </div>
                                         <div class="mt-2 text-2xl font-bold text-green-700 dark:text-green-300">GH₵
                                             {{ Number::currency($donation->amount) }}
                                         </div>

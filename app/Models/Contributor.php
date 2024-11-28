@@ -31,7 +31,7 @@ class Contributor extends Model
      */
     public function payments(): HasMany
     {
-        return $this->hasMany(Payment::class);
+        return $this->hasMany(Payment::class, 'contributor_id');
     }
 
 
@@ -43,6 +43,6 @@ class Contributor extends Model
      */
     public function registered_by(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

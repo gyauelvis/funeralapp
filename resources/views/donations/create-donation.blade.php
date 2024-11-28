@@ -16,11 +16,11 @@
                             <label for="contributor_id"
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Name of
                                 Donor</label>
-                            <input list="denomination-list" type="text" name="contributor_id" id="contributor_id"
+                            <input list="contributors-list" type="text" name="contributor_id" id="contributor_id"
                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                 placeholder="Type name of donor or member ID number"
                                 value="{{ old('contributor_id') }}">
-                            <datalist id="denomination-list">
+                            <datalist id="contributors-list">
                                 @foreach ($all_contributors as $member)
                                     <option value="{{ old('contributor_id', $member->id) }}">
                                         {{ "{$member->name} - {$member->membership_id}" }}</option>
@@ -34,11 +34,11 @@
                             @enderror
                         </div>
 
-                        <div class="col-span-2 sm:col-span-1">
+                        <div class="col-span-2 sm:col-span-1" id="phone_number">
                             <label for="phone_number"
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Phone Number<span
                                     class="text-red-500">*</span></label>
-                            <input type="numeric" name="phone_number" id="amount"
+                            <input type="numeric" name="phone_number"
                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                 placeholder="024XXXXXXX" value="{{ old('phone_number') }}">
                             @error('phone_number')
@@ -47,7 +47,7 @@
                                 </small>
                             @enderror
                         </div>
-                        <div class="col-span-2 sm:col-span-1">
+                        <div class="col-span-2 sm:col-span-1" id="amount">
                             <label for="amount"
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Amount<span
                                     class="text-red-500">*</span></label>
@@ -98,16 +98,6 @@
         ""
     ];
 
-    function populateDenominations() {
-        denominations.map(denomination => {
-            return (
-                document.getElementById('denomination-list').innerHTML +=
-                `<option value="${denomination}">${denomination}</option>`
-            )
-        });
-    }
-    populateDenominations();
-
     function previewImage(input) {
         const preview = document.getElementById('preview');
         const placeholder = document.getElementById('placeholder');
@@ -141,5 +131,28 @@
     document.getElementById('amount').addEventListener('input', function(e) {
         // Replace any non-numeric character with an empty string
         this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const contributorInput = document.getElementById('contributor_id');
+        const phoneNumber = document.getElementById('phone_number');
+        const datalist = document.getElementById('contributors-list');
+        const amount = document.getElementById('amount')
+
+        contributorInput.addEventListener('input', () => {
+            const selectedValue = contributorInput.value;
+            const options = Array.from(datalist.options).map(option => option.value);
+
+            // Toggle display based on selection
+            if (options.includes(selectedValue)) {
+                phoneNumber.style.display = 'none';
+                amount.classList.remove('sm:col-span-1');
+
+            } else {
+                phoneNumber.style.display = '';
+                amount.classList.add('sm:col-span-1');
+            }
+        });
     });
 </script>

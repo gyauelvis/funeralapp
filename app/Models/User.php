@@ -87,7 +87,7 @@ class User extends Authenticatable
      */
     public function payments_received(): HasMany
     {
-        return $this->hasMany(Payment::class);
+        return $this->hasMany(Payment::class, 'user_id');
     }
 
     /**

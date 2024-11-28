@@ -1,4 +1,5 @@
 <x-app-layout>
+
     <main class="p-4 md:ml-64 h-auto pt-20 bg-gray-50">
         <div class="container mx-auto">
             <h1 class="text-3xl font-bold mb-8 text-gray-800">Community Dashboard</h1>
@@ -33,7 +34,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="font-bold text-2xl text-gray-800 mb-2">GH₵ 144,114.00</div>
+                        <div class="font-bold text-2xl text-gray-800 mb-2">{{ Number::currency($donations->sum('amount'), 'GHS') }}</div>
                         <div class="text-gray-500 text-sm">Total Amount of Donations</div>
                     </div>
                 </div>
@@ -70,7 +71,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="font-bold text-2xl text-gray-800 mb-2">GH₵ 144,114.00</div>
+                        <div class="font-bold text-2xl text-gray-800 mb-2">{{ Number::currency($contributions->sum('amount'), 'GHS') }}</div>
                         <div class="text-gray-500 text-sm">Total Amount of Funeral Wages</div>
                     </div>
                 </div>
@@ -83,7 +84,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="font-bold text-2xl text-gray-800 mb-2">1000</div>
+                        <div class="font-bold text-2xl text-gray-800 mb-2">{{ $members->count() }}</div>
                         <div class="text-gray-500 text-sm">Total Community Members</div>
                     </div>
                 </div>
@@ -97,7 +98,7 @@
 
                             </div>
                         </div>
-                        <div class="font-bold text-2xl text-gray-800 mb-2">1000</div>
+                        <div class="font-bold text-2xl text-gray-800 mb-2">{{ $users->count() }}</div>
                         <div class="text-gray-500 text-sm">Total Users Created</div>
                     </div>
                 </div>
@@ -114,7 +115,26 @@
                         </div>
                         <div class="space-y-4">
                             <ul id="communityMember" class="divide-y divide-gray-200">
-
+                                @foreach ($members->take(5) as $member)
+                                <li class="py-3 sm:py-4">
+                                    <a href="{{ route('member.single', $member->id) }}">
+                                        <div class="grid grid-cols-8">
+                                            <div class="col-span-6 min-w-0 flex-1">
+                                                <p class="truncate text-sm font-medium text-gray-900 dark:text-white">
+                                                    {{ $member->name }}
+                                                </p>
+                                                <p class="truncate text-sm text-gray-500 dark:text-gray-400">
+                                                    {{ $member->phone_number }}
+                                                </p>
+                                            </div>
+                                            <div
+                                                class="col-span-2 inline-flex items-center text-base text-sm font-semibold text-gray-900 dark:text-white">
+                                                {{ $member->created_at->toFormattedDateString() }}
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -181,39 +201,6 @@
 </x-app-layout>
 
 <script>
-    const communityMember = {
-        name: 'Ohene Adjei',
-        email: 'email@ohene.com',
-        balance: 320,
-    }
-
-    function populateCommunityMember() {
-        const memberList = document.getElementById('communityMember');
-        memberList.innerHTML = ''; // Clear existing content
-
-        [1, 2, 3, 4].forEach(_ => {
-            const li = document.createElement('li');
-            li.className = 'py-4 hover:bg-gray-50 transition-colors duration-200';
-            li.innerHTML = `
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-medium text-gray-900 mb-1">
-                            ${communityMember.name}
-                        </p>
-                        <p class="text-sm text-gray-500">
-                            ${communityMember.email}
-                        </p>
-                    </div>
-                    <div class="text-sm font-semibold text-gray-800">
-                        GH₵ ${communityMember.balance}
-                    </div>
-                </div>
-            `;
-            memberList.appendChild(li);
-        });
-    }
-    populateCommunityMember();
-
 
     document.querySelectorAll('#card-drop-down-icon').forEach(icon => {
         icon.addEventListener('click', function() {

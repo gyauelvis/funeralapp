@@ -116,7 +116,7 @@
             row.innerHTML = `
             <td scope="row" class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <a href="/members/${member.memberId}">
-                    <img class="w-10 h-10 rounded-full" src="/members_images/${member.member_image ?? '1732102263.jpg'}" alt="image">
+                    <img class="w-10 h-10 rounded-full" src="{{ $member->picture_path == null ? '/profile.webp' : "/members_images/$member->picture_path" }}" alt="Profile image">
                 </a>
                     <a href="/members/${member.memberId}">
                     <div class="ps-3">
