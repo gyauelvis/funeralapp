@@ -2,7 +2,7 @@
 
     <div class="bg-gray-50 antialiased dark:bg-gray-900">
         <nav
-            class="fixed left-0 right-0 top-0 z-50 border-b border-gray-200 bg-white px-4 py-2.5 dark:border-gray-700 dark:bg-gray-800">
+            class="fixed left-0 right-0 top-0 z-50 shadow border-b border-gray-200 bg-white px-4 py-2.5 dark:border-gray-700 dark:bg-gray-800">
             <div class="flex flex-wrap items-center justify-between">
                 <div class="flex items-center justify-start">
                     <button data-drawer-target="drawer-navigation" data-drawer-toggle="drawer-navigation"
@@ -25,22 +25,6 @@
                     <span class="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">Funeral
                         App</span>
                     </a>
-                    <form action="#" method="GET" class="hidden md:block md:pl-2">
-                        <label for="topbar-search" class="sr-only">Search</label>
-                        <div class="relative md:w-64 md:w-96">
-                            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                <svg class="h-5 w-5 text-gray-500 dark:text-gray-400" fill="currentColor"
-                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z">
-                                    </path>
-                                </svg>
-                            </div>
-                            <input type="text" name="email" id="topbar-search"
-                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                placeholder="Search" />
-                        </div>
-                    </form>
                 </div>
                 <div class="flex items-center lg:order-2">
                     <button type="button" data-drawer-toggle="drawer-navigation" aria-controls="drawer-navigation"
@@ -94,28 +78,10 @@
             </div>
         </nav>
 
-        <!-- Sidebar -->
-
         <aside
             class="fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full border-r border-gray-200 bg-white pt-14 transition-transform dark:border-gray-700 dark:bg-gray-800 md:translate-x-0"
             aria-label="Sidenav" id="drawer-navigation">
             <div class="h-full overflow-y-auto bg-white px-3 py-5 dark:bg-gray-800">
-                <form action="#" method="GET" class="mb-2 md:hidden">
-                    <label for="sidebar-search" class="sr-only">Search</label>
-                    <div class="relative">
-                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                            <svg class="h-5 w-5 text-gray-500 dark:text-gray-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z">
-                                </path>
-                            </svg>
-                        </div>
-                        <input type="text" name="search" id="sidebar-search"
-                            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 pl-10 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                            placeholder="Search" />
-                    </div>
-                </form>
                 <ul class="space-y-2">
                     <li>
                         <a href="{{ url('/dashboard') }}"
@@ -247,7 +213,7 @@
                         </a>
                     </li>
                 </ul>
-                <ul class="mt-5 space-y-2 border-t border-gray-200 pt-5 dark:border-gray-700">
+                <ul class="mt-5 space-y-2 border-t border-gray-200 pt-5 dark:border-gray-700 relative">
                     <li>
                         <a href="#"
                             class="group flex items-center rounded-lg p-2 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
@@ -294,6 +260,40 @@
                             <span class="ml-3">All Users</span>
                         </a>
                     </li>
+                    @if (Auth::user()->institution)
+                    <li>
+                        <a href="{{ route('institution.single', Auth::user()->institution_id) }}"
+                            class="group flex items-center rounded-lg p-2 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+
+                            <svg aria-hidden="true"
+                                class="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="size-6">
+                                <path fill-rule="evenodd"
+                                    d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span class="ml-3">Institution</span>
+                        </a>
+                    </li>
+                    @else
+                    <li>
+                        <a href="{{ route('institution.create') }}"
+                            class="group flex items-center rounded-lg p-2 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+
+                            <svg aria-hidden="true"
+                                class="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="size-6">
+                                <path fill-rule="evenodd"
+                                    d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+
+                            <span class="ml-3">Create Institution</span>
+                        </a>
+                    </li>
+                    @endif
                     <li>
                         <a href="#"
                             class="group flex items-center rounded-lg p-2 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
@@ -321,16 +321,56 @@
                             <span class="ml-3">Help</span>
                         </a>
                     </li>
+                    <li class="relative group">
+                        <a href="#" id="dropDown" class="w-full relative px-2 gap-2 justify-between items-center flex flex-row py-4 text-sm font-medium text-gray-900 transition duration-150 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 rounded-md">
+                            <div class="flex flex-row items-center gap-4">
+                                <div class="w-8 h-8 rounded-full bg-gray-500"></div>
+                                <div class="flex flex-col">
+                                    <span class="inline-block text-sm font-medium text-gray-700">
+                                        Nkoranza Local
+                                    </span>
+                                    <span class="inline-block text-sm font-medium text-gray-400">
+                                        Nkoranza
+                                    </span>
+                                </div>
+                            </div>
+                            <div>
+                                <svg id="drop-icon" class="text-gray-500 size-6 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </div>
+                        </a>
+                        <div class="popover hidden absolute z-50 right-0 top-full mt-2 w-56 transform transition-all duration-300 ease-in-out origin-top-right">
+                            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+                                <div class="py-1">
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white transition duration-150 ease-in-out">
+                                        <div class="flex items-center gap-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                            </svg>
+                                            Edit Institution
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
+
             </div>
+
         </aside>
     </div>
 
 </x-guest-layout>
 <script>
-    console.lo("     dkajfakfjakf")
-    const serachBar = document.getElementById("topbar-search");
-    serachBar.addEventListener('change', (e) => {
-        console.log("e.target.value");
+    document.getElementById('dropDown').addEventListener('click', function() {
+        document.querySelector('.popover').classList.toggle('hidden');
+        document.getElementById('drop-icon').classList.toggle('rotate-180')
+    });
+
+    document.getElementById('dropDown').addEventListener('blur', function() {
+        document.getElementById('drop-icon').classList.replace('rotate-180','rotate-0');
+        document.querySelector('.popover').classList.add('hidden');
     })
 </script>

@@ -44,8 +44,6 @@
                             </th>
 
                         </tr>
-
-
                     </thead>
                     <tbody>
                         @foreach ($donations as $donation)
@@ -111,3 +109,123 @@
         </div>
     </main>
 </x-app-layout>
+ <script>
+    const communityMembers = [
+
+        @foreach ($members as $member)
+            {
+                memberId: "{{ $member->id }}",
+                member_image: "{{ $member->picture_path }}",
+                name: "{{ $member->name }}",
+                phoneNumber: "{{ $member->phone_number }}",
+                email: "{{ $member->name }}",
+                suburb: "{{ $member->suburb }}",
+                denomination: "{{ $member->denomination }}",
+                membershipId: "{{ $member->membership_id }}",
+                role: "{{ $member->name }}"
+            },
+        @endforeach
+
+
+    ];
+
+
+    function populateTable(data = communityMembers) {
+        const tableBody = document.getElementById('mem-table');
+        tableBody.innerHTML = '';
+
+        data.forEach((member, index) => {
+            const row = document.createElement('tr');
+            row.className =
+                'bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600';
+
+            row.innerHTML = `
+
+            <th scope="row" class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <img class="w-10 h-10 rounded-full" src="/logos/1731798570.jpg" alt="Profile image">
+                <div class="ps-3">
+                    <div class="text-base font-semibold">${member.name.length <= 15 ? member.name : member.name.slice(0,10)+'...'}</div>
+                    <div class="font-normal text-gray-500">${member.email.length <= 17 ? member.email : member.email.slice(0,10)+'...'}</div>
+                </div>
+                </a>
+            </th>
+
+            <td class="px-6 py-4">${member.phoneNumber}</td>
+            <td class="px-6 py-4">${member.suburb}</td>
+            <td class="px-6 py-4">${member.denomination}</td>
+            <td class="px-6 py-4">${member.memberId}</td>
+            <td class="px-6 py-4 relative">
+                <button class="action-button font-medium text-blue-600 dark:text-blue-500 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+                    </svg>
+                </button>
+                <div class="popover hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 border border-gray-200 z-50">
+                    <ul class="py-1">
+                        <li>
+                            <a href="/members/edit/${member.memberId}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Edit</a>
+                        </li>
+                        <li>
+                            <form method="POST" action="/members/${member.memberId}/delete">
+                               @csrf
+                               @method('DELETE')
+                                <button type="submit" onclick="return confirm('Are you sure?')"  class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Delete</button>
+                            </form>
+
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">View</a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        `;
+            tableBody.appendChild(row);
+        });
+
+        setupPopovers();
+    }
+
+    function setupPopovers() {
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.action-button')) {
+                document.querySelectorAll('.popover').forEach(popover => {
+                    popover.classList.add('hidden');
+                });
+            }
+        });
+
+        document.querySelectorAll('.action-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+
+                document.querySelectorAll('.popover').forEach(popover => {
+                    if (popover !== e.target.nextElementSibling) {
+                        popover.classList.add('hidden');
+                    }
+                });
+
+                const popover = button.nextElementSibling;
+                popover.classList.toggle('hidden');
+            });
+        });
+    }
+
+    // Your existing filter function
+    // function filter() {
+    //     let data;
+    //     if (document.getElementById('member').checked && document.getElementById('donor').checked) {
+    //         data = communityMembers;
+    //     } else if (document.getElementById('member').checked) {
+    //         data = communityMembers.filter((member) => member.role === 'member');
+    //     } else if (document.getElementById('donor').checked) {
+    //         data = communityMembers.filter((member) => member.role === 'donor');
+    //     } else {
+    //         data = [];
+    //     }
+    //     populateTable(data);
+    // }
+
+    // Initial table population
+    populateTable();
+</script>
