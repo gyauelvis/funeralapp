@@ -23,7 +23,10 @@ class DonationController extends Controller
      */
     public function create()
     {
-        return view('donations.create-donation', ['all_contributors' => Contributor::get()]);
+
+        return view('donations.create-donation', [
+            'members' => Contributor::where('is_member', 1)->get(),
+        ]);
     }
 
     /**
@@ -31,23 +34,25 @@ class DonationController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'contributor_id' => 'required|exists:App\Models\Contributor,id',
-            'amount' => 'required|numeric',
-            'phone_number' => 'required|numeric',
-            'purpose' => 'nullable|min:6'
-        ], [
-            'contributor_id' => 'Enter a valid member name or ID number. Minimum of 5 letters',
-            'amount' => 'Enter a valid amount',
-            'phone_number' => 'Enter a valid phone number',
-            'purpose' => 'Your purpose has to be more than 6 characters long',
-        ]);
 
-        $contributor = Contributor::find($data['contributor_id']);
-        if ($contributor->phone_number === $data['phone_number'] and $contributor->id === $data['contributor_id']) {
+
+
+        if ($request->membership_status == 'is_member') {
+            $data = $request->validate([
+                'membership_status' => 'required|in:is_member,is_not_member',
+                'contributor_id' => 'required|exists:App\Models\Contributor,id',
+                'member_amount' => 'required|numeric',
+                'purpose' => 'nullable|min:6'
+            ], [
+                'contributor_id' => 'Enter a valid member name or ID number. Minimum of 5 letters',
+                'member_amount' => 'Enter a valid amount',
+                'purpose' => 'Your purpose has to be more than 6 characters long',
+            ]);
+
 
             $data['payment_type'] = 'DONATION';
 
+            $data['amount'] = $data['member_amount'];
             $data['month'] = Carbon::now()->month;
             $data['year'] = Carbon::now()->year;
             $data['user_id'] = Auth::user()->id;
@@ -57,10 +62,56 @@ class DonationController extends Controller
             toastr()->success("Donation has been recorded successfully");
 
             //print receipt
+
             return redirect(route('donor.single', $data['contributor_id']));
         }
 
-        toastr()->error('A member exists with the same phone number');
+        if ($request->membership_status == 'is_not_member') {
+            $data = $request->validate([
+                'membership_status' => 'required|in:is_member,is_not_member',
+                'name' => 'required|min:5',
+                'amount' => 'required|numeric',
+                'phone_number' => 'required|numeric',
+                'purpose' => 'nullable|min:6'
+            ], [
+                'name' => 'Name should be at least 5 characters long',
+                'amount' => 'Enter a valid amount',
+                'phone_number' => 'Enter a valid phone number',
+                'purpose' => 'Your purpose has to be more than 6 characters long',
+            ]);
+
+            $contributor = Contributor::create([
+                'name' => $data['name'],
+                'phone_number' => $data['phone_number'],
+                'is_member' => 0,
+                'user_id' => Auth::user()->id
+            ]);
+
+            $data['payment_type'] = 'DONATION';
+
+            $data['month'] = Carbon::now()->month;
+            $data['year'] = Carbon::now()->year;
+            $data['user_id'] = Auth::user()->id;
+
+            Payment::create([
+                'amount' => $data['amount'],
+                'payment_type' => 'DONATION',
+                'month' => Carbon::now()->month,
+                'year' => Carbon::now()->year,
+                'user_id' => Auth::user()->id,
+                'contributor_id' => $contributor->id
+            ]);
+
+            toastr()->success("Donation has been recorded successfully");
+
+            //print receipt
+
+            return redirect(route('donor.single', $contributor->id));
+        }
+
+
+
+        toastr()->error('A exists with the same phone number');
         return back();
     }
 
