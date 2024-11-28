@@ -1,8 +1,13 @@
 <x-app-layout>
 
     <main
+<<<<<<< HEAD
         class="mt-5 flex flex-col content-center items-center justify-around rounded-lg p-4 pt-20 dark:bg-gray-700 md:ml-64">
         <div class="w-full max-w-lg rounded-md bg-white p-5">
+=======
+        class="flex h-auto min-h-screen items-center justify-center rounded-lg bg-white p-4 pt-20 dark:bg-gray-700 md:ml-64">
+        <div class="w-full max-w-lg">
+>>>>>>> ffc7a796285523ff73befb441997f9300b976541
             <div>
                 <div class="flex items-center justify-center rounded-t p-4 dark:border-gray-600 md:p-5">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">

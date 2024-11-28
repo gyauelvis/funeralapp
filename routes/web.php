@@ -28,6 +28,9 @@ Route::middleware([
     Route::get('/donations/view-donations', function () {
         return view('donations.view-donations');
     })->name('donations');
+    Route::get('/loader/loading-screen', function () {
+        return view('loader.loading-screen');
+    })->name('loading');
 });
 
 require_once __DIR__ . '/member.php';
