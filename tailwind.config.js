@@ -20,7 +20,17 @@ export default {
       fontFamily: {
         sans: ["Figtree", ...defaultTheme.fontFamily.sans],
       },
-    },
+      keyframes: {
+        ping: {
+          '50%': { 
+            transform: 'scale(1) translate(-50%, -50%)' 
+          }
+        }
+      },
+      animation: {
+        ping: 'ping 1s infinite ease-in-out'
+      }
+    }
   },
 
   plugins: [forms, typography, require("flowbite/plugin")],

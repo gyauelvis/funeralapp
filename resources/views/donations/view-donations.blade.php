@@ -27,7 +27,6 @@
 
                     <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-<<<<<<< HEAD
                             <th scope="col" class="px-6 py-3">
                                 Amount
                             </th>
@@ -45,14 +44,6 @@
                             </th>
 
                         </tr>
-=======
-                            <th scope="col" class="w-52 px-6 py-3">Name</th>
-                            <th scope="col" class="px-6 py-3">Phone Number</th>
-                            <th scope="col" class="px-6 py-3">Suburb</th>
-                            <th scope="col" class="px-6 py-3">Denomination</th>
-                            <th scope="col" class="px-6 py-3">Donor ID</th>
-                            <th scope="col" class="px-6 py-3">Actions</th>
->>>>>>> acba898f346ccedde00a044545bfa5c4e95f584b
                     </thead>
                     <tbody>
                         @foreach ($donations as $donation)
@@ -97,9 +88,7 @@
         </div>
     </main>
 </x-app-layout>
-
-<<<<<<< HEAD
-{{-- <script>
+ <script>
     const communityMembers = [
 
         @foreach ($members as $member)
@@ -118,90 +107,6 @@
 
 
     ];
-=======
-<script>
-    const communityMembers = [{
-            name: "Kwame Mensah",
-            phoneNumber: "024 456 7890",
-            email: "kwame.mensah@gmail.com",
-            suburb: "East Legon",
-            denomination: "Methodist",
-            memberId: "MET-2024-001",
-        },
-        {
-            name: "Abena Osei",
-            phoneNumber: "050 123 4567",
-            email: "abena.osei@yahoo.com",
-            suburb: "Cantonments",
-            denomination: "Presbyterian",
-            memberId: "PRES-2024-002",
-        },
-        {
-            name: "Kojo Addo",
-            phoneNumber: "027 891 2345",
-            email: "k.addo@hotmail.com",
-            suburb: "Tema",
-            denomination: "Pentecost",
-            memberId: "PENT-2024-003",
-        },
-        {
-            name: "Efua Nyarko",
-            phoneNumber: "055 678 9012",
-            email: "efuanyarko@gmail.com",
-            suburb: "Labone",
-            denomination: "Catholic",
-            memberId: "CATH-2024-004",
-        },
-        {
-            name: "Yaw Darkwa",
-            phoneNumber: "020 345 6789",
-            email: "yaw.darkwa@yahoo.com",
-            suburb: "Accra New Town",
-            denomination: "Baptist",
-            memberId: "BAP-2024-005",
-        },
-        {
-            name: "Akua Sarpong",
-            phoneNumber: "054 890 1234",
-            email: "akua.sarpong@gmail.com",
-            suburb: "Adenta",
-            denomination: "Methodist",
-            memberId: "MET-2024-006",
-        },
-        {
-            name: "Kofi Ansah",
-            phoneNumber: "023 567 8901",
-            email: "kofi.ansah@outlook.com",
-            suburb: "Dansoman",
-            denomination: "Presbyterian",
-            memberId: "PRES-2024-007",
-        },
-        {
-            name: "Ama Boateng",
-            phoneNumber: "026 789 0123",
-            email: "amaboat@gmail.com",
-            suburb: "Teshie",
-            denomination: "Pentecost",
-            memberId: "PENT-2024-008",
-            role: "donor"
-        },
-        {
-            name: "Kwesi Owusu",
-            phoneNumber: "057 234 5678",
-            email: "kwesi.owusu@yahoo.com",
-            suburb: "Osu",
-            denomination: "Catholic",
-            memberId: "CATH-2024-009",
-        },
-        {
-            name: "Adwoa Nkrumah",
-            phoneNumber: "025 901 2345",
-            email: "adwoa.nkrumah@gmail.com",
-            suburb: "McCarthy Hill",
-            denomination: "Baptist",
-            memberId: "BAP-2024-010",
-        }
->>>>>>> acba898f346ccedde00a044545bfa5c4e95f584b
 
 
     function populateTable(data = communityMembers) {
