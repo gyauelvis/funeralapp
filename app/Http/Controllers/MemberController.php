@@ -71,7 +71,7 @@ class MemberController extends Controller
      */
     public function show(Contributor $contributor)
     {
-        if ($contributor->is_member !== 0) {
+        if ($contributor->is_member !== 1) {
             return redirect(route('donor.single', $contributor->id));
         }
 

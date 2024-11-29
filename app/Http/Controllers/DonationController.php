@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Payment;
+use App\Models\Project;
 use App\Models\Contributor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,7 @@ class DonationController extends Controller
 
         return view('donations.create-donation', [
             'members' => Contributor::where('is_member', 1)->get(),
+            'projects' => Project::orderBy('created_at', 'desc')->get(),
         ]);
     }
 
@@ -35,18 +37,17 @@ class DonationController extends Controller
     public function store(Request $request)
     {
 
-
-
         if ($request->membership_status == 'is_member') {
             $data = $request->validate([
                 'membership_status' => 'required|in:is_member,is_not_member',
                 'contributor_id' => 'required|exists:App\Models\Contributor,id',
                 'member_amount' => 'required|numeric',
-                'purpose' => 'nullable|min:6'
+                'project_id' => 'required|exists:App\Models\Project,id'
             ], [
                 'contributor_id' => 'Enter a valid member name or ID number. Minimum of 5 letters',
                 'member_amount' => 'Enter a valid amount',
-                'purpose' => 'Your purpose has to be more than 6 characters long',
+                'project_id.required' => 'You need to select a project',
+                'project_id.exist' => 'Invalid project selected'
             ]);
 
 
@@ -72,12 +73,13 @@ class DonationController extends Controller
                 'name' => 'required|min:5',
                 'amount' => 'required|numeric',
                 'phone_number' => 'required|numeric',
-                'purpose' => 'nullable|min:6'
+                'project_id' => 'required|exists:App\Models\Project,id'
             ], [
                 'name' => 'Name should be at least 5 characters long',
                 'amount' => 'Enter a valid amount',
                 'phone_number' => 'Enter a valid phone number',
-                'purpose' => 'Your purpose has to be more than 6 characters long',
+                'project_id.required' => 'You need to select a project',
+                'project_id.exist' => 'Invalid project selected'
             ]);
 
             $contributor = Contributor::create([
@@ -142,8 +144,11 @@ class DonationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Contributor $contributor)
+    public function destroy(Payment $payment)
     {
-        //
+        $payment->delete();
+        toastr()->success("Donation has been deleted successfully");
+
+        return back();
     }
 }

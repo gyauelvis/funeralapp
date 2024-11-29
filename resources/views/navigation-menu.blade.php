@@ -284,6 +284,20 @@
                         </li>
                     @endif
                     <li>
+                        <a href="{{ route('projects') }}"
+                            class="group flex items-center rounded-lg p-2 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                            <svg aria-hidden="true"
+                                class="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                                xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                viewBox="0 0 24 24">
+                                <circle cx="18" cy="6" r="3" fill="currentColor" />
+                                <path fill="currentColor"
+                                    d="M13 6c0-.712.153-1.387.422-2H6c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-7.422A5 5 0 0 1 18 11a5 5 0 0 1-5-5" />
+                            </svg>
+                            <span class="ml-3">Projects</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="#"
                             class="group flex items-center rounded-lg p-2 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                             <svg aria-hidden="true"

@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Contributor;
+use App\Models\Project;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,8 +25,9 @@ class PaymentFactory extends Factory
             'purpose' => fake()->sentence(),
             'month' => fake()->month(),
             'year' => fake()->year(),
-            'contributor_id' => fake()->numberBetween(0, 20),
-            'user_id' => fake()->numberBetween(0, 5),
+            'contributor_id' => Contributor::factory(),
+            'user_id' => User::factory(),
+            'project_id' => Project::factory()
         ];
     }
 }

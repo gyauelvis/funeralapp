@@ -91,7 +91,7 @@
 
             <th scope="row" class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <a href="/donors/${donor.donorId}">
-                    <img class="w-10 h-10 rounded-full" src="/members_images/${donor.donor_image ?? '/logos/1731798570.jpg'}" alt="Profile image">
+                    <img class="w-10  rounded-full" src="{{ $donor->picture_path == null ? '/profile.webp' : "/members_images/$donor->picture_path" }}" alt="Profile image">
                 </a>
                     <a href="/donors/${donor.donorId}">
                     <div class="ps-3">
