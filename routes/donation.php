@@ -22,6 +22,6 @@ Route::middleware([
         ->name('donation.single');
     Route::post('/donations', [DonationController::class, 'store'])
         ->name('donation.new');
-    Route::delete('/donations/{donation}/delete', [DonationController::class, 'destroy'])
-        ->name('donation.delete');;
+    Route::delete('/donations/{payment}/delete', [DonationController::class, 'destroy'])
+        ->name('donation.delete');
 });

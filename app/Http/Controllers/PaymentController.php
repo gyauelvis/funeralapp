@@ -89,14 +89,13 @@ class PaymentController extends Controller
             'amount' => 'Enter a valid amount',
         ]);
 
-        dd($data);
 
         if ($payment->update($data)) {
-            toastr()->success("Payment has been updated successfully");
-            return redirect(route('member.single', $contributor->id));
+            toastr()->success("Contribution has been updated successfully");
+            return redirect(route('member.single', $data['contributor_id']));
         }
 
-        toastr()->error("Error updating {$contributor->name} details");
+        toastr()->error("Error updating contribution details");
         return back();
     }
 
@@ -105,6 +104,9 @@ class PaymentController extends Controller
      */
     public function destroy(Payment $payment)
     {
-        //
+        $payment->delete();
+        toastr()->success("Contribution has been deleted successfully");
+
+        return back();
     }
 }

@@ -18,8 +18,9 @@ return new class extends Migration
             $table->longText('purpose')->nullable();
             $table->string('month');
             $table->integer('year');
-            $table->foreign('contributor_id')->references('id')->on('contributors')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreignId('contributor_id')->onDelete('cascade');
+            $table->foreignId('user_id');
+            $table->foreignId('project_id');
             $table->timestamps();
         });
     }

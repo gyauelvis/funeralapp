@@ -8,10 +8,9 @@
                         Edit a Contribution
                     </h3>
                 </div>
-                <form class="p-4 md:p-5" action="{{ route('payment.update', $contribution->id) }}" method="POST"
-                    enctype="multipart/form-data">
+                <form class="p-4 md:p-5" action="{{ route('payment.update', $contribution->id) }}" method="POST">
                     @csrf
-
+                    @method('PUT')
                     <div class="mb-4 grid grid-cols-2 gap-4">
 
                         <div class="col-span-2">
@@ -21,10 +20,15 @@
                             <select name="contributor_id" id="contributor_id"
                                 class="js-example-basic-single block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                 placeholder="Type member name or ID number">
-                                <option>Type member name or ID number</option>
+                                <option value="{{ old('contributor_id', $contribution->contributor_id) }}">
+                                    {{ $contribution->contributor->name . ' - ' . $contribution->contributor->membership_id }}
+                                </option>
                                 @foreach ($members as $member)
-                                    <option value="{{ $member->id }}">
-                                        {{ "{$member->name} - {$member->membership_id}" }}</option>
+                                    @if ($member->id !== $contribution->contributor_id)
+                                        <option value="{{ $member->id }}">
+                                            {{ "{$member->name} - {$member->membership_id}" }}
+                                        </option>
+                                    @endif
                                 @endforeach
                             </select>
                             @error('contributor_id')
@@ -34,13 +38,13 @@
                             @enderror
                         </div>
 
-                        <div class="col-span-2 sm:col-span-1">
+                        <div class="col-span-2">
                             <label for="amount"
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Amount<span
                                     class="text-red-500">*</span></label>
                             <input type="numeric" name="amount" id="amount"
                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                placeholder="100" value="{{ old('amount') }}">
+                                placeholder="100" value="{{ old('amount', $contribution->amount) }}">
                             @error('amount')
                                 <small class="text-xs font-bold text-red-500">
                                     {{ $message }}
