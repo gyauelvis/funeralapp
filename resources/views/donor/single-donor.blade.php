@@ -13,8 +13,8 @@
                                 <div class="relative">
                                     <div
                                         class="h-32 w-32 overflow-hidden rounded-full border-4 border-white bg-white shadow-lg dark:border-gray-700">
-                                        <img src="/members_images/{{ $donor->picture_path }}" alt="Profile"
-                                            class="h-full w-full object-cover">
+                                        <img src="{{ $donor->picture_path == null ? '/profile.webp' : "/members_images/$donor->picture_path" }}"
+                                            alt="Profile" class="h-full w-full object-cover">
                                     </div>
                                 </div>
                             </div>
@@ -129,8 +129,8 @@
                                         <div class="mt-2 text-2xl font-bold text-green-700 dark:text-green-300">GH₵
                                             {{ Number::currency($donation->amount) }}
                                         </div>
-                                        <p class="text-sm">
-                                            {{ "Purpose: {$donation->purpose}" ?? '' }}
+                                        <p class="mt-1 text-sm">
+                                            <span class="font-bold">Purpose: </span>{{ "{$donation->purpose}" ?? '' }}
                                         </p>
                                     </div>
                                 </div>

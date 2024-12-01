@@ -94,7 +94,7 @@
                                         class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
                                 </td>
                                 <td class="text-left">
-                                    <form method="POST" action="{{ route('contributor.delete', $contribution->id) }}">
+                                    <form method="POST" action="{{ route('payment.delete', $contribution->id) }}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" onclick="return confirm('Are you sure?')"

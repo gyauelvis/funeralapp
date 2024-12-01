@@ -2,7 +2,7 @@
 
     <div class="bg-gray-50 antialiased dark:bg-gray-900">
         <nav
-            class="fixed left-0 right-0 top-0 z-50 shadow border-b border-gray-200 bg-white px-4 py-2.5 dark:border-gray-700 dark:bg-gray-800">
+            class="fixed left-0 right-0 top-0 z-50 border-b border-gray-200 bg-white px-4 py-2.5 shadow dark:border-gray-700 dark:bg-gray-800">
             <div class="flex flex-wrap items-center justify-between">
                 <div class="flex items-center justify-start">
                     <button data-drawer-target="drawer-navigation" data-drawer-toggle="drawer-navigation"
@@ -22,21 +22,12 @@
                         </svg>
                         <span class="sr-only">Toggle sidebar</span>
                     </button>
-                    <span class="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">Funeral
+                    <span class="my-1 self-center whitespace-nowrap text-2xl font-semibold dark:text-white">Funeral
                         App</span>
                     </a>
                 </div>
                 <div class="flex items-center lg:order-2">
-                    <button type="button" data-drawer-toggle="drawer-navigation" aria-controls="drawer-navigation"
-                        class="mr-1 rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:ring-4 focus:ring-gray-300 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-600 md:hidden">
-                        <span class="sr-only">Toggle search</span>
-                        <svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path clip-rule="evenodd" fill-rule="evenodd"
-                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z">
-                            </path>
-                        </svg>
-                    </button>
+
 
                     <!-- Apps -->
                     <button type="button"
@@ -88,8 +79,7 @@
                             class="group flex items-center rounded-lg p-2 text-base font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                             <svg aria-hidden="true"
                                 class="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                                fill="currfill=" currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
+                                fill="currfill=" currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
                                 </path>
@@ -115,8 +105,7 @@
                             class="group flex items-center rounded-lg p-2 text-base font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
 
                             <svg class="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                                xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                viewBox="0 0 24 24">
+                                xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                                 <g fill="none">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                         stroke-width="2" d="M18 15v3m0 3v-3m0 0h-3m3 0h3" />
@@ -214,7 +203,7 @@
                         </a>
                     </li>
                 </ul>
-                <ul class="mt-5 space-y-2 border-t border-gray-200 pt-5 dark:border-gray-700 relative">
+                <ul class="relative mt-5 space-y-2 border-t border-gray-200 pt-5 dark:border-gray-700">
                     <li>
                         <a href="#"
                             class="group flex items-center rounded-lg p-2 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
@@ -262,39 +251,53 @@
                         </a>
                     </li>
                     @if (Auth::user()->institution)
-                    <li>
-                        <a href="{{ route('institution.single', Auth::user()->institution_id) }}"
-                            class="group flex items-center rounded-lg p-2 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        <li>
+                            <a href="{{ route('institution.single', Auth::user()->institution_id) }}"
+                                class="group flex items-center rounded-lg p-2 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
 
-                            <svg aria-hidden="true"
-                                class="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="size-6">
-                                <path fill-rule="evenodd"
-                                    d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            <span class="ml-3">Institution</span>
-                        </a>
-                    </li>
+                                <svg aria-hidden="true"
+                                    class="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                    class="size-6">
+                                    <path fill-rule="evenodd"
+                                        d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="ml-3">Institution</span>
+                            </a>
+                        </li>
                     @else
-                    <li>
-                        <a href="{{ route('institution.create') }}"
-                            class="group flex items-center rounded-lg p-2 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        <li>
+                            <a href="{{ route('institution.create') }}"
+                                class="group flex items-center rounded-lg p-2 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
 
+                                <svg aria-hidden="true"
+                                    class="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                    class="size-6">
+                                    <path fill-rule="evenodd"
+                                        d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+
+                                <span class="ml-3">Create Institution</span>
+                            </a>
+                        </li>
+                    @endif
+                    <li>
+                        <a href="{{ route('projects') }}"
+                            class="group flex items-center rounded-lg p-2 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                             <svg aria-hidden="true"
                                 class="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="size-6">
-                                <path fill-rule="evenodd"
-                                    d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
-                                    clip-rule="evenodd" />
+                                xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                viewBox="0 0 24 24">
+                                <circle cx="18" cy="6" r="3" fill="currentColor" />
+                                <path fill="currentColor"
+                                    d="M13 6c0-.712.153-1.387.422-2H6c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-7.422A5 5 0 0 1 18 11a5 5 0 0 1-5-5" />
                             </svg>
-
-                            <span class="ml-3">Create Institution</span>
+                            <span class="ml-3">Projects</span>
                         </a>
                     </li>
-                    @endif
                     <li>
                         <a href="#"
                             class="group flex items-center rounded-lg p-2 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
@@ -322,10 +325,11 @@
                             <span class="ml-3">Help</span>
                         </a>
                     </li>
-                    <li class="relative group">
-                        <a href="#" id="dropDown" class="w-full relative px-2 gap-2 justify-between items-center flex flex-row py-4 text-sm font-medium text-gray-900 transition duration-150 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 rounded-md">
+                    <li class="group relative">
+                        <a href="#" id="dropDown"
+                            class="relative flex w-full flex-row items-center justify-between gap-2 rounded-md px-2 py-4 text-sm font-medium text-gray-900 transition duration-150 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                             <div class="flex flex-row items-center gap-4">
-                                <div class="w-8 h-8 rounded-full bg-gray-500"></div>
+                                <div class="h-8 w-8 rounded-full bg-gray-500"></div>
                                 <div class="flex flex-col">
                                     <span class="inline-block text-sm font-medium text-gray-700">
                                         Nkoranza Local
@@ -336,18 +340,26 @@
                                 </div>
                             </div>
                             <div>
-                                <svg id="drop-icon" class="text-gray-500 size-6 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                <svg id="drop-icon" class="size-6 text-gray-500 transition-transform"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                                 </svg>
                             </div>
                         </a>
-                        <div class="popover hidden absolute z-50 right-0 top-full mt-2 w-56 transform transition-all duration-300 ease-in-out origin-top-right">
-                            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+                        <div
+                            class="popover absolute right-0 top-full z-50 mt-2 hidden w-56 origin-top-right transform transition-all duration-300 ease-in-out">
+                            <div
+                                class="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-xl dark:border-gray-700 dark:bg-gray-800">
                                 <div class="py-1">
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white transition duration-150 ease-in-out">
+                                    <a href="#"
+                                        class="block px-4 py-2 text-sm text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white">
                                         <div class="flex items-center gap-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400"
+                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                             </svg>
                                             Edit Institution
                                         </div>
