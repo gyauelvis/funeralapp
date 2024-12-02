@@ -33,9 +33,13 @@
                 </div>
             </header>
         @endif
-
+        <main id="screen-loader"
+            class="flex h-auto min-h-screen items-center justify-center rounded-lg bg-white dark:bg-gray-700 md:ml-64">
+            <span
+                class="box-border inline-block h-12 w-12 animate-spin rounded-full border-4 border-gray-200 border-b-blue-500"></span>
+        </main>
         <!-- Page Content -->
-        <main>
+        <main id="content" style="display: none">
             {{ $slot }}
         </main>
     </div>
@@ -50,6 +54,19 @@
         $(document).ready(function() {
             $('.js-example-basic-single').select2();
         });
+    </script>
+    <script>
+        // Show loader while the page is loading
+        window.addEventListener('load', function() {
+            document.getElementById('screen-loader').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        });
+
+        // Optional: Add a fallback in case 'load' event takes too long
+        setTimeout(function() {
+            document.getElementById('screen-loader').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        }, 5000); // Adjust the timeout as needed (e.g., 5000ms = 5 seconds)
     </script>
 </body>
 
