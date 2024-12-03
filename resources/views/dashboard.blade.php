@@ -202,6 +202,7 @@
 
 <script>
 
+    document.addEventListener('')
     document.querySelectorAll('#card-drop-down-icon').forEach(icon => {
         icon.addEventListener('click', function() {
             icon.classList.add('rotate-180');
