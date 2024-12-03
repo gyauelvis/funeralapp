@@ -1,5 +1,6 @@
 <x-app-layout>
-    <main class="flex h-auto min-h-screen items-center justify-center rounded-lg bg-white p-4 pt-20 dark:bg-gray-700 md:ml-64">
+    <main
+        class="flex h-auto min-h-screen items-center justify-center rounded-lg bg-white p-4 pt-20 dark:bg-gray-700 md:ml-64">
         <div class="w-full max-w-lg">
             <div>
                 <div class="flex items-center justify-between rounded-t p-4 dark:border-gray-600 md:p-5">
@@ -75,6 +76,35 @@
                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                 placeholder="Location in Community" value="{{ old('suburb') }}">
                             @error('suburb')
+                                <small class="text-xs font-bold text-red-500">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <label for="phone_number"
+                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Clan</label>
+                            <select name="clan" id="clan"
+                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500">
+                                <option value="" disabled selected>Select your clan</option>
+                                @foreach ($clans as $clan)
+                                    <option value="{{ old('clan', $clan['value']) }}">{{ $clan['name'] }}</option>
+                                @endforeach
+                            </select>
+
+                            @error('clan')
+                                <small class="text-xs font-bold text-red-500">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <label for="hometown"
+                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Hometown</label>
+                            <input type="text" name="hometown" id="hometown"
+                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                placeholder="Name of Hometown" value="{{ old('hometown') }}">
+                            @error('hometown')
                                 <small class="text-xs font-bold text-red-500">
                                     {{ $message }}
                                 </small>

@@ -14,12 +14,25 @@ return new class extends Migration
         Schema::create('contributors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('membership_id')->nullable()->unique();
+            $table->string('membership_id')
+                ->nullable()
+                ->unique();
             $table->string('phone_number');
+            $table->enum('clan', ['OYOKO', 'AGONA', 'BRETUO', 'ASOMAKOMA', 'ASONA', 'ABRADE', 'EKUONA', 'ADUANA'])
+                ->nullable();
+            $table->string('father')
+                ->nullable();
+            $table->string('mother')
+                ->nullable();
+            $table->string('hometown')
+                ->nullable();
             $table->boolean('is_member');
-            $table->string('suburb')->nullable();
-            $table->string('denomination')->nullable();
-            $table->string('picture_path')->nullable();
+            $table->string('suburb')
+                ->nullable();
+            $table->string('denomination')
+                ->nullable();
+            $table->string('picture_path')
+                ->nullable();
             $table->foreignId('user_id');
             $table->timestamps();
         });
