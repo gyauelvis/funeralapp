@@ -62,7 +62,7 @@
                             Price
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Action
+                            Actions
                         </th>
                     </tr>
                 </thead>
@@ -81,8 +81,34 @@
                         <td class="px-6 py-4">
                             $2999
                         </td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <td class="px-6 py-4 relative">
+                            <div class="relative">
+                                <button class="action-button font-medium text-blue-600 dark:text-blue-500 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+                                    </svg>
+                                </button>
+                                <div id="pop-over" class="popover hidden absolute top-full right-0 mt-2 w-48 bg-white opacity-100 rounded-lg dark:bg-gray-800 dark:border-gray-700 border border-gray-200 shadow-lg z-50">
+                                    <ul class="py-1">
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                Edit
+                                            </a>
+                                        </li>
+                                        <li>
+                                           
+                                                <a href="#" class="block w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                    Delete
+                                                </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                View
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -99,8 +125,34 @@
                         <td class="px-6 py-4">
                             $2999
                         </td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <td class="px-6 py-4 relative">
+                            <div class="relative">
+                                <button class="action-button font-medium text-blue-600 dark:text-blue-500 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+                                    </svg>
+                                </button>
+                                <div id="pop-over" class="popover hidden absolute top-full right-0 mt-2 w-48 bg-white opacity-100 rounded-lg dark:bg-gray-800 dark:border-gray-700 border border-gray-200 shadow-lg z-50">
+                                    <ul class="py-1">
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                Edit
+                                            </a>
+                                        </li>
+                                        <li>
+                                           
+                                                <a href="#" class="block w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                    Delete
+                                                </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                View
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -117,8 +169,34 @@
                         <td class="px-6 py-4">
                             $2999
                         </td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <td class="px-6 py-4 relative">
+                            <div class="relative">
+                                <button class="action-button font-medium text-blue-600 dark:text-blue-500 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+                                    </svg>
+                                </button>
+                                <div id="pop-over" class="popover hidden absolute top-full right-0 mt-2 w-48 bg-white opacity-100 rounded-lg dark:bg-gray-800 dark:border-gray-700 border border-gray-200 shadow-lg z-50">
+                                    <ul class="py-1">
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                Edit
+                                            </a>
+                                        </li>
+                                        <li>
+                                           
+                                                <a href="#" class="block w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                    Delete
+                                                </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                View
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -135,8 +213,34 @@
                         <td class="px-6 py-4">
                             $2999
                         </td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <td class="px-6 py-4 relative">
+                            <div class="relative">
+                                <button class="action-button font-medium text-blue-600 dark:text-blue-500 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+                                    </svg>
+                                </button>
+                                <div id="pop-over" class="popover hidden absolute top-full right-0 mt-2 w-48 bg-white opacity-100 rounded-lg dark:bg-gray-800 dark:border-gray-700 border border-gray-200 shadow-lg z-50">
+                                    <ul class="py-1">
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                Edit
+                                            </a>
+                                        </li>
+                                        <li>
+                                           
+                                                <a href="#" class="block w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                    Delete
+                                                </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                View
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -153,8 +257,34 @@
                         <td class="px-6 py-4">
                             $2999
                         </td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <td class="px-6 py-4 relative">
+                            <div class="relative">
+                                <button class="action-button font-medium text-blue-600 dark:text-blue-500 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+                                    </svg>
+                                </button>
+                                <div id="pop-over" class="popover hidden absolute top-full right-0 mt-2 w-48 bg-white opacity-100 rounded-lg dark:bg-gray-800 dark:border-gray-700 border border-gray-200 shadow-lg z-50">
+                                    <ul class="py-1">
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                Edit
+                                            </a>
+                                        </li>
+                                        <li>
+                                           
+                                                <a href="#" class="block w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                    Delete
+                                                </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                View
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -171,8 +301,34 @@
                         <td class="px-6 py-4">
                             $2999
                         </td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <td class="px-6 py-4 relative">
+                            <div class="relative">
+                                <button class="action-button font-medium text-blue-600 dark:text-blue-500 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+                                    </svg>
+                                </button>
+                                <div id="pop-over" class="popover hidden absolute top-full right-0 mt-2 w-48 bg-white opacity-100 rounded-lg dark:bg-gray-800 dark:border-gray-700 border border-gray-200 shadow-lg z-50">
+                                    <ul class="py-1">
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                Edit
+                                            </a>
+                                        </li>
+                                        <li>
+                                           
+                                                <a href="#" class="block w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                    Delete
+                                                </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                View
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -189,8 +345,34 @@
                         <td class="px-6 py-4">
                             $1999
                         </td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <td class="px-6 py-4 relative">
+                            <div class="relative">
+                                <button class="action-button font-medium text-blue-600 dark:text-blue-500 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+                                    </svg>
+                                </button>
+                                <div id="pop-over" class="popover hidden absolute top-full right-0 mt-2 w-48 bg-white opacity-100 rounded-lg dark:bg-gray-800 dark:border-gray-700 border border-gray-200 shadow-lg z-50">
+                                    <ul class="py-1">
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                Edit
+                                            </a>
+                                        </li>
+                                        <li>
+                                           
+                                                <a href="#" class="block w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                    Delete
+                                                </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                View
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -207,8 +389,34 @@
                         <td class="px-6 py-4">
                             $99
                         </td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <td class="px-6 py-4 relative">
+                            <div class="relative">
+                                <button class="action-button font-medium text-blue-600 dark:text-blue-500 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+                                    </svg>
+                                </button>
+                                <div id="pop-over" class="popover hidden absolute top-full right-0 mt-2 w-48 bg-white opacity-100 rounded-lg dark:bg-gray-800 dark:border-gray-700 border border-gray-200 shadow-lg z-50">
+                                    <ul class="py-1">
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                Edit
+                                            </a>
+                                        </li>
+                                        <li>
+                                           
+                                                <a href="#" class="block w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                    Delete
+                                                </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                View
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -225,8 +433,34 @@
                         <td class="px-6 py-4">
                             $179
                         </td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <td class="px-6 py-4 relative">
+                            <div class="relative">
+                                <button class="action-button font-medium text-blue-600 dark:text-blue-500 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+                                    </svg>
+                                </button>
+                                <div id="pop-over" class="popover hidden absolute top-full right-0 mt-2 w-48 bg-white opacity-100 rounded-lg dark:bg-gray-800 dark:border-gray-700 border border-gray-200 shadow-lg z-50">
+                                    <ul class="py-1">
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                Edit
+                                            </a>
+                                        </li>
+                                        <li>
+                                           
+                                                <a href="#" class="block w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                    Delete
+                                                </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                View
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -243,8 +477,34 @@
                         <td class="px-6 py-4">
                             $699
                         </td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <td class="px-6 py-4 relative">
+                            <div class="relative">
+                                <button class="action-button font-medium text-blue-600 dark:text-blue-500 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+                                    </svg>
+                                </button>
+                                <div id="pop-over" class="popover hidden absolute top-full right-0 mt-2 w-48 bg-white opacity-100 rounded-lg dark:bg-gray-800 dark:border-gray-700 border border-gray-200 shadow-lg z-50">
+                                    <ul class="py-1">
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                Edit
+                                            </a>
+                                        </li>
+                                        <li>
+                                           
+                                                <a href="#" class="block w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                    Delete
+                                                </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                View
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -260,8 +520,34 @@
                         <td class="px-6 py-4">
                             $3999
                         </td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <td class="px-6 py-4 relative">
+                            <div class="relative">
+                                <button class="action-button font-medium text-blue-600 dark:text-blue-500 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+                                    </svg>
+                                </button>
+                                <div id="pop-over" class="popover hidden absolute top-full right-0 mt-2 w-48 bg-white opacity-100 rounded-lg dark:bg-gray-800 dark:border-gray-700 border border-gray-200 shadow-lg z-50">
+                                    <ul class="py-1">
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                Edit
+                                            </a>
+                                        </li>
+                                        <li>
+                                           
+                                                <a href="#" class="block w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                    Delete
+                                                </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                                                View
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -275,3 +561,29 @@
 
     </section>
 </x-app-layout>
+
+<script>
+     document.querySelectorAll('.action-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const popover = button.nextElementSibling;
+
+                // Close other popovers before opening the clicked one
+                document.querySelectorAll('.popover').forEach(otherPopover => {
+                    if (otherPopover !== popover) {
+                        otherPopover.classList.add('hidden');
+                    }
+                });
+
+                popover.classList.toggle('hidden');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.action-button')) {
+                document.querySelectorAll('.popover').forEach(popover => {
+                    popover.classList.add('hidden');
+                });
+            }
+        });
+</script>
