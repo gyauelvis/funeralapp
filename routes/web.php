@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+use App\Http\Middleware\EnsureUserPasswordReset;
 
 
 Route::get('/', function () {
@@ -12,6 +13,7 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
+    EnsureUserPasswordReset::class
 ])->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
