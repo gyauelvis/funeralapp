@@ -97,8 +97,13 @@
                 </div>
             </div>
 
+<<<<<<< HEAD
             <div class="grid grid-cols-3 gap-6">
                 <div class="overflow-hidden rounded-xl bg-white shadow-lg">
+=======
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white shadow-lg rounded-xl overflow-hidden">
+>>>>>>> 365f3965a3b1d72c5202fefecf355d41aa76ce11
                     <div class="p-6">
                         <div class="mb-6 flex items-center justify-between">
                             <h5 class="text-xl font-bold text-gray-800">Community Members</h5>
@@ -211,6 +216,11 @@
 </x-app-layout>
 
 <script>
+<<<<<<< HEAD
+=======
+
+    document.addEventListener('')
+>>>>>>> 365f3965a3b1d72c5202fefecf355d41aa76ce11
     document.querySelectorAll('#card-drop-down-icon').forEach(icon => {
         icon.addEventListener('click', function() {
             icon.classList.add('rotate-180');
