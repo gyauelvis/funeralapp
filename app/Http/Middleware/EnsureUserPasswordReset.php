@@ -21,9 +21,9 @@ class EnsureUserPasswordReset
 
         // OR
         // $user = $request->user(); // Using the request object
-        if ($user->password_reset_at === null); {
-            return redirect('/user/profile#password_reset');
-        }
+        // if ($user->password_reset_at === null); {
+        //     return redirect('/user/profile#password_reset');
+        // }
 
         return $next($request);
     }

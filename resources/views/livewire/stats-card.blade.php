@@ -39,7 +39,7 @@
                  </ul>
              </div>
          </div>
-         <div class="mb-2 text-2xl font-bold text-gray-800">{{ 12212121 }}
+         <div class="mb-2 text-2xl font-bold text-gray-800"> {{ Number::currency($donations->sum('amount'), 'GHS') }}
          </div>
          <div class="text-sm text-gray-500">Total Amount of Donations</div>
      </div>

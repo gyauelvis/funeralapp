@@ -15,10 +15,10 @@
                         </div>
                         <input type="text" id="table-search"
                             class="block w-80 rounded-lg border border-gray-300 bg-gray-50 ps-10 pt-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                            placeholder="Search for items">
+                            placeholder="Search projects">
                         <a href="{{ route('project.create') }}"
                             class="mt-2 rounded-md bg-blue-500 px-3 py-2 text-white hover:bg-blue-300">
-                            Create a new Project
+                            Add Project
                         </a>
                     </div>
                     <caption

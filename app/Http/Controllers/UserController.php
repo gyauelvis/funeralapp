@@ -6,6 +6,9 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Number;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -31,7 +34,37 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'picture_path' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'name' => 'required|min:5',
+            'email' => 'required',
+            'phone_number' => 'nullable|min:10|numeric|unique:contributors,phone_number',
+            // 'role' => 'required|min:5',
+        ], [
+            'picture_path' => 'The image must be jpeg,jpg or png',
+            'name' => 'Enter a valid user name. Minimum of 5 letters',
+            'email' => 'Enter a valid suburb for this user ',
+            'phone_number' => 'Phone number is either invalid or is registered with another user',
+            'role' => 'You must select a role for the user'
+        ]);
+
+
+        if (isset($data['picture_path'])) {
+            $image_name = time() . '.' . $data['picture_path']->extension();
+
+            $data['picture_path']->move(public_path('users'), $image_name);
+
+            $data['picture_path'] = $image_name;
+        }
+
+
+        $data['password'] = Hash::make('password');
+        $data['user_id'] = Auth::user()->id;
+
+        $user = User::create($data);
+
+        toastr()->success("{$user->name} has been registered successfully");
+        return to_route('user.single', $user->id);
     }
 
     /**
