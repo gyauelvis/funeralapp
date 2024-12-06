@@ -1,29 +1,25 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Livewire;
 
 use App\Models\User;
 use App\Models\Payment;
+use Livewire\Component;
 use App\Models\Contributor;
-use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class StatsCard extends Component
 {
-    /**
-     * Handle the incoming request.
-     */
-    public function __invoke(Request $request)
+
+    public $date_sort;
+
+
+    public function render()
     {
-
-        dd(auth()->user());
-
-        return view('dashboard', [
+        return view('livewire.stats-card', [
             'contributions' => Payment::where('payment_type', 'CONTRIBUTION')->get(),
             'donations' => Payment::where('payment_type', 'DONATION')->orderBy('created_at', 'desc')->get(),
             'members' => Contributor::where('is_member', '=', 1)->orderBy('created_at', 'desc')->get(),
             'users' => User::get()
-
-
         ]);
     }
 }

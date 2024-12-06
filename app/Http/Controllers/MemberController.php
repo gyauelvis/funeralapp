@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contributor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Number;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
@@ -23,7 +24,8 @@ class MemberController extends Controller
      */
     public function create()
     {
-        return view('members.register-member',);
+        $clans = Contributor::clans();
+        return view('members.register-member', compact("clans"));
     }
 
     /**
@@ -37,7 +39,11 @@ class MemberController extends Controller
             'name' => 'required|min:5',
             'suburb' => 'required',
             'phone_number' => 'required|min:10|numeric|unique:contributors,phone_number',
-            'denomination' => 'nullable|min:5'
+            'denomination' => 'nullable|min:5',
+            'clan' => [
+                'nullable',
+                Rule::in(['OYOKO', 'AGONA', 'BRETUO', 'ASOMAKOMA', 'ASONA', 'ABRADE', 'EKUONA', 'ADUANA'])
+            ]
         ], [
             'picture_path' => 'The image must be jpeg,jpg or png',
             'name' => 'Enter a valid member name. Minimum of 5 letters',
@@ -94,8 +100,11 @@ class MemberController extends Controller
         if ($contributor->is_member !== 1) {
             return redirect(route('donor.edit', $contributor->id));
         }
-
-        return view('members.edit-member', ['member' => $contributor]);
+        $clans = Contributor::clans();
+        return view('members.edit-member', [
+            'member' => $contributor,
+            'clans' => $clans
+        ]);
     }
 
     /**
@@ -107,8 +116,13 @@ class MemberController extends Controller
             'picture_path' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'name' => 'required|min:5',
             'suburb' => 'required',
-            'phone_number' => 'required|numeric',
-            'denomination' => 'nullable|min:5'
+            'phone_number' => 'required|min:10|numeric|unique:contributors,phone_number',
+            'denomination' => 'nullable|min:5',
+            'hometown' => 'nullable',
+            'clan' => [
+                'nullable',
+                Rule::in(['OYOKO', 'AGONA', 'BRETUO', 'ASOMAKOMA', 'ASONA', 'ABRADE', 'EKUONA', 'ADUANA'])
+            ]
         ], [
             'picture_path' => 'The image must be jpeg,jpg or png',
             'name' => 'Enter a valid member name. Minimum of 5 letters',
