@@ -15,7 +15,6 @@ class DashboardController extends Controller
     public function __invoke(Request $request)
     {
 
-        dd(auth()->user());
 
         return view('dashboard', [
             'contributions' => Payment::where('payment_type', 'CONTRIBUTION')->get(),

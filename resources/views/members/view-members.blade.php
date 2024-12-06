@@ -1,7 +1,6 @@
 <x-app-layout>
-    <main
-        class="flex h-auto min-h-screen items-center justify-center rounded-lg md:ml-64 bg-white dark:bg-gray-700">
-        <div class="relative shadow-md sm:rounded-lg p-5 bg-white dark:bg-gray-700 mx-5">
+    <main class="flex h-auto min-h-screen items-center justify-center rounded-lg bg-white dark:bg-gray-700 md:ml-64">
+        <div class="relative mx-5 bg-white p-5 shadow-md dark:bg-gray-700 sm:rounded-lg">
             <div class="relative min-h-[400px]">
                 <div
                     class="flex-column fixed flex flex-wrap items-center justify-between space-y-4 bg-white pb-4 dark:bg-gray-900 md:flex-row md:space-y-0">
@@ -29,10 +28,11 @@
                         </div>
                     </div>
                 </div>
-                <table class="w-full table-fixed text-left text-sm rtl:text-right -z-50 rounded-full">
+                <table class="-z-50 w-full table-fixed rounded-full text-left text-sm rtl:text-right">
                     <div class="flex flex-row justify-between">
                         <div class="relative mt-1">
-                            <div class="rtl:inset-r-0 pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
+                            <div
+                                class="rtl:inset-r-0 pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
                                 <svg class="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -67,7 +67,7 @@
                             all members.</p>
                     </caption>
                     <thead
-                        class="sticky top-0 bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400 z-0">
+                        class="sticky top-0 z-0 bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="w-52 px-6 py-3">Name</th>
                             <th scope="col" class="px-6 py-3">Phone Number</th>
@@ -88,17 +88,18 @@
 <script>
     const communityMembers = [
 
-        @foreach($members as $member) {
-            memberId: "{{ $member->id }}",
-            member_image: "{{ $member->picture_path }}",
-            name: "{{ $member->name }}",
-            phoneNumber: "{{ $member->phone_number }}",
-            email: "{{ $member->name }}",
-            suburb: "{{ $member->suburb }}",
-            denomination: "{{ $member->denomination }}",
-            membershipId: "{{ $member->membership_id }}",
-            role: "{{ $member->name }}"
-        },
+        @foreach ($members as $member)
+            {
+                memberId: "{{ $member->id }}",
+                member_image: "{{ $member->picture_path }}",
+                name: "{{ $member->name }}",
+                phoneNumber: "{{ $member->phone_number }}",
+                email: "{{ $member->name }}",
+                suburb: "{{ $member->suburb }}",
+                denomination: "{{ $member->denomination }}",
+                membershipId: "{{ $member->membership_id }}",
+                role: "{{ $member->name }}"
+            },
         @endforeach
 
 
