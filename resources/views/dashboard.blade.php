@@ -1,5 +1,4 @@
 <x-app-layout>
-
     <main class="h-auto p-4 pt-20 md:ml-64">
         <div class="container mx-auto">
             <h1 class="mb-8 text-3xl font-bold text-gray-800">Community Dashboard</h1>
@@ -49,12 +48,11 @@
                             </div>
                         </div>
                         <div class="mb-2 text-2xl font-bold text-gray-800">
-                            {{ Number::currency($donations->sum('amount'), 'GHS') }}
+                            {{ Number::currency($payments->where('payment_type', 'DONATION')->sum('amount'), 'GHS') }}
                         </div>
                         <div class="text-sm text-gray-500">Total Amount of Donations</div>
                     </div>
                 </div>
-
                 <div
                     class="relative z-20 transform rounded-xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
                     <div class="flex flex-col p-6">
@@ -108,7 +106,7 @@
                             </div>
                         </div>
                         <div class="mb-2 text-2xl font-bold text-gray-800">
-                            {{ $contributions->sum('amount') < 0 ? 'GHS ---' : Number::currency($contributions->sum('amount'), 'GHS') }}
+                            {{ $payments->where('payment_type', 'CONTRIBUTION')->sum('amount') < 0 ? 'GHS ---' : Number::currency($payments->where('payment_type', 'CONTRIBUTION')->sum('amount'), 'GHS') }}
                         </div>
                         <div class="text-sm text-gray-500">Total Amount of Funeral Wages</div>
                     </div>
@@ -159,7 +157,7 @@
                             </a>
                         </div>
                         @if ($members->count() < 5)
-                            <div class="flex items-center justify-center text-center">Data is collating... </div>
+                            <div class="flex items-center justify-center text-center">Data is collating...</div>
                         @else
                             <div class="space-y-4">
                                 <ul id="communityMember" class="divide-y divide-gray-200">
@@ -189,7 +187,6 @@
                         @endif
                     </div>
                 </div>
-
                 <div class="rounded-xl bg-white shadow-lg">
                     <div class="p-6">
                         <div class="relative mb-6 flex items-center justify-between">
