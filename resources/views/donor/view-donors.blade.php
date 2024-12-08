@@ -1,175 +1,101 @@
 <x-app-layout>
-    <main
-        class="flex h-auto min-h-screen items-center justify-center rounded-lg bg-white p-4 pt-20 dark:bg-gray-700 md:ml-64">
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <div class="relative min-h-[400px] overflow-x-auto">
-                <div
-                    class="flex-column fixed flex flex-wrap items-center justify-between space-y-4 bg-white pb-4 dark:bg-gray-900 md:flex-row md:space-y-0">
-                    <div>
-                        <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction"
-                            class="inline-flex items-center rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-                            type="button">
-                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z" />
-                            </svg>
+    <main class="flex h-auto min-h-screen items-center justify-center rounded-lg dark:bg-gray-700 md:ml-64">
+        <div class="relative mx-5 bg-white p-5 shadow-md dark:bg-gray-700 sm:rounded-lg">
+            <div class="relative min-w-[800px]">
 
-                            <svg class="ms-2.5 h-2.5 w-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                fill="none" viewBox="0 0 10 6">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="m1 1 4 4 4-4" />
-                            </svg>
-                        </button>
-
-                        <div id="dropdownAction"
-                            class="z-10 hidden w-44 divide-y divide-gray-100 rounded-lg bg-white shadow dark:divide-gray-600 dark:bg-gray-700">
-                            <ul class="px-1 py-1 text-sm text-gray-700 dark:text-gray-200"
-                                aria-labelledby="dropdownActionButton">
-                                <li>
-                                    <input id="donor" onchange="filter('donor')" checked type="checkbox"
-                                        value="donor"
-                                        class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600">
-                                    <label for="donor"
-                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Donors</label>
-                                </li>
-                                <li>
-                                    <input id="donor" onchange="filter('donor')" checked type="checkbox"
-                                        value="donor"
-                                        class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600">
-                                    <label for="donor"
-                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">donors</label>
-                                </li>
-                            </ul>
+                <table class="w-full text-left text-gray-500 rtl:text-right dark:text-gray-400">
+                    <div class="bg-white pb-4 dark:bg-gray-900">
+                        <label for="table-search" class="sr-only">Search</label>
+                        <div class="relative mt-1">
+                            <div
+                                class="rtl:inset-r-0 pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
+                                <svg class="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                </svg>
+                            </div>
+                            <input type="text" id="table-search"
+                                class="block w-80 rounded-lg border border-gray-300 bg-gray-50 ps-10 pt-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                                placeholder="Search for donor">
                         </div>
-                    </div>
-                </div>
-                <table class="w-full table-fixed text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
-                    <thead
-                        class="sticky top-0 bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" class="w-52 px-6 py-3">Name</th>
-                            <th scope="col" class="px-6 py-3">Phone Number</th>
-                            <th scope="col" class="px-6 py-3">Actions</th>
-                    </thead>
-                    <tbody id="mem-table" class="divide-y divide-gray-200 dark:divide-gray-700">
-                    </tbody>
+                        <caption
+                            class="bg-white p-5 text-left text-lg font-semibold text-gray-900 rtl:text-right dark:bg-gray-800 dark:text-white">
+                            All Donors
+                            <p class="mb-2 mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Browse the list of
+                                all donors</p>
+                            {{ $donors->links() }}
+                        </caption>
+
+                        <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Name
+                                </th>
+
+                                <th scope="col" class="px-6 py-3">
+                                    Phone Number
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Date Registered
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Registered By
+                                </th>
+                                <th colspan="2" class="px-6 py-3 text-center">
+                                    Action
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($donors as $donor)
+                                <tr class="border-b bg-white hover:bg-slate-100 dark:border-gray-700 dark:bg-gray-800">
+                                    <th scope="row"
+                                        class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                        <a href="{{ route('member.single', $donor->id) }}" class="font-bold">
+                                            {{ $donor->name }}
+                                        </a>
+                                    </th>
+
+                                    <td class="px-6 py-4">
+                                        {{ $donor->phone_number }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $donor->created_at->toFormattedDateString() }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <a href="{{ route('user.single', $donor->user_id) }}"
+                                            class="rounded-md bg-gray-700 px-2 py-0.5 text-sm text-white">
+                                            {{ $donor->registered_by->name }}
+                                        </a>
+                                    </td>
+                                    <td class="px-6 py-4 text-left">
+                                        <a href="{{ route('donor.edit', $donor->id) }}"
+                                            class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
+                                    </td>
+                                    <td class="text-left">
+                                        <form method="POST" action="{{ route('payment.delete', $donor->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" onclick="return confirm('Are you sure?')"
+                                                class="block px-4 py-2 text-center font-bold text-red-500 hover:text-red-700 dark:text-gray-300 dark:hover:bg-gray-700">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="9" class="pt-5 text-center">
+                                        No data found...
+
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+
                 </table>
             </div>
         </div>
+
     </main>
 </x-app-layout>
-
-<script>
-    const communityDonors = [
-
-        @foreach ($donors as $donor)
-            {
-                donorId: "{{ $donor->id }}",
-                donor_image: "{{ $donor->picture_path }}",
-                name: "{{ $donor->name }}",
-                phoneNumber: "{{ $donor->phone_number }}",
-                purpose: "{{ $donor->purpose }}",
-                denomination: "{{ $donor->denomination }}",
-            },
-        @endforeach
-
-
-    ];
-
-
-    function populateTable(data = communityDonors) {
-        const tableBody = document.getElementById('mem-table');
-        tableBody.innerHTML = '';
-
-        data.forEach((donor, index) => {
-            const row = document.createElement('tr');
-            row.className =
-                'bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600';
-
-            row.innerHTML = `
-
-            <th scope="row" class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <a href="/donors/${donor.donorId}">
-                    <img class="w-10  rounded-full" src="{{ $donor->picture_path == null ? '/profile.webp' : "/members_images/$donor->picture_path" }}" alt="Profile image">
-                </a>
-                    <a href="/donors/${donor.donorId}">
-                    <div class="ps-3">
-                    <div class="text-base font-semibold">${donor.name.length <= 15 ? donor.name : donor.name.slice(0,15)+'...'}</div>
-                </div>
-                </a>
-            </th>
-
-            <td class="px-6 py-4">${donor.phoneNumber}</td>
-            <td class="px-6 py-4 relative">
-                <button class="action-button font-medium text-blue-600 dark:text-blue-500 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
-                    </svg>
-                </button>
-                <div class="popover hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 border border-gray-200 z-50">
-                    <ul class="py-1">
-                        <li>
-                            <a href="/donors/edit/${donor.donorId}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Edit</a>
-                        </li>
-                        <li>
-                            <form method="POST" action="/donors/${donor.donorId}/delete">
-                               @csrf
-                               @method('DELETE')
-                                <button type="submit" onclick="return confirm('Are you sure?')"  class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Delete</button>
-                            </form>
-
-                        </li>
-                    </ul>
-                </div>
-            </td>
-        `;
-            tableBody.appendChild(row);
-        });
-
-        setupPopovers();
-    }
-
-    function setupPopovers() {
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.action-button')) {
-                document.querySelectorAll('.popover').forEach(popover => {
-                    popover.classList.add('hidden');
-                });
-            }
-        });
-
-        document.querySelectorAll('.action-button').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.stopPropagation();
-
-                document.querySelectorAll('.popover').forEach(popover => {
-                    if (popover !== e.target.nextElementSibling) {
-                        popover.classList.add('hidden');
-                    }
-                });
-
-                const popover = button.nextElementSibling;
-                popover.classList.toggle('hidden');
-            });
-        });
-    }
-
-    // Your existing filter function
-    function filter() {
-        let data;
-        if (document.getElementById('donor').checked && document.getElementById('donor').checked) {
-            data = communityDonors;
-        } else if (document.getElementById('donor').checked) {
-            data = communityDonors.filter((donor) => donor.role === 'donor');
-        } else if (document.getElementById('donor').checked) {
-            data = communityDonors.filter((donor) => donor.role === 'donor');
-        } else {
-            data = [];
-        }
-        populateTable(data);
-    }
-
-    // Initial table population
-    populateTable();
-</script>

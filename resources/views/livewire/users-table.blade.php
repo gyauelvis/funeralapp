@@ -1,5 +1,5 @@
 <div>
-    <div class="relative overflow-x-auto p-3 shadow-md sm:rounded-lg">
+    <div class="relative overflow-x-auto p-3 shadow-md">
         <div
             class="flex-column flex flex-wrap items-center justify-between space-y-4 bg-white py-4 dark:bg-gray-900 md:flex-row md:space-y-0">
             <div>
@@ -53,7 +53,7 @@
                     placeholder="Search for users">
             </div>
         </div>
-        <table class="w-1/2 text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
+        <table class="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
             <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3" wire:click="setSortBy('name')">
@@ -113,7 +113,7 @@
                             @endif
                         </button>
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th colspan="2" class="px-6 py-3 text-center">
                         Action
                     </th>
                 </tr>

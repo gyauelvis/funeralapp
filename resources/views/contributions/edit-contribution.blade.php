@@ -1,8 +1,8 @@
 <x-app-layout>
 
-    <main class="flex h-auto items-center justify-center rounded-lg bg-white p-4 pt-20 dark:bg-gray-700 md:ml-64">
+    <main class="flex h-auto items-center justify-center p-4 pt-20 dark:bg-gray-700 md:ml-64">
         <div class="w-full max-w-lg">
-            <div>
+            <div class="rounded-md bg-white p-3">
                 <div class="flex items-center justify-between rounded-t p-4 dark:border-gray-600 md:p-5">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                         Edit a Contribution

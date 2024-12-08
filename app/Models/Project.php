@@ -18,7 +18,7 @@ class Project extends Model
      *
      * @return HasMany
      */
-    public function contribution(): HasMany
+    public function contributions(): HasMany
     {
         return $this->hasMany(Payment::class);
     }

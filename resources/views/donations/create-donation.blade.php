@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <main <<<<<<< HEAD
+    <main
         class="mt-5 flex flex-col content-center items-center justify-around rounded-lg p-4 pt-20 dark:bg-gray-700 md:ml-64">
         <div class="w-full max-w-lg rounded-md bg-white p-5">
 
@@ -45,7 +45,6 @@
                             <hr>
                         </div>
                         {{-- Member Form --}}
-
                         <div class="mb-4 grid grid-cols-2 gap-4" id="member_donation">
                             <div class="col-span-2">
                                 <label for="contributor_id"
@@ -66,7 +65,6 @@
                                     </small>
                                 @enderror
                             </div>
-
                             <div class="col-span-2">
                                 <label for="amount"
                                     class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Amount<span
@@ -81,23 +79,19 @@
                                 @enderror
                             </div>
                             <div class="col-span-2 p-4 md:p-5">
-
                                 <p class="text-md mb-4 font-bold text-black">Which project are you donating to?</p>
-
-                                @if ($projects->count() !== 0)
-                                    @foreach ($projects as $project)
-                                        <div class="mb-4 flex items-center">
-                                            <input id="{{ Str::slug($project->name) }}" type="radio" name="project_id"
-                                                value="{{ old('project', $project->id) }}"
-                                                class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:focus:bg-blue-600 dark:focus:ring-blue-600"
-                                                {{ old('project') == $project->id ? 'checked' : '' }}>
-                                            <label for="non_registered_member"
-                                                class="ms-2 block text-sm font-medium text-gray-900 dark:text-gray-300">
-                                                {{ $project->name }}
-                                            </label>
-                                        </div>
-                                    @endforeach
-                                @else
+                                @forelse ($projects as $project)
+                                    <div class="mb-4 flex items-center">
+                                        <input id="{{ Str::slug($project->name) }}" type="radio" name="project_id"
+                                            value="{{ old('project', $project->id) }}"
+                                            class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:focus:bg-blue-600 dark:focus:ring-blue-600"
+                                            {{ old('project') == $project->id ? 'checked' : '' }}>
+                                        <label for="projects"
+                                            class="ms-2 block text-sm font-medium text-gray-900 dark:text-gray-300">
+                                            {{ $project->name }}
+                                        </label>
+                                    </div>
+                                @empty
                                     <a href="{{ route('project.create') }}">
                                         <p class="rounded-md bg-gray-300 px-2 py-0.5 text-center text-sm text-black">
                                             Click
@@ -108,7 +102,7 @@
                                             add donations
                                         </p>
                                     </a>
-                                @endif
+                                @endforelse
                                 @error('project')
                                     <small class="text-xs font-bold text-red-500">
                                         {{ $message }}

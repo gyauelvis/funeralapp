@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('phone_number');
             $table->enum('clan', ['OYOKO', 'AGONA', 'BRETUO', 'ASOMAKOMA', 'ASONA', 'ABRADE', 'EKUONA', 'ADUANA'])
                 ->nullable();
-            $table->string('father')
+            $table->string('contact_person_name')
                 ->nullable();
-            $table->string('mother')
+            $table->string('contact_person_number')
                 ->nullable();
             $table->string('hometown')
                 ->nullable();

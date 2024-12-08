@@ -33,7 +33,7 @@
                                 </div>
                             </div>
                             <div class="mt-1 text-center text-sm text-gray-500 dark:text-gray-300"
-                                id="user_avatar_help">SVG, PNG, JPG or GIF (MAX. 800x400px)</div>
+                                id="user_avatar_help">SVG, PNG, JPG or GIF </div>
                             @error('picture_path')
                                 <small class="text-xs font-bold text-red-500">
                                     {{ $message }}

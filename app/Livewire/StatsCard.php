@@ -12,6 +12,11 @@ class StatsCard extends Component
 
     public $date_sort;
 
+    public $card_donations ;
+
+    public function get_date_payments(){
+        return Payment::
+    }
 
     public function render()
     {

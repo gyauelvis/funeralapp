@@ -25,7 +25,9 @@ class Contributor extends Model
         'clan',
         'father',
         'mother',
-        'homewtown'
+        'hometown',
+        'contact_person_name',
+        'contact_person_number'
     ];
 
     public static function clans()

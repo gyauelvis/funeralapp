@@ -21,8 +21,6 @@ class DashboardController extends Controller
             'donations' => Payment::where('payment_type', 'DONATION')->orderBy('created_at', 'desc')->get(),
             'members' => Contributor::where('is_member', '=', 1)->orderBy('created_at', 'desc')->get(),
             'users' => User::get()
-
-
         ]);
     }
 }

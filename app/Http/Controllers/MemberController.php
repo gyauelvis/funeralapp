@@ -43,13 +43,16 @@ class MemberController extends Controller
             'clan' => [
                 'nullable',
                 Rule::in(['OYOKO', 'AGONA', 'BRETUO', 'ASOMAKOMA', 'ASONA', 'ABRADE', 'EKUONA', 'ADUANA'])
-            ]
+            ],
+            'contact_person_name' => 'nullable|min:5',
+            'contact_person_number' => 'nullable|numeric|min:10'
         ], [
             'picture_path' => 'The image must be jpeg,jpg or png',
             'name' => 'Enter a valid member name. Minimum of 5 letters',
             'suburb' => 'Enter a valid suburb for this member ',
             'phone_number' => 'Phone number is either invalid or is registered with another member',
-            'denomination' => 'Enter a valid denomination. Must be at least 5 characters'
+            'denomination' => 'Enter a valid denomination. Must be at least 5 characters',
+            'contact_person_number' => 'Enter a valid phone number'
         ]);
 
 
@@ -116,19 +119,24 @@ class MemberController extends Controller
             'picture_path' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'name' => 'required|min:5',
             'suburb' => 'required',
-            'phone_number' => 'required|min:10|numeric|unique:contributors,phone_number',
+            'phone_number' => 'required|min:10|numeric', //unique:contributors,phone_number
             'denomination' => 'nullable|min:5',
             'hometown' => 'nullable',
             'clan' => [
                 'nullable',
                 Rule::in(['OYOKO', 'AGONA', 'BRETUO', 'ASOMAKOMA', 'ASONA', 'ABRADE', 'EKUONA', 'ADUANA'])
-            ]
+            ],
+            'contact_person_name' => 'nullable|min:5',
+            'contact_person_number' => 'nullable|numeric|min:10'
         ], [
             'picture_path' => 'The image must be jpeg,jpg or png',
             'name' => 'Enter a valid member name. Minimum of 5 letters',
             'suburb' => 'Enter a valid suburb for this member ',
-            'phone_number' => 'Enter a valid phone number',
-            'denomination' => 'Enter a valid denomination. Must be at least 5 characters'
+            'phone_number.numeric' => 'Enter a valid phone number',
+            'phone_number.required' => 'Phone number cannot be empty',
+            'phone_number.unique' => 'Phone number has already been used for another member',
+            'denomination' => 'Enter a valid denomination. Must be at least 5 characters',
+            'contact_person_number' => 'Enter a valid phone number'
         ]);
 
 
