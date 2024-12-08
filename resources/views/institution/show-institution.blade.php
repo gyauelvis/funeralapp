@@ -8,7 +8,7 @@
                     <div
                         class="overflow-hidden rounded-2xl bg-white shadow-lg transition-all hover:shadow-xl dark:bg-gray-800">
                         <!-- Profile Header -->
-                        <div class="relative h-32 bg-gradient-to-r from-blue-500 to-blue-600">
+                        <div class="relative h-32 bg-gradient-to-r from-green-500 to-green-600">
                             <div class="absolute -bottom-16 left-1/2 -translate-x-1/2">
                                 <div class="relative">
                                     <div

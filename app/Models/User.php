@@ -107,6 +107,6 @@ class User extends Authenticatable
      */
     public function institution(): BelongsTo
     {
-        return $this->belongsTo(Institution::class);
+        return $this->belongsTo(Institution::class, 'institution_id');
     }
 }

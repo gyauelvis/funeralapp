@@ -1,25 +1,30 @@
 <x-app-layout>
     <main
-        class="flex h-auto min-h-screen flex-col items-center justify-center rounded-lg bg-white p-14 pt-20 dark:bg-gray-700 md:ml-64">
-        <div class="w-full p-4 pt-5 shadow-md">
+        class="flex h-auto min-h-screen flex-col items-center justify-center rounded-lg p-14 pt-20 dark:bg-gray-700 md:ml-64">
+        <div class="min-w-[800px] rounded-md bg-white p-4 pt-5 shadow-md">
             <table class="w-full text-left text-gray-500 rtl:text-right dark:text-gray-400">
-                <div class="bg-white pb-4 dark:bg-gray-900">
+                <div class="pb-4 dark:bg-gray-900">
                     <label for="table-search" class="sr-only">Search</label>
-                    <div class="relative mt-1">
-                        <div class="rtl:inset-r-0 pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
-                            <svg class="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                            </svg>
+                    <div class="flex items-center justify-between">
+                        <div class="mt-1">
+                            <div
+                                class="rtl:inset-r-0 pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
+                                <svg class="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                </svg>
+                            </div>
+                            <input type="text" id="table-search"
+                                class="block w-80 rounded-lg border border-gray-300 bg-gray-50 ps-10 pt-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                                placeholder="Search projects">
                         </div>
-                        <input type="text" id="table-search"
-                            class="block w-80 rounded-lg border border-gray-300 bg-gray-50 ps-10 pt-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                            placeholder="Search projects">
-                        <a href="{{ route('project.create') }}"
-                            class="mt-2 rounded-md bg-blue-500 px-3 py-2 text-white hover:bg-blue-300">
-                            Add Project
-                        </a>
+                        <div>
+                            <a href="{{ route('project.create') }}"
+                                class="mt-3 rounded-md bg-blue-600 px-3 py-2 text-white hover:bg-blue-500">
+                                Add Project
+                            </a>
+                        </div>
                     </div>
                     <caption
                         class="bg-white p-5 text-left text-lg font-semibold text-gray-900 rtl:text-right dark:bg-gray-800 dark:text-white">
@@ -28,7 +33,6 @@
                             all projects.</p>
                         {{ $projects->links() }}
                     </caption>
-
                     <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
@@ -37,24 +41,24 @@
                             <th scope="col" class="px-6 py-3">
                                 Description
                             </th>
-
-                            <th scope="col-2" class="px-6 py-3">
+                            <th scope="col" class="px-6 py-3">
+                                Date Created
+                            </th>
+                            <th colspan="2" scope="col-2" class="px-6 py-3 text-center">
                                 Action
                             </th>
-
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($projects as $project)
+                        @forelse ($projects as $project)
                             <tr class="border-b bg-white hover:bg-slate-100 dark:border-gray-700 dark:bg-gray-800">
                                 <th scope="row"
                                     class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                                    <a href="{{ route('member.single', $project->id) }}"
+                                    <a href="{{ route('project.single', $project->id) }}"
                                         class="hover:font-bold hover:text-red-600">
                                         {{ $project->name }}
                                     </a>
                                 </th>
-
                                 <td class="px-6 py-4">
                                     {{ $project->description }}
                                 </td>
@@ -74,7 +78,11 @@
                                     </form>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="3" class="mt-4 text-center">No projects added yet</td>
+                            </tr>
+                        @endforelse
                     </tbody>
             </table>
             <div

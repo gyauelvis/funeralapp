@@ -36,7 +36,7 @@
                                 </label>
                             </div>
                             <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="logo_help">
-                                SVG, PNG, JPG or GIF (MAX. 800x400px)</div>
+                                SVG, PNG, JPG or GIF</div>
                             @error('logo')
                                 <small class="text-xs font-bold text-red-500">
                                     {{ $message }}

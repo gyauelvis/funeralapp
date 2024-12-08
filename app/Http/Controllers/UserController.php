@@ -37,13 +37,14 @@ class UserController extends Controller
         $data = $request->validate([
             'picture_path' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'name' => 'required|min:5',
-            'email' => 'required',
+            'email' => 'required|unique:App\Models\User,email',
             'phone_number' => 'nullable|min:10|numeric|unique:contributors,phone_number',
             // 'role' => 'required|min:5',
         ], [
             'picture_path' => 'The image must be jpeg,jpg or png',
             'name' => 'Enter a valid user name. Minimum of 5 letters',
-            'email' => 'Enter a valid suburb for this user ',
+            'email' => 'Enter a valid active email for this user ',
+            'email.unique' => 'The email you entered has already been used for a user',
             'phone_number' => 'Phone number is either invalid or is registered with another user',
             'role' => 'You must select a role for the user'
         ]);
@@ -52,7 +53,7 @@ class UserController extends Controller
         if (isset($data['picture_path'])) {
             $image_name = time() . '.' . $data['picture_path']->extension();
 
-            $data['picture_path']->move(public_path('users'), $image_name);
+            $data['picture_path']->move(public_path('users_pictures'), $image_name);
 
             $data['picture_path'] = $image_name;
         }

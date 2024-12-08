@@ -51,6 +51,7 @@ class DonationController extends Controller
             ]);
 
 
+
             $data['payment_type'] = 'DONATION';
 
             $data['amount'] = $data['member_amount'];
@@ -86,8 +87,10 @@ class DonationController extends Controller
                 'name' => $data['name'],
                 'phone_number' => $data['phone_number'],
                 'is_member' => 0,
-                'user_id' => Auth::user()->id
+                'user_id' => Auth::user()->id,
             ]);
+
+
 
             $data['payment_type'] = 'DONATION';
 
@@ -101,7 +104,8 @@ class DonationController extends Controller
                 'month' => Carbon::now()->month,
                 'year' => Carbon::now()->year,
                 'user_id' => Auth::user()->id,
-                'contributor_id' => $contributor->id
+                'contributor_id' => $contributor->id,
+                'project_id' => $data['project_id']
             ]);
 
             toastr()->success("Donation has been recorded successfully");

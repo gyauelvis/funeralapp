@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                             <div class="mt-1 text-center text-sm text-gray-500 dark:text-gray-300"
-                                id="user_avatar_help">SVG, PNG, JPG or GIF (MAX. 800x400px)</div>
+                                id="user_avatar_help">SVG, PNG, JPG or GIF </div>
                             @error('picture_path')
                                 <small class="text-xs font-bold text-red-500">
                                     {{ $message }}
@@ -57,12 +57,12 @@
                         </div>
 
                         <div class="col-span-2 sm:col-span-1">
-                            <label for="role"
+                            <label for="phone_number"
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Phone Number</label>
-                            <input type="number" name="role" id="role"
+                            <input type="number" name="phone_number" id="phone_number"
                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                placeholder="02455900993" value="{{ old('role') }}">
-                            @error('role')
+                                placeholder="02455900993" value="{{ old('phone_number') }}">
+                            @error('phone_number')
                                 <small class="text-xs font-bold text-red-500">
                                     {{ $message }}
                                 </small>
