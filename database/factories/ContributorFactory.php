@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -24,7 +25,7 @@ class ContributorFactory extends Factory
             'suburb' => fake()->city(),
             'denomination' => fake()->word(),
             'picture_path' => null,
-            'user_id' => fake()->numberBetween(0, 5),
+            'user_id' => User::factory()
         ];
     }
 }

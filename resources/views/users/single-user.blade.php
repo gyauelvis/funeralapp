@@ -13,13 +13,13 @@
                                 <div class="relative">
                                     <div
                                         class="h-32 w-32 overflow-hidden rounded-full border-4 border-white bg-white shadow-lg dark:border-gray-700">
-                                        <img src="/users_images/{{ $user->profile_photo_url }}" alt="Profile"
-                                            class="h-full w-full object-cover">
+
+                                        <img src="{{ $user->picture_path == null ? '/profile.webp' : "/members_images/$user->profile_photo_url " }}"
+                                            alt="Profile" class="h-full w-full object-cover">
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                         <!-- Profile Content -->
                         <div class="pt-20">
                             <!-- Name and Contact -->
@@ -31,7 +31,7 @@
                                 </div>
 
                                 <div class="mt-6 space-y-4">
-                                    <div class="flex items-center gap-3 rounded-lg bg-gray-50 p-3 dark:bg-gray-700">
+                                    {{-- <div class="flex items-center gap-3 rounded-lg bg-gray-50 p-3 dark:bg-gray-700">
                                         <svg class="h-5 w-5 text-gray-600 dark:text-gray-300"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor">
@@ -40,7 +40,7 @@
                                         </svg>
                                         <span
                                             class="text-sm text-gray-600 dark:text-gray-300">{{ $user->phone_number }}</span>
-                                    </div>
+                                    </div> --}}
                                     @if ($user->email !== null)
                                         <div class="flex items-center gap-3 rounded-lg bg-gray-50 p-3 dark:bg-gray-700">
                                             <svg class="h-5 w-5 text-gray-600 dark:text-gray-300"
@@ -54,7 +54,7 @@
                                                 class="text-sm text-gray-600 dark:text-gray-300">{{ $user->email }}</span>
                                         </div>
                                     @endif
-                                    <div class="flex items-center gap-3 rounded-lg bg-gray-50 p-3 dark:bg-gray-700">
+                                    {{-- <div class="flex items-center gap-3 rounded-lg bg-gray-50 p-3 dark:bg-gray-700">
                                         <svg class="h-5 w-5 text-gray-600 dark:text-gray-300"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor">
@@ -65,7 +65,7 @@
                                         </svg>
                                         <span
                                             class="text-sm text-gray-600 dark:text-gray-300">{{ $user->suburb }}</span>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -106,34 +106,41 @@
                     <!-- Debt Card -->
                     <div class="rounded-2xl bg-white p-6 shadow-lg transition-all hover:shadow-xl dark:bg-gray-800">
                         <div class="flex items-center gap-3">
-                            <svg class="h-8 w-8 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            <svg class="h-8 w-8 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Debt Summary</h2>
-                        </div>
-
-                        <div class="mt-6">
-                            <div class="rounded-xl bg-red-50 p-4 dark:bg-red-900/20">
-                                <div class="text-sm font-medium text-red-600 dark:text-red-400">Total Debt</div>
-                                <div class="mt-2 text-2xl font-bold text-red-700 dark:text-red-300">GH₵ 200.00</div>
-                            </div>
-
-                            <div class="mt-4">
-                                <div class="text-sm font-medium text-gray-600 dark:text-gray-400">Outstanding Months
-                                </div>
-                                <div class="mt-2 flex flex-wrap gap-2">
-                                    <span
-                                        class="rounded-full bg-red-100 px-3 py-1 text-sm font-medium text-red-700 dark:bg-red-900/40 dark:text-red-300">January</span>
-                                    <span
-                                        class="rounded-full bg-red-100 px-3 py-1 text-sm font-medium text-red-700 dark:bg-red-900/40 dark:text-red-300">March</span>
-                                    <span
-                                        class="rounded-full bg-red-100 px-3 py-1 text-sm font-medium text-red-700 dark:bg-red-900/40 dark:text-red-300">June</span>
-                                </div>
-                            </div>
+                            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">All Received Payments Summary
+                            </h2>
                         </div>
                     </div>
+                    @forelse ($user->payments_received as $payment)
+                        <div class="rounded-2xl bg-white p-3 shadow-lg transition-all hover:shadow-xl dark:bg-gray-800">
+                            <div class="mt-1">
+                                <div class="rounded-xl bg-blue-50 p-4 dark:bg-red-900/20">
+                                    <div class="flex justify-between font-medium text-blue-600 dark:text-red-400">
+                                        <a class="mb-2 rounded-md bg-black px-2 pt-0.5 text-white"
+                                            href="{{ route('member.single', $payment->contributor_id) }}">Paid By:
+                                            {{ $payment->contributor->name }}</a> <span>Date:
+                                            {{ $payment->created_at->toFormattedDateString() }}</span>
+                                    </div>
+                                    <div class="mt-2 text-sm text-xl font-bold text-blue-700 dark:text-red-300">GH₵
+                                        {{ $payment->amount }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="rounded-2xl bg-white p-3 shadow-lg transition-all hover:shadow-xl dark:bg-gray-800">
+                            <div class="mt-1">
+                                <div class="rounded-xl bg-gray-50 p-4 dark:bg-red-900/20">
+                                    <div class="mt-2 text-center text-xl text-gray-700 dark:text-red-300">User
+                                        hasn't received any payments yet...</div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforelse
+
                 </section>
             </div>
         </div>

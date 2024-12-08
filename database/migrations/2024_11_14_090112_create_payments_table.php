@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->float('amount');
+            $table->decimal('amount');
             $table->enum('payment_type', ['CONTRIBUTION', 'DONATION']);
             $table->longText('purpose')->nullable();
             $table->string('month');
-            $table->string('year');;
-            $table->foreignId('contributor_id');
+            $table->integer('year');
+            $table->foreignId('contributor_id')->onDelete('cascade');
             $table->foreignId('user_id');
+            $table->foreignId('project_id')->nullable();
             $table->timestamps();
         });
     }

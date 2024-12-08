@@ -17,8 +17,11 @@ class Payment extends Model
         'month',
         'year',
         'contributor_id',
-        'user_id'
+        'user_id',
+        'project_id'
     ];
+
+    protected $with = ['contributor', 'payment_made_to'];
 
     /**
      * contributor
@@ -39,6 +42,17 @@ class Payment extends Model
      */
     public function payment_made_to(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+
+    /**
+     * project
+     *
+     * @return BelongsTo
+     */
+    public function project(): BelongsTo
+    {
+        return $this->belongsTo(Project::class, 'project_id');
     }
 }

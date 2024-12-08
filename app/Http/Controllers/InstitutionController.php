@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Institution;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Flasher\Toastr\Prime\ToastrInterface;
 
@@ -69,7 +70,11 @@ class InstitutionController extends Controller
         $data['logo'] = $image_name;
 
         if (Institution::get()->count() === 0) {
-            Institution::create($data);
+            $institution = Institution::create($data);
+
+            $user = Auth::user();
+            $user->institution_id = $institution->id;
+            $user->save();
 
             toastr()->success('Institution has been created successfully');
             return redirect(route('dashboard'));

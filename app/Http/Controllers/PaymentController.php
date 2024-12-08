@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Payment;
+use App\Models\Contributor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
@@ -12,7 +15,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        dd('All Contribution');
+        return view('contributions.view-contributions', ['contributions' => Payment::where('payment_type', 'CONTRIBUTION')->with(['contributor', 'payment_made_to'])->orderBy('created_at', 'desc')->paginate(20)->withQueryString()]);
     }
 
     /**
@@ -20,7 +23,7 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        dd('Create a Contribution');
+        return view('contributions.create-contribution', ['members' => Contributor::where('is_member', 1)->get()]);
     }
 
     /**
@@ -28,7 +31,27 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'contributor_id' => 'required|exists:App\Models\Contributor,id',
+            'amount' => 'required|numeric',
+        ], [
+            'contributor_id' => 'Enter a valid member name or ID number. Minimum of 5 letters',
+            'amount' => 'Enter a valid amount',
+        ]);
+
+
+        $data['payment_type'] = 'CONTRIBUTION';
+
+        $data['month'] = Carbon::now()->month;
+        $data['year'] = Carbon::now()->year;
+        $data['user_id'] = Auth::user()->id;
+
+        Payment::create($data);
+
+        toastr()->success("Contribution has been made successfully");
+
+
+        return redirect(route('member.single', $data['contributor_id']));
     }
 
     /**
@@ -44,7 +67,13 @@ class PaymentController extends Controller
      */
     public function edit(Payment $payment)
     {
-        //
+        return view(
+            'contributions.edit-contribution',
+            [
+                'contribution' => $payment,
+                'members' => Contributor::where('is_member', 1)->get()
+            ]
+        );
     }
 
     /**
@@ -52,7 +81,22 @@ class PaymentController extends Controller
      */
     public function update(Request $request, Payment $payment)
     {
-        //
+        $data = $request->validate([
+            'contributor_id' => 'required|exists:App\Models\Contributor,id',
+            'amount' => 'required|numeric',
+        ], [
+            'contributor_id' => 'Enter a valid member name or ID number. Minimum of 5 letters',
+            'amount' => 'Enter a valid amount',
+        ]);
+
+
+        if ($payment->update($data)) {
+            toastr()->success("Contribution has been updated successfully");
+            return redirect(route('member.single', $data['contributor_id']));
+        }
+
+        toastr()->error("Error updating contribution details");
+        return back();
     }
 
     /**
@@ -60,6 +104,9 @@ class PaymentController extends Controller
      */
     public function destroy(Payment $payment)
     {
-        //
+        $payment->delete();
+        toastr()->success("Contribution has been deleted successfully");
+
+        return back();
     }
 }

@@ -1,7 +1,7 @@
 <x-app-layout>
-    <main class="flex h-auto items-center justify-center rounded-lg bg-white p-4 pt-20 dark:bg-gray-700 md:ml-64">
+    <main class="flex h-auto min-h-screen items-center justify-center rounded-lg p-4 pt-20 dark:bg-gray-700 md:ml-64">
         <div class="w-full max-w-lg">
-            <div>
+            <div class="rounded-md bg-white">
                 <div class="flex items-center justify-between rounded-t p-4 dark:border-gray-600 md:p-5">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                         Register New Member
@@ -33,7 +33,7 @@
                                 </div>
                             </div>
                             <div class="mt-1 text-center text-sm text-gray-500 dark:text-gray-300"
-                                id="user_avatar_help">SVG, PNG, JPG or GIF (MAX. 800x400px)</div>
+                                id="user_avatar_help">SVG, PNG, JPG or GIF</div>
                             @error('picture_path')
                                 <small class="text-xs font-bold text-red-500">
                                     {{ $message }}
@@ -80,6 +80,35 @@
                                 </small>
                             @enderror
                         </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <label for="phone_number"
+                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Clan</label>
+                            <select name="clan" id="clan"
+                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500">
+                                <option value="" disabled selected>Select your clan</option>
+                                @foreach ($clans as $clan)
+                                    <option value="{{ old('clan', $clan['value']) }}">{{ $clan['name'] }}</option>
+                                @endforeach
+                            </select>
+
+                            @error('clan')
+                                <small class="text-xs font-bold text-red-500">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <label for="hometown"
+                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Hometown</label>
+                            <input type="text" name="hometown" id="hometown"
+                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                placeholder="Name of Hometown" value="{{ old('hometown') }}">
+                            @error('hometown')
+                                <small class="text-xs font-bold text-red-500">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+                        </div>
                         <div class="col-span-2">
                             <label for="denomination"
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Church
@@ -90,6 +119,35 @@
                             <datalist id="denomination-list">
                             </datalist>
                             @error('denomination')
+                                <small class="text-xs font-bold text-red-500">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+                        </div>
+                        <div class="col-span-2 mt-3 font-bold">
+                            Whom should we contact incase of an emergency?
+                            <hr>
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <label for="contact_person_name"
+                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                            <input type="text" name="contact_person_name" id="contact_person_name"
+                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                placeholder="Enter full name" value="{{ old('contact_person_name') }}">
+                            @error('contact_person_name')
+                                <small class="text-xs font-bold text-red-500">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <label for="contact_person_number"
+                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Phone
+                                Number</label>
+                            <input type="number" name="contact_person_number" id="contact_person_number"
+                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                placeholder="024XXXXXXX" value="{{ old('contact_person_number') }}">
+                            @error('contact_person_number')
                                 <small class="text-xs font-bold text-red-500">
                                     {{ $message }}
                                 </small>
