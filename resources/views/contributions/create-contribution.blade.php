@@ -10,9 +10,7 @@
                 </div>
                 <form class="p-4 md:p-5" action="{{ route('payment.new') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-
                     <div class="mb-4 grid grid-cols-2 gap-4">
-
                         <div class="col-span-2">
                             <label for="name"
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Enter name or
