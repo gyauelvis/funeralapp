@@ -5,7 +5,7 @@
             <div class="flex items-center justify-start">
                 <button data-drawer-target="drawer-navigation" data-drawer-toggle="drawer-navigation"
                     aria-controls="drawer-navigation"
-                    class="mr-2 cursor-pointer rounded-lg p-2 text-gray-600 hover:bg-red-500 hover:text-gray-900 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:bg-gray-700 dark:focus:ring-gray-700 md:hidden">
+                    class="mr-2 cursor-pointer rounded-lg p-2 text-gray-600 hover:bg-red-700 hover:text-gray-900 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:bg-gray-700 dark:focus:ring-gray-700 md:hidden">
                     <svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
@@ -76,7 +76,7 @@
             <ul class="space-y-2 text-white">
                 <li>
                     <a href="{{ url('/dashboard') }}"
-                        class="{{ request()->routeIs('dashboard') ? 'border-r-4 border-red-500' : '' }} group flex items-center p-2 text-base font-medium text-white hover:bg-red-500 dark:text-white dark:hover:bg-gray-700">
+                        class="{{ request()->routeIs('dashboard') ? 'border-r-4 border-red-800' : '' }} group flex items-center p-2 text-base font-medium text-white hover:bg-red-700 dark:text-white dark:hover:bg-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                             class="size-6 text-white">
                             <path fill-rule="evenodd"
@@ -89,7 +89,7 @@
                 </li>
                 <li>
                     <a href="{{ route('member.create') }}"
-                        class="{{ request()->routeIs('member.create') ? 'border-r-4 border-red-500' : '' }} group flex items-center p-2 text-base font-medium text-white hover:bg-red-500 dark:text-white dark:hover:bg-gray-700">
+                        class="{{ request()->routeIs('member.create') ? 'border-r-4 border-red-800' : '' }} group flex items-center p-2 text-base font-medium text-white hover:bg-red-700 dark:text-white dark:hover:bg-gray-700">
                         <svg class="h-6 w-6 flex-shrink-0 text-white transition duration-75 group-hover:text-white dark:text-gray-400 dark:group-hover:text-white"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                             <path
@@ -102,7 +102,7 @@
                 <li>
 
                     <a href="{{ route('members') }}"
-                        class="{{ request()->routeIs('members') ? 'border-r-4 border-red-500' : '' }}transition group flex w-full items-center p-2 text-base font-medium duration-75 hover:bg-red-500 dark:text-white dark:hover:bg-gray-700">
+                        class="{{ request()->routeIs('members') ? 'border-r-4 border-red-800' : '' }}transition group flex w-full items-center p-2 text-base font-medium duration-75 hover:bg-red-700 dark:text-white dark:hover:bg-gray-700">
                         <svg class="h-6 w-6 flex-shrink-0 text-white transition duration-75 group-hover:text-white dark:text-gray-400 dark:group-hover:text-white"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                             <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
@@ -117,7 +117,7 @@
                 <li>
 
                     <a href="{{ route('donors') }}"
-                        class="{{ request()->routeIs('donors') ? 'border-r-4 border-red-500' : '' }} group flex w-full items-center p-2 text-base font-medium transition duration-75 hover:bg-red-500 dark:text-white dark:hover:bg-gray-700">
+                        class="{{ request()->routeIs('donors') ? 'border-r-4 border-red-800' : '' }} group flex w-full items-center p-2 text-base font-medium transition duration-75 hover:bg-red-700 dark:text-white dark:hover:bg-gray-700">
 
                         <svg class="h-6 w-6 flex-shrink-0 text-white transition duration-75 group-hover:text-white dark:text-gray-400 dark:group-hover:text-white"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -132,7 +132,7 @@
 
                 <li>
                     <a href="{{ route('payment.create') }}"
-                        class="{{ request()->routeIs('payment.create') ? 'border-r-4 border-red-500' : '' }} group flex items-center p-2 text-base font-medium hover:bg-red-500 dark:text-white dark:hover:bg-gray-700">
+                        class="{{ request()->routeIs('payment.create') ? 'border-r-4 border-red-800' : '' }} group flex items-center p-2 text-base font-medium hover:bg-red-700 dark:text-white dark:hover:bg-gray-700">
 
                         <svg class="h-6 w-6 flex-shrink-0 text-white transition duration-75 group-hover:text-white dark:text-gray-400 dark:group-hover:text-white"
                             xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
@@ -149,7 +149,7 @@
                 </li>
                 <li>
                     <a href="{{ route('donation.create') }}"
-                        class="{{ request()->routeIs('donation.create') ? 'border-r-4 border-red-500' : '' }} group flex items-center p-2 text-base font-medium hover:bg-red-500 dark:text-white dark:hover:bg-gray-700">
+                        class="{{ request()->routeIs('donation.create') ? 'border-r-4 border-red-800' : '' }} group flex items-center p-2 text-base font-medium hover:bg-red-700 dark:text-white dark:hover:bg-gray-700">
 
                         <svg aria-hidden="true"
                             class="h-6 w-6 flex-shrink-0 text-white transition duration-75 group-hover:text-white dark:text-gray-400 dark:group-hover:text-white"
@@ -171,7 +171,7 @@
                 <li>
 
                     <a href="{{ route('payments') }}"
-                        class="{{ request()->routeIs('payments') ? 'border-r-4 border-red-500' : '' }} group flex w-full items-center p-2 text-base font-medium transition duration-75 hover:bg-red-500 dark:text-white dark:hover:bg-gray-700">
+                        class="{{ request()->routeIs('payments') ? 'border-r-4 border-red-800' : '' }} group flex w-full items-center p-2 text-base font-medium transition duration-75 hover:bg-red-700 dark:text-white dark:hover:bg-gray-700">
                         <svg class="h-6 w-6 flex-shrink-0 text-white transition duration-75 group-hover:text-white dark:text-gray-400 dark:group-hover:text-white"
                             xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                             <path fill="currentColor"
@@ -184,7 +184,7 @@
                 <li>
 
                     <a href="{{ route('donations') }}"
-                        class="{{ request()->routeIs('donations') ? 'border-r-4 border-red-500' : '' }} group flex w-full items-center p-2 text-base font-medium transition duration-75 hover:bg-red-500 dark:text-white dark:hover:bg-gray-700">
+                        class="{{ request()->routeIs('donations') ? 'border-r-4 border-red-800' : '' }} group flex w-full items-center p-2 text-base font-medium transition duration-75 hover:bg-red-700 dark:text-white dark:hover:bg-gray-700">
                         <svg class="h-6 w-6 flex-shrink-0 text-white transition duration-75 group-hover:text-white dark:text-gray-400 dark:group-hover:text-white"
                             xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                             <path fill="currentColor"
@@ -195,10 +195,10 @@
                     </a>
                 </li>
             </ul>
-            <ul class="relative mt-5 space-y-2 border-t border-red-200 pt-5 dark:border-red-700">
+            <ul class="bi relative mt-5 space-y-2 border-t border-red-950 pt-5 dark:border-red-700">
                 <li>
                     <a href="#"
-                        class="{{ request()->routeIs('roles') ? 'border-r-4 border-red-500' : '' }} group flex items-center p-2 text-base font-medium transition duration-75 hover:bg-red-500 dark:text-white dark:hover:bg-gray-700">
+                        class="{{ request()->routeIs('roles') ? 'border-r-4 border-red-800' : '' }} group flex items-center p-2 text-base font-medium transition duration-75 hover:bg-red-700 dark:text-white dark:hover:bg-gray-700">
                         <svg aria-hidden="true"
                             class="h-6 w-6 flex-shrink-0 text-white transition duration-75 group-hover:text-white dark:text-gray-400 dark:group-hover:text-white"
                             xmlns="http://www.w3.org/2000/svg" width="1.08em" height="1em"
@@ -212,7 +212,7 @@
 
                 <li>
                     <a href="{{ route('user.create') }}"
-                        class="{{ request()->routeIs('user.create') ? 'border-r-4 border-red-500' : '' }} group flex items-center p-2 text-base font-medium transition duration-75 hover:bg-red-500 dark:text-white dark:hover:bg-gray-700">
+                        class="{{ request()->routeIs('user.create') ? 'border-r-4 border-red-800' : '' }} group flex items-center p-2 text-base font-medium transition duration-75 hover:bg-red-700 dark:text-white dark:hover:bg-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                             class="size-6 text-white">
                             <path
@@ -223,7 +223,7 @@
                 </li>
                 <li>
                     <a href="{{ route('users') }}"
-                        class="{{ request()->routeIs('users') ? 'border-r-4 border-red-500' : '' }} group flex items-center p-2 text-base font-medium transition duration-75 hover:bg-red-500 dark:text-white dark:hover:bg-gray-700">
+                        class="{{ request()->routeIs('users') ? 'border-r-4 border-red-800' : '' }} group flex items-center p-2 text-base font-medium transition duration-75 hover:bg-red-700 dark:text-white dark:hover:bg-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                             class="size-6 text-white">
                             <path
@@ -235,7 +235,7 @@
                 @if (Auth::user()->institution)
                     <li>
                         <a href="{{ route('institution.single', Auth::user()->institution_id) }}"
-                            class="{{ request()->routeIs('institution.single') ? 'border-r-4 border-red-500' : '' }} group flex items-center p-2 text-base font-medium transition duration-75 hover:bg-red-500 dark:text-white dark:hover:bg-gray-700">
+                            class="{{ request()->routeIs('institution.single') ? 'border-r-4 border-red-800' : '' }} group flex items-center p-2 text-base font-medium transition duration-75 hover:bg-red-700 dark:text-white dark:hover:bg-gray-700">
 
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                 class="size-6 text-white">
@@ -249,7 +249,7 @@
                 @else
                     <li>
                         <a href="{{ route('institution.create') }}"
-                            class="{{ request()->routeIs('institution.create') ? 'border-r-4 border-red-500' : '' }} group flex items-center p-2 text-base font-medium transition duration-75 hover:bg-red-500 dark:text-white dark:hover:bg-gray-700">
+                            class="{{ request()->routeIs('institution.create') ? 'border-r-4 border-red-800' : '' }} group flex items-center p-2 text-base font-medium transition duration-75 hover:bg-red-700 dark:text-white dark:hover:bg-gray-700">
 
                             <svg aria-hidden="true"
                                 class="h-6 w-6 flex-shrink-0 text-white transition duration-75 group-hover:text-white dark:text-gray-400 dark:group-hover:text-white"
@@ -266,7 +266,7 @@
                 @endif
                 <li>
                     <a href="{{ route('projects') }}"
-                        class="{{ request()->routeIs('projects') ? 'border-r-4 border-red-500' : '' }} group flex items-center p-2 text-base font-medium transition duration-75 hover:bg-red-500 dark:text-white dark:hover:bg-gray-700">
+                        class="{{ request()->routeIs('projects') ? 'border-r-4 border-red-800' : '' }} group flex items-center p-2 text-base font-medium transition duration-75 hover:bg-red-700 dark:text-white dark:hover:bg-gray-700">
 
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                             class="size-5 text-white transition duration-75">
@@ -285,7 +285,7 @@
                 </li>
                 <li>
                     <a href="#"
-                        class="{{ request()->routeIs('member.create') ? 'border-r-4 border-red-500' : '' }} group flex items-center p-2 text-base font-medium transition duration-75 hover:bg-red-500 dark:text-white dark:hover:bg-gray-700">
+                        class="{{ request()->routeIs('member.create') ? 'border-r-4 border-red-800' : '' }} group flex items-center p-2 text-base font-medium transition duration-75 hover:bg-red-700 dark:text-white dark:hover:bg-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                             class="size-5 text-white">
                             <path
@@ -300,7 +300,7 @@
                 </li>
                 <li>
                     <a href="#"
-                        class="{{ request()->routeIs('member.create') ? 'border-r-4 border-red-500' : '' }} group flex items-center p-2 text-base font-medium transition duration-75 hover:bg-red-500 dark:text-white dark:hover:bg-gray-700">
+                        class="{{ request()->routeIs('member.create') ? 'border-r-4 border-red-800' : '' }} group flex items-center p-2 text-base font-medium transition duration-75 hover:bg-red-700 dark:text-white dark:hover:bg-gray-700">
                         <svg aria-hidden="true"
                             class="h-6 w-6 flex-shrink-0 text-white transition duration-75 group-hover:text-white dark:text-gray-400 dark:group-hover:text-white"
                             fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -314,7 +314,7 @@
                 @if (Auth::user()->institution !== null)
                     <li class="group relative">
                         <a href="#" id="dropDown"
-                            class="relative flex w-full flex-row items-center justify-between gap-2 rounded-md px-2 py-4 text-sm font-medium text-gray-900 transition duration-150 hover:bg-red-500 dark:text-white dark:hover:bg-gray-700">
+                            class="relative flex w-full flex-row items-center justify-between gap-2 rounded-md px-2 py-4 text-sm font-medium text-gray-900 transition duration-150 hover:bg-red-700 dark:text-white dark:hover:bg-gray-700">
                             <div class="flex flex-row items-center gap-4">
                                 <div class="h-8 w-8 rounded-full">
                                     <img src="/logos/{{ Auth::user()->institution->logo }}" alt="Logo"
@@ -341,10 +341,10 @@
                         <div
                             class="popover absolute right-0 top-full z-50 mt-2 hidden w-56 origin-top-right transform transition-all duration-300 ease-in-out">
                             <div
-                                class="overflow-hidden rounded-lg border border-red-500 bg-red-500 shadow-xl dark:border-gray-700 dark:bg-gray-800">
+                                class="overflow-hidden rounded-lg border border-red-800 bg-red-500 shadow-xl dark:border-gray-700 dark:bg-gray-800">
                                 <div class="py-1">
                                     <a href="{{ route('institution.edit', Auth::user()->institution->id) }}"
-                                        class="hover:text-dark block px-4 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-red-500 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-black">
+                                        class="hover:text-dark block px-4 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-red-700 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-black">
                                         <div class="flex items-center gap-3">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white"
                                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
