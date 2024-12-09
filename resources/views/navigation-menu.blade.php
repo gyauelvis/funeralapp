@@ -197,7 +197,7 @@
             </ul>
             <ul class="bi relative mt-5 space-y-2 border-t border-red-950 pt-5 dark:border-red-700">
                 <li>
-                    <a href="#"
+                    <a href="{{ route('roles') }}"
                         class="{{ request()->routeIs('roles') ? 'border-r-4 border-red-800' : '' }} group flex items-center p-2 text-base font-medium transition duration-75 hover:bg-red-700 dark:text-white dark:hover:bg-gray-700">
                         <svg aria-hidden="true"
                             class="h-6 w-6 flex-shrink-0 text-white transition duration-75 group-hover:text-white dark:text-gray-400 dark:group-hover:text-white"
