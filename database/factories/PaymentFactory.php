@@ -25,9 +25,9 @@ class PaymentFactory extends Factory
             'purpose' => fake()->sentence(),
             'month' => fake()->month(),
             'year' => fake()->year(),
-            'contributor_id' => Contributor::factory(),
-            'user_id' => User::factory(),
-            'project_id' => Project::factory()
+            'contributor_id' => fake()->numberBetween(1, 700),
+            'user_id' => 1,
+            'project_id' => fake()->numberBetween(1, 3)
         ];
     }
 }

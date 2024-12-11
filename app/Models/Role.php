@@ -13,14 +13,26 @@ class Role extends Model
     /** @use HasFactory<\Database\Factories\RoleFactory> */
     use HasFactory;
 
+    protected $fillable = ['name', 'color'];
+
+    // /**
+    //  * permissions
+    //  *
+    //  * @return void
+    //  */
+    // public function permissions(): HasMany
+    // {
+    //     return $this->hasMany(Permission::class);
+    // }
+
     /**
      * permissions
      *
-     * @return void
+     * @return BelongsToMany
      */
-    public function permissions(): HasMany
+    public function permissions(): BelongsToMany
     {
-        return $this->hasMany(Permission::class);
+        return $this->belongsToMany(Permission::class, 'role_permission');
     }
 
     /**

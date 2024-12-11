@@ -15,7 +15,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        return view('contributions.view-contributions', ['contributions' => Payment::where('payment_type', 'CONTRIBUTION')->with(['contributor', 'payment_made_to'])->orderBy('created_at', 'desc')->paginate(20)->withQueryString()]);
+        return view('contributions.view-contributions', ['contributions' => Payment::where('payment_type', 'CONTRIBUTION')->with(['contributor', 'payment_made_to'])->orderBy('created_at', 'desc')->paginate(15)->withQueryString()]);
     }
 
     /**

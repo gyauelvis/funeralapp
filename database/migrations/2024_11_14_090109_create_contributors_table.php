@@ -18,6 +18,8 @@ return new class extends Migration
                 ->nullable()
                 ->unique();
             $table->string('phone_number');
+            $table->date('date_of_birth')->nullable();
+            $table->enum('gender', ['MALE', 'FEMALE'])->nullable();
             $table->enum('clan', ['OYOKO', 'AGONA', 'BRETUO', 'ASOMAKOMA', 'ASONA', 'ABRADE', 'EKUONA', 'ADUANA'])
                 ->nullable();
             $table->string('contact_person_name')

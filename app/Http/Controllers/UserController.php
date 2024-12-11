@@ -18,7 +18,7 @@ class UserController extends Controller
     public function index()
     {
 
-        return view('users.view-users', ['users' =>  User::orderBy('created_at', 'desc')->paginate(20)->withQueryString()]);
+        return view('users.view-users', ['users' =>  User::orderBy('created_at', 'desc')->paginate(15)->withQueryString()]);
     }
 
     /**
@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.register-user', ['roles' =>  Role::get()]);
+        return view('users.register-user', ['roles' =>  Role::latest()->get()]);
     }
 
     /**
@@ -39,14 +39,14 @@ class UserController extends Controller
             'name' => 'required|min:5',
             'email' => 'required|unique:App\Models\User,email',
             'phone_number' => 'nullable|min:10|numeric|unique:contributors,phone_number',
-            // 'role' => 'required|min:5',
+            'role_id' => 'required|exists:App\Models\Role,id',
         ], [
             'picture_path' => 'The image must be jpeg,jpg or png',
             'name' => 'Enter a valid user name. Minimum of 5 letters',
             'email' => 'Enter a valid active email for this user ',
             'email.unique' => 'The email you entered has already been used for a user',
             'phone_number' => 'Phone number is either invalid or is registered with another user',
-            'role' => 'You must select a role for the user'
+            'role_id' => 'You must select a role for the user'
         ]);
 
 
@@ -61,6 +61,7 @@ class UserController extends Controller
 
         $data['password'] = Hash::make('password');
         $data['user_id'] = Auth::user()->id;
+        $data['institution_id'] = Auth::user()->institution->id;
 
         $user = User::create($data);
 

@@ -32,7 +32,7 @@ class User extends Authenticatable
         'email',
         'password',
         'institution_id',
-        'role',
+        'role_id',
         'phone_number',
         'user_id'
     ];
@@ -108,5 +108,20 @@ class User extends Authenticatable
     public function institution(): BelongsTo
     {
         return $this->belongsTo(Institution::class, 'institution_id');
+    }
+
+    /**
+     * role
+     *
+     * @return BelongsTo
+     */
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    public function hasPermission($permission)
+    {
+        return $this->role && $this->role->permissions->contains('name', $permission);
     }
 }

@@ -16,7 +16,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        return view('members.view-members', ['members' => Contributor::where('is_member', '=', 1)->orderBy('created_at', 'desc')->paginate(20)->withQueryString()]);
+        return view('members.view-members', ['members' => Contributor::where('is_member', '=', 1)->orderBy('created_at', 'desc')->paginate(7)->withQueryString()]);
     }
 
     /**

@@ -12,7 +12,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('projects.view-projects', ['projects' => Project::orderBy('created_at', 'desc')->paginate(20)->withQueryString()]);
+        return view('projects.view-projects', ['projects' => Project::orderBy('created_at', 'desc')->paginate(15)->withQueryString()]);
     }
 
     /**

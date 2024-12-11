@@ -26,7 +26,7 @@
                         </div>
                         <div class="col-span-2">
                             <label for="Color"
-                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Role Color</label>
+                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Color</label>
                             <input type="color" name="color" id="color"
                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                 value="{{ old('color') }}">
@@ -49,6 +49,21 @@
                                         {{ "{$member->name} - {$member->membership_id}" }}</option>
                                 @endforeach
                             </select> --}}
+
+                            <label for="permissions">Select Permissions</label>
+                            @forelse ($permissions as $permission)
+                                <div class="mb-4 flex items-center">
+                                    <input id="{{ $permission->name }}" name="permissions" type="checkbox"
+                                        value="{{ $permission->id }}"
+                                        class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600">
+                                    <label for="{{ $permission->name }}"
+                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $permission->name }}</label>
+                                </div>
+
+                            @empty
+                                <p class="bg-gray-400 px-2 py-1 text-black">There are not permissions yet</p>
+                            @endforelse
+
                             @error('contributor_id')
                                 <small class="text-xs font-bold text-red-500">
                                     {{ $message }}

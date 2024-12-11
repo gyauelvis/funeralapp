@@ -16,6 +16,7 @@ class Contributor extends Model
     protected $fillable = [
         'name',
         'membership_id',
+        'gender',
         'phone_number',
         'is_member',
         'suburb',

@@ -27,7 +27,10 @@
                                 <div class="text-center">
                                     <h2 class="text-2xl font-bold text-gray-900 dark:text-white">{{ $user->name }}
                                     </h2>
-                                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ $user->role }}</p>
+                                    <p class="w-16 rounded-md px-2 py-0.5 text-center text-sm text-white"
+                                        style="background-color:{{ $user->role->color ?? '' }} ">
+                                        {{ '' ?? $user->role->name }}
+                                    </p>
                                 </div>
 
                                 <div class="mt-6 space-y-4">

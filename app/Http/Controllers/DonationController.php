@@ -16,7 +16,7 @@ class DonationController extends Controller
      */
     public function index()
     {
-        return view('donations.view-donations', ['donations' => Payment::where('payment_type', 'DONATION')->orderBy('created_at', 'desc')->paginate(20)->withQueryString()]);
+        return view('donations.view-donations', ['donations' => Payment::where('payment_type', 'DONATION')->orderBy('created_at', 'desc')->paginate(15)->withQueryString()]);
     }
 
     /**
@@ -50,10 +50,7 @@ class DonationController extends Controller
                 'project_id.exist' => 'Invalid project selected'
             ]);
 
-
-
             $data['payment_type'] = 'DONATION';
-
             $data['amount'] = $data['member_amount'];
             $data['month'] = Carbon::now()->month;
             $data['year'] = Carbon::now()->year;

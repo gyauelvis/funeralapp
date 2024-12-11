@@ -93,7 +93,8 @@
                                     </div>
                                 @empty
                                     <a href="{{ route('project.create') }}">
-                                        <p class="rounded-md bg-gray-300 px-2 py-0.5 text-center text-sm text-black">
+                                        <p
+                                            class="@error('project_id') bg-red-200 text-red-600 px-2 py-1 @enderror rounded-md bg-gray-300 px-2 py-0.5 text-center text-sm text-black">
                                             Click
                                             here to
                                             <span class="font-bold">create a
