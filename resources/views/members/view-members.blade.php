@@ -1,6 +1,7 @@
 <x-app-layout>
     <main class="flex h-auto min-h-screen items-center justify-center rounded-lg dark:bg-gray-700 md:ml-64">
-        <div class="relative mx-5 bg-white p-5 shadow-md dark:bg-gray-700 sm:rounded-lg">
+        <div class="container mx-auto my-20">
+        <div class="relative mx-5 overflowhidden bg-white p-5 shadow-md dark:bg-gray-700 sm:rounded-lg">
             <div class="">
                 <table class="w-full text-left text-gray-500 rtl:text-right dark:text-gray-400">
                     <div class="bg-white dark:bg-gray-900">
@@ -38,12 +39,6 @@
                                     Phone Number
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Suburb
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Date Registered
-                                </th>
-                                <th scope="col" class="px-6 py-3">
                                     Registered By
                                 </th>
                                 <th colspan="2" scope="col-2" class="px-6 py-3 text-center">
@@ -79,13 +74,6 @@
                                         {{ $member->phone_number }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $member->suburb }}
-                                    </td>
-
-                                    <td class="px-6 py-4">
-                                        {{ $member->created_at->toFormattedDateString() }}
-                                    </td>
-                                    <td class="px-6 py-4">
                                         <a href="{{ route('user.single', $member->user_id) }}"
                                             class="rounded-md bg-gray-700 px-2 py-0.5 text-sm text-white">
                                             {{ $member->registered_by->name }}
@@ -117,6 +105,6 @@
                 </table>
             </div>
         </div>
-
+    </div>
     </main>
 </x-app-layout>
