@@ -1,8 +1,7 @@
 <x-app-layout>
-    <main
-        class="flex h-auto min-h-screen items-center justify-center rounded-lg p-4 pt-20 dark:bg-gray-700 md:ml-64">
+    <main class="flex h-auto min-h-screen items-center justify-center rounded-lg p-4 pt-20 dark:bg-gray-700 md:ml-64">
         <div class="w-full max-w-lg">
-            <div class="bg-white rounded-md p-3">
+            <div class="rounded-md bg-white p-3">
                 <div class="flex items-center justify-between rounded-t p-4 dark:border-gray-600 md:p-5">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                         Register New User
@@ -58,7 +57,8 @@
 
                         <div class="col-span-2 sm:col-span-1">
                             <label for="role"
-                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Phone Number</label>
+                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Phone
+                                Number</label>
                             <input type="number" name="role" id="role"
                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                 placeholder="02455900993" value="{{ old('role') }}">
@@ -82,18 +82,21 @@
                             @enderror
                         </div>
                         <div class="col-span-2">
-                            <label for="role"
+                            <label for="role_id"
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Role<span
                                     class="text-red-500">*</span></label>
-                            <select name="role" id="role"
+                            <select name="role_id" id="role"
                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500">
                                 <option value="" disabled selected>Select user role</option>
-                                {{-- @foreach ($roles as)
-                                    <option value="{{ old('role',['value']) }}">{{['name'] }}</option>
-                                @endforeach --}}
+                                @forelse ($roles as $role)
+                                    <option value="{{ old('role', $role->id) }}">{{ $role->name }}</option>
+                                @empty
+                                    <option disabled>No roles created yet</option>
+                                @endforelse
+
                             </select>
 
-                            @error('role')
+                            @error('role_id')
                                 <small class="text-xs font-bold text-red-500">
                                     {{ $message }}
                                 </small>
@@ -118,8 +121,6 @@
 </x-app-layout>
 
 <script>
-
-
     function previewImage(input) {
         const preview = document.getElementById('preview');
         const placeholder = document.getElementById('placeholder');

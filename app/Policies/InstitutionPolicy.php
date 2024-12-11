@@ -13,7 +13,7 @@ class InstitutionPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->hasPermission('view_community_details');
     }
 
     /**
@@ -21,7 +21,7 @@ class InstitutionPolicy
      */
     public function view(User $user, Institution $institution): bool
     {
-        //
+        return $user->hasPermission('view_communities');
     }
 
     /**
@@ -29,7 +29,7 @@ class InstitutionPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->hasPermission('create_community');
     }
 
     /**
@@ -37,7 +37,7 @@ class InstitutionPolicy
      */
     public function update(User $user, Institution $institution): bool
     {
-        //
+        return $user->hasPermission('update_community');
     }
 
     /**
@@ -45,7 +45,7 @@ class InstitutionPolicy
      */
     public function delete(User $user, Institution $institution): bool
     {
-        //
+        return $user->hasPermission('delete_community');
     }
 
     /**
@@ -53,7 +53,7 @@ class InstitutionPolicy
      */
     public function restore(User $user, Institution $institution): bool
     {
-        //
+        return $user->hasPermission('restore_community');
     }
 
     /**
@@ -61,6 +61,6 @@ class InstitutionPolicy
      */
     public function forceDelete(User $user, Institution $institution): bool
     {
-        //
+        return $user->hasPermission('force_delete_community');
     }
 }

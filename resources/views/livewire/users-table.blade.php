@@ -132,7 +132,9 @@
                             </div>
                         </th>
                         <td class="px-6 py-4">
-                            User Role
+                            <span class="rounded-md px-2 py-0.5 text-white"
+                                style="background-color:{{ 'red' ?? $user->role->color }} ">
+                                {{ $user->role->name ?? '' }}</span>
                         </td>
                         <td class="px-6 py-4">
                             @if ($user->email_verified_at !== null)

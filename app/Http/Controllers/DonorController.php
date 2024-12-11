@@ -14,7 +14,7 @@ class DonorController extends Controller
      */
     public function index()
     {
-        return view('donor.view-donors', ['donors' => Contributor::where('is_member', '=', 0)->orderBy('created_at', 'desc')->paginate(20)->withQueryString()]);
+        return view('donor.view-donors', ['donors' => Contributor::where('is_member', '=', 0)->orderBy('created_at', 'desc')->paginate(15)->withQueryString()]);
     }
 
 
