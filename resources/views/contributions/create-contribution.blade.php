@@ -5,7 +5,7 @@
             <div class="rounded-md bg-white">
                 <div class="flex items-center justify-between rounded-t p-4 dark:border-gray-600 md:p-5">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Make a Contribution
+                        Pay Development Levy (Oman Toc)
                     </h3>
                 </div>
                 <form class="p-4 md:p-5" action="{{ route('payment.new') }}" method="POST" enctype="multipart/form-data">
@@ -56,7 +56,7 @@
                                 d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                                 clip-rule="evenodd"></path>
                         </svg>
-                        Make a contribution
+                        Pay Development Levy
                     </button>
                 </form>
             </div>

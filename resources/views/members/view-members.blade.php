@@ -76,7 +76,7 @@
                                     <td class="px-6 py-4">
                                         <a href="{{ route('user.single', $member->user_id) }}"
                                             class="rounded-md bg-gray-700 px-2 py-0.5 text-sm text-white">
-                                            {{ $member->registered_by->name }}
+                                            {{ $member->registered_by->name ?? '' }}
                                         </a>
                                     </td>
                                     <td class="px-6 py-4 text-left">
@@ -84,7 +84,7 @@
                                             class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
                                     </td>
                                     <td class="text-left">
-                                        <form method="POST" action="{{ route('payment.delete', $member->id) }}">
+                                        <form method="POST" action="{{ route('member.delete', $member->id) }}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" onclick="return confirm('Are you sure?')"

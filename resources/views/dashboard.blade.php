@@ -108,7 +108,7 @@
                         <div class="mb-2 text-2xl font-bold text-gray-800">
                             {{ $payments->where('payment_type', 'CONTRIBUTION')->sum('amount') < 0 ? 'GHS ---' : Number::currency($payments->where('payment_type', 'CONTRIBUTION')->sum('amount'), 'GHS') }}
                         </div>
-                        <div class="text-sm text-gray-500">Total Amount of Funeral Wages</div>
+                        <div class="text-sm text-gray-500">Total Development Levy</div>
                     </div>
                 </div>
                 <div
@@ -124,7 +124,7 @@
                             </div>
                         </div>
                         <div class="mb-2 text-2xl font-bold text-gray-800">{{ $members->count() }}</div>
-                        <div class="text-sm text-gray-500">Total Community Members</div>
+                        <div class="text-sm text-gray-500">Registered Community Members</div>
                     </div>
                 </div>
                 <div

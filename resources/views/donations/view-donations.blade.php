@@ -36,6 +36,9 @@
                                     Amount
                                 </th>
                                 <th scope="col" class="px-6 py-3">
+                                    Project
+                                </th>
+                                <th scope="col" class="px-6 py-3">
                                     Phone Number
                                 </th>
                                 <th scope="col" class="px-6 py-3">
@@ -61,11 +64,15 @@
                                         </a>
                                     </th>
                                     <td class="px-6 py-4">
-                                        <span class="rounded-md bg-blue-500 px-2 py-0.5 text-sm text-white">
-                                            {{ $donation->amount }}
-                                        </span>
+                                        {{ Number::currency($donation->amount, 'GHS') }}
                                     </td>
-
+                                    <td class="px-6 py-4">
+                                        <a href="{{ route('project.single', $donation->project->id) }}">
+                                            <span class="rounded-md bg-blue-500 px-2 py-0.5 text-sm text-white">
+                                                {{ $donation->project->name }}
+                                            </span>
+                                        </a>
+                                    </td>
                                     <td class="px-6 py-4">
                                         {{ $donation->contributor->phone_number }}
                                     </td>
@@ -76,7 +83,7 @@
                                     <td class="px-6 py-4">
                                         <a href="{{ route('user.single', $donation->payment_made_to->id) }}"
                                             class="rounded-md bg-gray-700 px-2 py-0.5 text-sm text-white">
-                                            {{ $donation->payment_made_to->name }}
+                                            {{ $donation->payment_made_to->name ?? '' }}
                                         </a>
                                     </td>
                                     <td class="px-6 py-4 text-left">
@@ -94,7 +101,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="6" class="pt-5 text-center">
+                                    <td colspan="7" class="pt-5 text-center">
                                         No data found...
                                     </td>
                                 </tr>

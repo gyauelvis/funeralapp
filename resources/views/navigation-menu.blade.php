@@ -144,7 +144,7 @@
                                     clip-rule="evenodd" />
                             </g>
                         </svg>
-                        <span class="ml-3 flex-1 whitespace-nowrap text-white">Receive Contribution</span>
+                        <span class="ml-3 flex-1 whitespace-nowrap text-white">Receive Levy</span>
                     </a>
                 </li>
                 <li>
@@ -178,7 +178,7 @@
                                 d="M2 6.75C2 5.784 2.784 5 3.75 5h13.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 17.25 17H3.75A1.75 1.75 0 0 1 2 15.25zm3-.5v1a.75.75 0 0 1-.75.75h-1v1.5h1A2.25 2.25 0 0 0 6.5 7.25v-1zm5.5 7.25a2.25 2.25 0 1 0 0-4.5a2.25 2.25 0 0 0 0 4.5m-7.25.5h1a.75.75 0 0 1 .75.75v1h1.5v-1a2.25 2.25 0 0 0-2.25-2.25h-1zm12.75.75a.75.75 0 0 1 .75-.75h1v-1.5h-1a2.25 2.25 0 0 0-2.25 2.25v1H16zm0-7.5v-1h-1.5v1a2.25 2.25 0 0 0 2.25 2.25h1V8h-1a.75.75 0 0 1-.75-.75M4.401 18.5A3 3 0 0 0 7 20h10.25A4.75 4.75 0 0 0 22 15.25V10a3 3 0 0 0-1.5-2.599v7.849a3.25 3.25 0 0 1-3.25 3.25z" />
                         </svg>
 
-                        <span class="ml-3 text-white">Funeral Contributions</span>
+                        <span class="ml-3 text-white">Development Levy</span>
                     </a>
                 </li>
                 <li>
@@ -260,7 +260,7 @@
                                     clip-rule="evenodd" />
                             </svg>
 
-                            <span class="ml-3 text-white">Create Institution</span>
+                            <span class="ml-3 text-white">Create Your Community</span>
                         </a>
                     </li>
                 @endif
@@ -311,37 +311,37 @@
                         <span class="ml-3 text-white">Help</span>
                     </a>
                 </li>
-                @if (Auth::user()->institution !== null)
-                    <li class="group relative">
-                        <a href="#" id="dropDown"
-                            class="relative flex w-full flex-row items-center justify-between gap-2 rounded-md px-2 py-4 text-sm font-medium text-gray-900 transition duration-150 hover:bg-red-700 dark:text-white dark:hover:bg-gray-700">
-                            <div class="flex flex-row items-center gap-4">
-                                <div class="h-8 w-8 rounded-full">
-                                    <img src="/logos/{{ Auth::user()->institution->logo }}" alt="Logo"
-                                        class="h-full w-full rounded-full object-cover">
-                                </div>
-                                <div class="flex flex-col">
-                                    <span class="inline-block text-xs font-medium text-white">
-                                        {{ Auth::user()->institution->name }}
-                                    </span>
-                                    <span class="inline-block text-xs text-white">
-                                        {{ Auth::user()->institution->address }}
-                                    </span>
-                                </div>
+
+                <li class="group relative">
+                    <a href="#" id="dropDown"
+                        class="relative flex w-full flex-row items-center justify-between gap-2 rounded-md px-2 py-4 text-sm font-medium text-gray-900 transition duration-150 hover:bg-red-700 dark:text-white dark:hover:bg-gray-700">
+                        <div class="flex flex-row items-center gap-4">
+                            <div class="h-8 w-8 rounded-full">
+                                <img src="/logos/{{ Auth::user()->institution->logo ?? '' }}" alt="Logo"
+                                    class="h-full w-full rounded-full object-cover">
                             </div>
-                            <div>
-                                <svg id="drop-icon" class="size-6 text-white transition-transform"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                </svg>
+                            <div class="flex flex-col">
+                                <span class="inline-block text-xs font-medium text-white">
+                                    {{ Auth::user()->institution->name ?? '' }}
+                                </span>
+                                <span class="inline-block text-xs text-white">
+                                    {{ Auth::user()->institution->address ?? '' }}
+                                </span>
                             </div>
-                        </a>
+                        </div>
+                        <div>
+                            <svg id="drop-icon" class="size-6 text-white transition-transform"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </div>
+                    </a>
+                    @can('update_community', \App\Models\Institution::class)
                         <div
                             class="popover absolute right-0 top-full z-50 mt-2 hidden w-56 origin-top-right transform transition-all duration-300 ease-in-out">
                             <div
-                                class="overflow-hidden rounded-lg border border-red-800 bg-red-500 shadow-xl dark:border-gray-700 dark:bg-gray-800">
+                                class="overflow-hidden rounded-lg border border-red-800 bg-red-800 shadow-xl dark:border-gray-700 dark:bg-gray-800">
                                 <div class="py-1">
                                     <a href="{{ route('institution.edit', Auth::user()->institution->id) }}"
                                         class="hover:text-dark block px-4 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-red-700 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-black">
@@ -357,8 +357,9 @@
                                 </div>
                             </div>
                         </div>
-                    </li>
-                @endif
+                    @endcan
+                </li>
+
             </ul>
 
         </div>

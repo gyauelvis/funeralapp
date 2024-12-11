@@ -16,12 +16,12 @@
                         <input type="text" id="table-search"
                             class="block w-80 rounded-lg border border-gray-300 bg-gray-50 ps-10 pt-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                             placeholder="Search for items">
-                    </div>
+                    </div>Us
                     <caption
                         class="bg-white p-5 text-left text-lg font-semibold text-gray-900 rtl:text-right dark:bg-gray-800 dark:text-white">
-                        All Funeral Contributions
+                        All Developmental Levies
                         <p class="mb-2 mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Browse the list of
-                            all funeral contributions.</p>
+                            all developmental levies.</p>
                         {{ $contributions->links() }}
                     </caption>
 
@@ -81,7 +81,7 @@
                                                         clip-rule="evenodd" />
                                                 </svg>
 
-                                                {{ $contribution->payment_made_to->name }}
+                                                {{ $contribution->payment_made_to->name ?? '' }}
                                             </span>
                                         @endif
                                     </a>
