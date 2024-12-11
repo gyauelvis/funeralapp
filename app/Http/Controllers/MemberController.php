@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contributor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Number;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
@@ -23,7 +24,8 @@ class MemberController extends Controller
      */
     public function create()
     {
-        return view('members.register-member',);
+        $clans = Contributor::clans();
+        return view('members.register-member', compact("clans"));
     }
 
     /**
@@ -37,13 +39,20 @@ class MemberController extends Controller
             'name' => 'required|min:5',
             'suburb' => 'required',
             'phone_number' => 'required|min:10|numeric|unique:contributors,phone_number',
-            'denomination' => 'nullable|min:5'
+            'denomination' => 'nullable|min:5',
+            'clan' => [
+                'nullable',
+                Rule::in(['OYOKO', 'AGONA', 'BRETUO', 'ASOMAKOMA', 'ASONA', 'ABRADE', 'EKUONA', 'ADUANA'])
+            ],
+            'contact_person_name' => 'nullable|min:5',
+            'contact_person_number' => 'nullable|numeric|min:10'
         ], [
             'picture_path' => 'The image must be jpeg,jpg or png',
             'name' => 'Enter a valid member name. Minimum of 5 letters',
             'suburb' => 'Enter a valid suburb for this member ',
             'phone_number' => 'Phone number is either invalid or is registered with another member',
-            'denomination' => 'Enter a valid denomination. Must be at least 5 characters'
+            'denomination' => 'Enter a valid denomination. Must be at least 5 characters',
+            'contact_person_number' => 'Enter a valid phone number'
         ]);
 
 
@@ -94,8 +103,11 @@ class MemberController extends Controller
         if ($contributor->is_member !== 1) {
             return redirect(route('donor.edit', $contributor->id));
         }
-
-        return view('members.edit-member', ['member' => $contributor]);
+        $clans = Contributor::clans();
+        return view('members.edit-member', [
+            'member' => $contributor,
+            'clans' => $clans
+        ]);
     }
 
     /**
@@ -107,14 +119,24 @@ class MemberController extends Controller
             'picture_path' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'name' => 'required|min:5',
             'suburb' => 'required',
-            'phone_number' => 'required|numeric',
-            'denomination' => 'nullable|min:5'
+            'phone_number' => 'required|min:10|numeric', //unique:contributors,phone_number
+            'denomination' => 'nullable|min:5',
+            'hometown' => 'nullable',
+            'clan' => [
+                'nullable',
+                Rule::in(['OYOKO', 'AGONA', 'BRETUO', 'ASOMAKOMA', 'ASONA', 'ABRADE', 'EKUONA', 'ADUANA'])
+            ],
+            'contact_person_name' => 'nullable|min:5',
+            'contact_person_number' => 'nullable|numeric|min:10'
         ], [
             'picture_path' => 'The image must be jpeg,jpg or png',
             'name' => 'Enter a valid member name. Minimum of 5 letters',
             'suburb' => 'Enter a valid suburb for this member ',
-            'phone_number' => 'Enter a valid phone number',
-            'denomination' => 'Enter a valid denomination. Must be at least 5 characters'
+            'phone_number.numeric' => 'Enter a valid phone number',
+            'phone_number.required' => 'Phone number cannot be empty',
+            'phone_number.unique' => 'Phone number has already been used for another member',
+            'denomination' => 'Enter a valid denomination. Must be at least 5 characters',
+            'contact_person_number' => 'Enter a valid phone number'
         ]);
 
 

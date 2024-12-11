@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'App') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -15,8 +15,7 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <!-- Styles -->
-    @livewireStyles
+
 </head>
 
 <body class="font-sans antialiased">
@@ -26,23 +25,19 @@
         @livewire('navigation-menu')
 
         <!-- Page Heading -->
-        @if (isset($header))
-            <header class="bg-white shadow dark:bg-gray-800">
-                <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-        @endif
-
+        <main id="screen-loader"
+            class="flex h-auto min-h-screen items-center justify-center rounded-lg bg-white dark:bg-gray-700 md:ml-64">
+            <span
+                class="box-border inline-block h-12 w-12 animate-spin rounded-full border-4 border-gray-200 border-b-blue-500"></span>
+        </main>
         <!-- Page Content -->
-        <main>
+        <main id="content" style="display: none">
             {{ $slot }}
         </main>
     </div>
 
     @stack('modals')
 
-    @livewireScripts
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -50,6 +45,19 @@
         $(document).ready(function() {
             $('.js-example-basic-single').select2();
         });
+    </script>
+    <script>
+        // Show loader while the page is loading
+        window.addEventListener('load', function() {
+            document.getElementById('screen-loader').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        });
+
+        // Optional: Add a fallback in case 'load' event takes too long
+        setTimeout(function() {
+            document.getElementById('screen-loader').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        }, 5000); // Adjust the timeout as needed (e.g., 5000ms = 5 seconds)
     </script>
 </body>
 

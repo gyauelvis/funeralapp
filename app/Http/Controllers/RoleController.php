@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        return view('roles.view-roles', ['roles' => Role::paginate(20)->withQueryString()]);
     }
 
     /**
@@ -20,7 +21,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('roles.create-role', ['permissions' => Permission::get()]);
     }
 
     /**
@@ -28,7 +29,15 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+
+            'name' => 'required|min:5|unique:roles',
+
+        ], [
+            'name.required' => 'Role name is required. Minimum of 5 letters',
+            'name.min' => 'Role name need to be 5 characters or more',
+            'name.unique' => 'A role already exists with the same name',
+        ]);
     }
 
     /**

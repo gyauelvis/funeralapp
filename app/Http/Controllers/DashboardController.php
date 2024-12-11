@@ -14,14 +14,10 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
-
         return view('dashboard', [
-            'contributions' => Payment::where('payment_type', 'CONTRIBUTION')->get(),
-            'donations' => Payment::where('payment_type', 'DONATION')->orderBy('created_at', 'desc')->get(),
+            'payments' => Payment::orderBy('created_at', 'desc')->get(),
             'members' => Contributor::where('is_member', '=', 1)->orderBy('created_at', 'desc')->get(),
             'users' => User::get()
-
-
         ]);
     }
 }

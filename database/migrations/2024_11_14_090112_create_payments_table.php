@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('year');
             $table->foreignId('contributor_id')->onDelete('cascade');
             $table->foreignId('user_id');
-            $table->foreignId('project_id');
+            $table->foreignId('project_id')->nullable();
             $table->timestamps();
         });
     }

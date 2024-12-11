@@ -31,7 +31,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'institution_id'
+        'institution_id',
+        'role',
+        'phone_number',
+        'user_id'
     ];
 
     /**
@@ -65,7 +68,14 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'password_changed_at' => 'datetime',
         ];
+    }
+
+    public function scopeSearch($query, $value)
+    {
+        $query->where('name', 'like', "%{$value}%")
+            ->orWhere('email', 'like', "%{$value}%");
     }
 
 
@@ -97,6 +107,6 @@ class User extends Authenticatable
      */
     public function institution(): BelongsTo
     {
-        return $this->belongsTo(Institution::class);
+        return $this->belongsTo(Institution::class, 'institution_id');
     }
 }
